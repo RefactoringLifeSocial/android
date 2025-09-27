@@ -4,7 +4,7 @@
 ---
 
 ## 📋 Descripción
-Explica brevemente qué se hizo en este PR.
+<-- Explica brevemente qué se hizo en este PR. -->
 
 ---
 
