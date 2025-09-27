@@ -1,0 +1,48 @@
+# Archivos de Android Studio / IntelliJ
+*.iml
+.idea
+.idea/*
+!.idea/codeStyles # (si quieres compartir estilo de código con el team)
+
+# Archivos de configuración locales
+/local.properties
+.gradle
+/.gradle/
+/gradlew.bat
+
+# Directorios de build
+/build
+/app/build
+/captures
+/.cxx
+/.externalNativeBuild
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Archivos de test coverage o reportes
+*.ec
+*.exec
+*.hprof
+
+# Configuración de keystore (no subir nunca claves firmadas)
+*.jks
+*.keystore
+*.key
+
+# Archivos de empaquetado
+*.apk
+*.ap_
+*.aab
+
+# Cache de Android Studio
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
