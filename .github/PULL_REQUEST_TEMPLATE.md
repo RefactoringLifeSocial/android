@@ -4,14 +4,14 @@
 ---
 
 ## 📋 Descripción
-<-- Explica brevemente qué se hizo en este PR. -->
+<!-- Explica brevemente qué se hizo en este PR. -->
 
 ---
 
 ## ✅ Evidencia
-- Capturas de pantalla / logs
+<!-- Capturas de pantalla / logs 
 - GIFs si aplica
-- Links de referencia
+- Links de referencia -->
 
 ---
 
