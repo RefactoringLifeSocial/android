@@ -7,4 +7,4 @@ on:
 
 jobs:
   android:
-    uses: RefactoringLifeSocial/devOps/.github/workflows/android-ci.yml@main
+    uses: RefactoringLifeSocial/devops/.github/workflows/android-ci.yml@main
