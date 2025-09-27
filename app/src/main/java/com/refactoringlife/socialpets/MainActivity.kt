@@ -18,6 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             SocialPetsTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+
                     Box(modifier = Modifier.padding(innerPadding))
                 }
             }
