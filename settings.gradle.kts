@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "SocialPets"
 include(":app")
- 
+include(":core")
+include(":auth")
+include(":adoption")
