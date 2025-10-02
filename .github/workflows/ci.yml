@@ -1,0 +1,10 @@
+name: Android CI
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  android:
+    uses: RefactoringLifeSocial/devOps/.github/workflows/android-ci.yaml@main
