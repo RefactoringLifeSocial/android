@@ -1,4 +1,4 @@
-package com.refactoringlife.socialpets.utils.theme
+package com.refactoringlife.auth.utils.theme
 
 import androidx.compose.ui.graphics.Color
 
