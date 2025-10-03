@@ -42,13 +42,3 @@ fun Loading(action: () -> Unit){
         }
     }
 }
-
-fun pepe(){
-
-}
-
-@Composable
-@Preview(showBackground = true, showSystemUi = true)
-fun RunPreview(){
-    Loading(action = {pepe()})
-}
