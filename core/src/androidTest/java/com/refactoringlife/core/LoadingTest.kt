@@ -1,11 +1,11 @@
-package com.refactoringlife.socialpets
+package com.refactoringlife.core
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
+import com.refactoringlife.core.common.ui.composables.Loading
 import com.refactoringlife.core.common.utils.Constants
-import com.refactoringlife.socialpets.ui.composables.Loading
 import org.junit.Rule
 import org.junit.Test
 

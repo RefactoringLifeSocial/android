@@ -1,4 +1,4 @@
-package com.refactoringlife.socialpets.ui.composables
+package com.refactoringlife.core.common.ui.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,9 +14,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.refactoringlife.core.R
+import com.refactoringlife.core.common.ui.theme.Gray80
 import com.refactoringlife.core.common.utils.Constants
-import com.refactoringlife.socialpets.R
-import com.refactoringlife.socialpets.ui.theme.Gray80
 
 @Composable
 fun Loading(action: () -> Unit){
