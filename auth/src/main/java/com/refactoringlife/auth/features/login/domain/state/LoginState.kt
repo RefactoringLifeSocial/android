@@ -1,4 +1,4 @@
-package com.refactoringlife.auth.features.login.presentation.domain.state
+package com.refactoringlife.auth.features.login.domain.state
 
 data class LoginState(
     val success: Boolean = false,

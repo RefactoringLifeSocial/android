@@ -1,6 +1,6 @@
-package com.refactoringlife.auth.features.login.presentation.domain.blocs
+package com.refactoringlife.auth.features.login.domain.blocs
 
-import com.refactoringlife.auth.features.login.presentation.domain.state.LoginState
+import com.refactoringlife.auth.features.login.domain.state.LoginState
 
 typealias LoginStateUpdater = suspend (suspend (LoginState) -> LoginState) -> Unit
 
