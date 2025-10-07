@@ -2,10 +2,10 @@ package com.refactoringlife.auth.features.login.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.refactoringlife.auth.features.login.presentation.domain.blocs.LoginBaseBloc
-import com.refactoringlife.auth.features.login.presentation.domain.blocs.LoginBlocs
-import com.refactoringlife.auth.features.login.presentation.domain.blocs.LoginEvent
-import com.refactoringlife.auth.features.login.presentation.domain.state.LoginState
+import com.refactoringlife.auth.features.login.domain.blocs.LoginBaseBloc
+import com.refactoringlife.auth.features.login.domain.blocs.LoginEvent
+import com.refactoringlife.auth.features.login.domain.state.LoginState
+import com.refactoringlife.auth.features.login.domain.blocs.LoginBlocs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -33,5 +33,4 @@ class LoginViewModel(
         }
     }
 }
-
 

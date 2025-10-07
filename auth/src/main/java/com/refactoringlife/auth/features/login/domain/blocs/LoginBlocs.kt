@@ -1,4 +1,4 @@
-package com.refactoringlife.auth.features.login.presentation.domain.blocs
+package com.refactoringlife.auth.features.login.domain.blocs
 
 class LoginBlocs {
     companion object{

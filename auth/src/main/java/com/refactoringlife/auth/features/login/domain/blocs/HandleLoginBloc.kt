@@ -1,6 +1,7 @@
-package com.refactoringlife.auth.features.login.presentation.domain.blocs
+package com.refactoringlife.auth.features.login.domain.blocs
 
-import com.refactoringlife.auth.features.login.presentation.domain.state.LoginState
+import com.refactoringlife.auth.features.login.domain.state.LoginState
+import com.refactoringlife.core.common.result.AsyncResult
 
 class HandleLoginBloc : LoginBaseBloc {
 
@@ -15,7 +16,11 @@ class HandleLoginBloc : LoginBaseBloc {
         try {
             /*
             call to use case
-             update { it.copy(loading = false, error = false, success = true) }
+             update {
+              it.copy(
+              loading = false,
+              error = false,
+               success = true) }
              */
 
         } catch (_: Throwable) {
