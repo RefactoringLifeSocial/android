@@ -67,7 +67,11 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.okhttp)
     implementation(libs.androidx.material.icons.extended)
-    implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    
+    // Navigation dependencies (Híbrida: Compose + Fragment)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 }
