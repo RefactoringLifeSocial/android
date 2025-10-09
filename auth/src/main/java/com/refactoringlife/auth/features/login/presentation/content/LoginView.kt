@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.HorizontalDivider
 import com.refactoringlife.core.R
 import androidx.compose.ui.res.stringResource
@@ -136,6 +137,7 @@ fun LoginView(
                         fontWeight = FontWeight.Normal,
                         color = Color.Gray
                     )
+                    Spacer(modifier = Modifier.width(1.dp))
                     TextLogin(
                         text = stringResource(R.string.registrate_aqui),
                         fontSize = 15.sp,
