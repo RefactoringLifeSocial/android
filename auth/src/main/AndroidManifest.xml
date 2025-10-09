@@ -8,11 +8,13 @@
             android:name=".features.AuthActivity"
             android:exported="true"
             android:launchMode="singleTop">
-            <intent-filter>
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="socialpets" android:host="auth"/>
+                <data android:scheme="https"
+                    android:host="socialpets.com"
+                    android:pathPrefix="/auth" />
             </intent-filter>
         </activity>
     </application>

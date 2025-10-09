@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
     private fun handleDeepLink(intent: Intent) {
         val data: Uri? = intent.data
         when {
-            data?.scheme == DeepLinks.SCHEME && data.host == DeepLinks.Host.AUTH -> {
+            data?.scheme == DeepLinks.SCHEME && data.host == DeepLinks.HOST -> {
                 startActivity(Intent(this, AuthActivity::class.java))
             }
             else -> {

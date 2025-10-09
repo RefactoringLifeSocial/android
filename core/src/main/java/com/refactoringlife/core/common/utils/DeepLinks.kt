@@ -5,7 +5,9 @@ import android.content.Intent
 import android.net.Uri
 
 object DeepLinks {
-    const val SCHEME = "socialpets"
+    // Cambiar a URL web estándar
+    const val SCHEME = "https"
+    const val HOST = "socialpets.com"
 
     object Host {
         const val AUTH = "auth"
@@ -24,8 +26,8 @@ object DeepLinks {
     fun buildUri(host: String, path: String, query: Map<String, String> = emptyMap()): Uri {
         val builder = Uri.Builder()
             .scheme(SCHEME)
-            .authority(host)
-            .path(path)
+            .authority(HOST)
+            .path("/$host$path")
         query.forEach { (key, value) ->
             builder.appendQueryParameter(key, value)
         }

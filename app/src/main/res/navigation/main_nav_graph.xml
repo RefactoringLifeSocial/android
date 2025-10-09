@@ -12,6 +12,6 @@
         android:id="@+id/auth_flow"
         android:name="com.refactoringlife.auth.features.AuthActivity"
         android:exported="true">
-        <deepLink app:uri="socialpets://auth" />
+        <deepLink app:uri="https://socialpets.com/auth" />
     </activity>
 </navigation>

@@ -8,6 +8,7 @@
         android:id="@+id/loginFragment"
         android:name="com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment"
         android:label="Login">
-        <deepLink app:uri="socialpets://auth/login" />
+        <deepLink app:uri="https://socialpets.com/auth/login" />
     </fragment>
+
 </navigation>
