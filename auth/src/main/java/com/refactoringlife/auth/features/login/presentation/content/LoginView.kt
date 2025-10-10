@@ -59,7 +59,7 @@ fun LoginView(
                 onValueChange = {},
                 placeholderText = stringResource(R.string.email),
                 placeholderFontSize = 16.sp,
-                icon = R.drawable.user,
+                icon = R.drawable.person,
                 iconWidth = 25.dp,
                 iconHeight = 25.dp,
                 modifier = Modifier
