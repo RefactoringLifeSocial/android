@@ -52,6 +52,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     api(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
     api(libs.junit)
     api(libs.androidx.junit)
     api(libs.androidx.espresso.core)
@@ -62,17 +63,6 @@ dependencies {
     api(libs.retrofit)
     api(libs.gson)
     api(libs.lottie.compose)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.logging.interceptor)
-    implementation(libs.retrofit)
-    implementation(libs.gson)
-    implementation(libs.lottie.compose)
-
     // Navigation dependencies
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.fragment.ktx)
