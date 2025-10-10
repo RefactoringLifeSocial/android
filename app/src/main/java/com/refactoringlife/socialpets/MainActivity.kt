@@ -19,7 +19,6 @@ class MainActivity : ComponentActivity() {
         val data: Uri? = intent.data
         when {
             data?.scheme == DeepLinks.SCHEME && data.host == DeepLinks.HOST -> {
-                // Deeplink específico
                 val authIntent = Intent(this, AuthActivity::class.java)
                 authIntent.data = data
                 startActivity(authIntent)

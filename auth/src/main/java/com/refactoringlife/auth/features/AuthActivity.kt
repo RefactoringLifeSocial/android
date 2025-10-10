@@ -36,14 +36,11 @@ class AuthActivity : FragmentActivity() {
             data?.path?.startsWith("/${DeepLinks.Host.AUTH}${DeepLinks.Path.REGISTER}") == true -> {
                 navController.navigate(R.id.registerFragment)
             }
-//            data?.path?.startsWith("/auth/login") == true -> {
-//                navController.navigate(R.id.loginFragment)
-//            }
-//            data?.path?.startsWith("/auth/register") == true -> {
-//                navController.navigate(R.id.registerFragment)
-//            }
-            // Pantalla por defecto
+
             defaultFragment == "login" -> {
+                navController.navigate(R.id.loginFragment)
+            }
+            defaultFragment == "register" -> {
                 navController.navigate(R.id.registerFragment)
             }
         }
