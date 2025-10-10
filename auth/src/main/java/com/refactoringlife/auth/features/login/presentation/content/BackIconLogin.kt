@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.res.stringResource
-import com.refactoringlife.core.R
+import com.refactoringlife.auth.R
 
 
 @Composable

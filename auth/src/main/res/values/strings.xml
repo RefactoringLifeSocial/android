@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="volver">Volver</string>
+    <string name="email">Email</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="mostrar_contrasena">Mostrar Contraseña</string>
+    <string name="entrar">Entrar</string>
+    <string name="olvidaste_contrasena">¿Olvidaste tu contraseña?</string>
+    <string name="sin_cuenta">Si no tienes cuenta, </string>
+    <string name="registrate_aqui">Regístrate aquí</string>
 </resources>

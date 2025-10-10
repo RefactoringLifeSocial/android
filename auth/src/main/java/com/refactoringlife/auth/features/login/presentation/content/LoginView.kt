@@ -18,7 +18,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.HorizontalDivider
-import com.refactoringlife.core.R
+import com.refactoringlife.auth.R
 import androidx.compose.ui.res.stringResource
 
 
