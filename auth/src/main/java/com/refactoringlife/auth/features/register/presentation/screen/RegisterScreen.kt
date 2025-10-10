@@ -5,8 +5,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.refactoringlife.auth.features.register.presentation.content.RegisterView
 
 @Composable
-fun RegisterScreen(){
-    RegisterView(back = {})
+fun RegisterScreen(
+    onBack: () -> Unit = {}
+){
+    RegisterView(back = onBack)
 }
 @Composable
 @Preview(showBackground = true)

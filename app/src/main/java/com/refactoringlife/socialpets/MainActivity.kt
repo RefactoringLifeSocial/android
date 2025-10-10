@@ -19,10 +19,15 @@ class MainActivity : ComponentActivity() {
         val data: Uri? = intent.data
         when {
             data?.scheme == DeepLinks.SCHEME && data.host == DeepLinks.HOST -> {
-                startActivity(Intent(this, AuthActivity::class.java))
+                // Deeplink específico
+                val authIntent = Intent(this, AuthActivity::class.java)
+                authIntent.data = data
+                startActivity(authIntent)
             }
             else -> {
-                startActivity(Intent(this, AuthActivity::class.java))
+                val authIntent = Intent(this, AuthActivity::class.java)
+                authIntent.putExtra("default_fragment", "register")
+                startActivity(authIntent)
             }
         }
         finish()

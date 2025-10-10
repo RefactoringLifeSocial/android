@@ -5,9 +5,8 @@ import android.content.Intent
 import android.net.Uri
 
 object DeepLinks {
-    // Cambiar a URL web estándar
-    const val SCHEME = "https"
-    const val HOST = "socialpets.com"
+    const val SCHEME = "socialpets"
+    const val HOST = "com.refactoringlife.socialpets"
 
     object Host {
         const val AUTH = "auth"
