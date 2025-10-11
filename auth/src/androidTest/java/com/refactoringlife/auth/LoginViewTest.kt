@@ -1,9 +1,8 @@
 package com.refactoringlife.auth
 
-import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performClick
+import androidx.compose.runtime.Composable
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.refactoringlife.auth.features.login.presentation.content.LoginView
 import org.junit.Rule
@@ -17,20 +16,14 @@ class LoginViewTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun loginView_DisplayAllText() {
+    fun loginView_DisplaysAllTexts() {
         composeTestRule.setContent {
-            LoginView(
-                onBack = {},
-                onLoginClick = { _, _ -> },
-                onForgotPassword = {},
-                onRegisterClick = {}
-            )
+            LoginViewTestWrapper()
         }
 
         composeTestRule.onNodeWithText("Iniciar sesión").assertIsDisplayed()
         composeTestRule.onNodeWithText("Email").assertIsDisplayed()
         composeTestRule.onNodeWithText("Contraseña").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Mostrar Contraseña").assertIsDisplayed()
         composeTestRule.onNodeWithText("Entrar").assertIsDisplayed()
         composeTestRule.onNodeWithText("¿Olvidaste tu contraseña?").assertIsDisplayed()
         composeTestRule.onNodeWithText("Si no tienes cuenta,").assertIsDisplayed()
@@ -38,7 +31,7 @@ class LoginViewTest {
     }
 
     @Test
-    fun loginView_LoginButtonClickTriggersLambda() {
+    fun loginView_LoginButtonClick_TriggersLambda() {
         var clicked = false
         composeTestRule.setContent {
             LoginView(
@@ -54,7 +47,7 @@ class LoginViewTest {
     }
 
     @Test
-    fun loginView_ForgotPasswordClickTriggersLambda() {
+    fun loginView_ForgotPasswordClick_TriggersLambda() {
         var clicked = false
         composeTestRule.setContent {
             LoginView(
@@ -70,7 +63,7 @@ class LoginViewTest {
     }
 
     @Test
-    fun loginView_RegisterClickTriggersLambda() {
+    fun loginView_RegisterClick_TriggersLambda() {
         var clicked = false
         composeTestRule.setContent {
             LoginView(
@@ -84,4 +77,15 @@ class LoginViewTest {
         composeTestRule.onNodeWithText("Regístrate aquí").performClick()
         assert(clicked)
     }
+}
+
+
+@Composable
+private fun LoginViewTestWrapper() {
+    LoginView(
+        onBack = {},
+        onLoginClick = { _, _ -> },
+        onForgotPassword = {},
+        onRegisterClick = {}
+    )
 }
