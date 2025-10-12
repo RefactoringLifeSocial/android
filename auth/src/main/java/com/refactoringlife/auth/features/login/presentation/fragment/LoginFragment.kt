@@ -5,13 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.refactoringlife.auth.features.AuthActivity  // ← NUEVO IMPORT
 
 class LoginFragment : Fragment() {
 
@@ -29,7 +35,23 @@ class LoginFragment : Fragment() {
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "Hello world")
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Text(
+                        text = "Login Screen",
+                        fontSize = 24.sp
+                    )
+
+                    Button(
+                        onClick = {
+                            (requireActivity() as AuthActivity).goToRegisterFragment()  // ← MÁS CORTO
+                        }
+                    ) {
+                        Text("Go to Register (TEMP)")
+                    }
+                }
             }
         }
         return composeView

@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
             }
             else -> {
                 val authIntent = Intent(this, AuthActivity::class.java)
-                authIntent.putExtra("default_fragment", "login")
+                authIntent.putExtra("default_fragment", DeepLinks.Screen.LOGIN)
                 startActivity(authIntent)
             }
         }

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import androidx.navigation.fragment.findNavController
+import com.refactoringlife.auth.features.AuthActivity
 import com.refactoringlife.auth.features.register.presentation.screen.RegisterScreen
 
 class RegisterFragment : Fragment() {
@@ -24,7 +24,8 @@ class RegisterFragment : Fragment() {
         composeView.setContent {
             RegisterScreen(
                 onBack = {
-                    findNavController().navigateUp()
+                    // Navegación nativa - ir a Login
+                    (requireActivity() as AuthActivity).goToLoginFragment()
                 }
             )
         }

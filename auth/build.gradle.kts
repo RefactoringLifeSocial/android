@@ -53,11 +53,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     androidTestImplementation(libs.androidx.ui.test.junit4)
 
-    // Navigation dependencies
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.hilt.navigation.fragment)
-    implementation(libs.androidx.navigation.compose)
 
     // Module
     implementation(project(":core"))

@@ -8,8 +8,15 @@ object DeepLinks {
         const val AUTH = "auth"
     }
 
-    object Path {
-        const val LOGIN = "/login"
-        const val REGISTER = "/register"
+    // UNA SOLA DEFINICIÓN DE PANTALLAS
+    object Screen {
+        const val LOGIN = "login"
+        const val REGISTER = "register"
+    }
+
+    // CONSTRUCTOR DE RUTAS COMPLETAS
+    object Routes {
+        fun authLogin() = "/${Host.AUTH}/${Screen.LOGIN}"      // "/auth/login"
+        fun authRegister() = "/${Host.AUTH}/${Screen.REGISTER}" // "/auth/register"
     }
 }
