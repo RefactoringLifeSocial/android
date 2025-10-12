@@ -17,7 +17,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.refactoringlife.auth.features.AuthActivity  // ← NUEVO IMPORT
+import com.refactoringlife.auth.features.AuthActivity
 
 class LoginFragment : Fragment() {
 
@@ -46,7 +46,7 @@ class LoginFragment : Fragment() {
 
                     Button(
                         onClick = {
-                            (requireActivity() as AuthActivity).goToRegisterFragment()  // ← MÁS CORTO
+                            (requireActivity() as AuthActivity).goToRegisterFragment()
                         }
                     ) {
                         Text("Go to Register (TEMP)")

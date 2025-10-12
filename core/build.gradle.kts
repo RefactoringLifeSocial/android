@@ -63,6 +63,7 @@ dependencies {
     api(libs.retrofit)
     api(libs.gson)
     api(libs.lottie.compose)
+
     // Navigation dependencies
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.fragment.ktx)
