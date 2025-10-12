@@ -15,7 +15,7 @@ class HandleLoginBloc : LoginBaseBloc {
     ) {
         if (event !is LoginEvent.Login) return
 
-        val isValid = event.email.orEmpty().isValidEmail() && event.password.orEmpty().isValidPassword()
+        val isValid = event.email.isValidEmail() && event.password.isValidPassword()
         if (!isValid){
             update{
                 it.copy(loading = false, error = true, success = false)
