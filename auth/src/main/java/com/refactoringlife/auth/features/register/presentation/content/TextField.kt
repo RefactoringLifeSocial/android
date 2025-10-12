@@ -1,0 +1,70 @@
+package com.refactoringlife.auth.features.register.presentation.content
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
+import com.refactoringlife.auth.features.register.presentation.util.Constants
+
+@Composable
+fun TextFieldCustom(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier,
+    placeholderText: String,
+    placeholderFontSize: TextUnit,
+    icon : Int,
+    iconHeight : Dp,
+    iconWidth : Dp,
+    placeHolderColor : Color
+) {
+
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        singleLine = true,
+        modifier = modifier
+            .height(56.dp)
+            .fillMaxWidth()
+            .padding(horizontal = 42.dp)
+            .background(
+                color = Color.White,
+                shape = RoundedCornerShape(10.dp)
+            )
+            .border(
+                width = 1.dp,
+                color = Color.Black.copy(0.3f),
+            )
+            .testTag(Constants.TEXT_FIELD_REGISTER),
+        leadingIcon = {
+            Icon(
+                painter = painterResource(id = icon),
+                contentDescription = "",
+                modifier = modifier.size(height = iconHeight, width = iconWidth),
+                tint = Color.Black
+            )
+        },
+        placeholder = {
+            Text(
+                text = placeholderText,
+                fontSize = placeholderFontSize,
+                color = placeHolderColor
+            )
+        }
+    )
+
+}

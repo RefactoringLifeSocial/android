@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="congrats_title_password_updated">Tu contraseña fue actualizada de forma exitosa</string>
+    <string name="congrats_go_to_email">Ir al Email</string>
+
+    <string name="error_title_server">Lo lamentamos por el momento nuestros servidores no se encuentran disponibles</string>
+    <string name="error_communication_message">Si tienes problemas comunicate con nosotros</string>
+
+    <string name="error_title_no_connection">Ups! Detectamos que su conexion esta fallando</string>
+    <string name="no_connection_retry_button">Reintentar</string>
+</resources>
