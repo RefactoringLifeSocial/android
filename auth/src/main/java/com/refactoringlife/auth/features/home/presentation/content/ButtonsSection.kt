@@ -8,10 +8,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.home.presentation.composables.PrimaryButton
+import com.refactoringlife.auth.utils.TAG_GOOGLE_ICON
+import com.refactoringlife.auth.utils.TAG_LOGIN_BUTTON
+import com.refactoringlife.auth.utils.TAG_REGISTER_BUTTON
 
 @Composable
 fun ButtonsSection(
@@ -27,18 +31,22 @@ fun ButtonsSection(
 
         PrimaryButton(
             text = stringResource(id = R.string.sign_in_text),
-            onClick = onLoginClick
+            onClick = onLoginClick,
+            modifier = Modifier.testTag(TAG_LOGIN_BUTTON)
         )
 
         Spacer(modifier = Modifier.height(5.dp))
 
         PrimaryButton(
             text = stringResource(id = R.string.register_text),
-            onClick = onRegisterClick
+            onClick = onRegisterClick,
+            modifier = Modifier.testTag(TAG_REGISTER_BUTTON)
         )
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        GoogleLoginSection(onClick = onGoogleLoginClick)
+        GoogleLoginSection(
+            onClick = onGoogleLoginClick
+        )
     }
 }

@@ -7,11 +7,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.R
+import com.refactoringlife.auth.utils.TAG_SUPPORT_TEXT
 
 @Composable
 fun FooterSection(goToSupport: () -> Unit) {
@@ -21,6 +23,7 @@ fun FooterSection(goToSupport: () -> Unit) {
         fontSize = 14.sp,
         color = Color.Black,
         modifier = Modifier
+            .testTag(TAG_SUPPORT_TEXT)
             .padding(bottom = 24.dp)
             .clickable { goToSupport() }
     )
