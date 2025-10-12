@@ -7,5 +7,9 @@
     <string name="register_button_">Registrarse</string>
     <string name="register_title_">Registro</string>
     <string name="register_communication_message">Si tienes problemas comunicate con nosotros</string>
-
+    <string name="refactoring_life">Refactoring\nLife</string>
+    <string name="sign_in_text">Iniciar sesión</string>
+    <string name="register_text">Registrarse</string>
+    <string name="login_with_google">Login Google</string>
+    <string name="contact_support">Por cualquier problema comunicate con nosotros</string>
 </resources>
