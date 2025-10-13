@@ -8,7 +8,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
-import com.refactoringlife.auth.features.home.presentation.PreLoginView
+import com.refactoringlife.auth.features.home.presentation.content.PreLoginView
 import com.refactoringlife.auth.utils.TAG_GOOGLE_BUTTON
 import com.refactoringlife.auth.utils.TAG_GOOGLE_ICON
 import com.refactoringlife.auth.utils.TAG_GOOGLE_TEXT
