@@ -1,6 +1,8 @@
 package com.refactoringlife.auth.features.login.domain.blocs
 
 import com.refactoringlife.auth.features.login.domain.state.LoginState
+import com.refactoringlife.auth.features.login.utils.isValidEmail
+import com.refactoringlife.auth.features.login.utils.isValidPassword
 import com.refactoringlife.core.common.result.AsyncResult
 
 class HandleLoginBloc : LoginBaseBloc {
@@ -12,19 +14,15 @@ class HandleLoginBloc : LoginBaseBloc {
         update: suspend (suspend (LoginState) -> LoginState) -> Unit
     ) {
         if (event !is LoginEvent.Login) return
-        update { it.copy(loading = true, error = false) }
-        try {
-            /*
-            call to use case
-             update {
-              it.copy(
-              loading = false,
-              error = false,
-               success = true) }
-             */
 
-        } catch (_: Throwable) {
-            // update { it.copy(loading = false, error = true) }
+        val isValid = event.email.isValidEmail() && event.password.isValidPassword()
+        if (!isValid){
+            update{
+                it.copy(loading = false, error = true, success = false)
+            }
+            return
         }
+
+        update{it.copy(loading = true, error = false, success = true)}
     }
 }
