@@ -40,7 +40,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+
+    implementation(libs.androidx.material.icons.extended)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-    implementation(project(":core"))
 }
