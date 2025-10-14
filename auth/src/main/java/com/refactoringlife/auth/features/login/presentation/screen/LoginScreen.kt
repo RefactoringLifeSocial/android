@@ -4,11 +4,16 @@ import androidx.compose.runtime.Composable
 import com.refactoringlife.auth.features.login.presentation.content.LoginView
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    onBack: () -> Unit = {},
+    onLoginClick: (String, String) -> Unit = { _, _ -> },
+    onForgotPassword: () -> Unit = {},
+    onRegisterClick: () -> Unit = {}
+) {
     LoginView(
-        onBack = {},
-        onLoginClick = { _, _ -> },
-        onForgotPassword = {},
-        onRegisterClick = {}
+        onBack = onBack,
+        onLoginClick = onLoginClick,
+        onForgotPassword = onForgotPassword,
+        onRegisterClick = onRegisterClick
     )
 }

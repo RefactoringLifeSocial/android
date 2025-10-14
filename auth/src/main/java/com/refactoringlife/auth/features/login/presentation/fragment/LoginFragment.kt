@@ -12,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import com.refactoringlife.auth.features.AuthActivity
+import com.refactoringlife.auth.features.login.presentation.screen.LoginScreen
 import com.refactoringlife.auth.features.login.presentation.viewmodel.LoginViewModel
 
 class LoginFragment : Fragment() {
@@ -27,12 +29,11 @@ class LoginFragment : Fragment() {
         )
         //val viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         composeView.setContent {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "Hello world")
-            }
+            LoginScreen(
+                onRegisterClick = {
+                    (requireActivity() as AuthActivity).goToRegisterFragment()
+                }
+            )
         }
         return composeView
     }
