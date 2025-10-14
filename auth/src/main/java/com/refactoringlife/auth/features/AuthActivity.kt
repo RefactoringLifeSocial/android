@@ -1,59 +1,29 @@
 package com.refactoringlife.auth.features
 
 import android.net.Uri
-import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.FragmentActivity
 import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment
 import com.refactoringlife.auth.features.register.presentation.fragment.RegisterFragment
-import com.refactoringlife.core.common.navigation.NavigationManager
+import com.refactoringlife.core.common.activities.BaseFragmentActivity
 import com.refactoringlife.core.common.utils.DeepLinks
 
-class AuthActivity : FragmentActivity() {
+class AuthActivity : BaseFragmentActivity() {
 
-    private lateinit var navigationManager: NavigationManager
+    override fun getContainerId(): Int = R.id.fragment_container
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+    override fun getDefaultFragment(): String = DeepLinks.Screen.LOGIN
 
-        navigationManager = NavigationManager(this, R.id.fragment_container)
-
-        handleDeepLink()
-        setupBackPressedHandler()
-    }
-
-    private fun setupBackPressedHandler() {
-        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (navigationManager.canGoBack()) {
-                    navigationManager.navigateBack()
-                } else {
-                    finishAffinity()
-
-                }
-            }
-        })
-    }
-
-    private fun handleDeepLink() {
-        val data: Uri? = intent.data
-        val defaultFragment = intent.getStringExtra("default_fragment")
-
+    override fun handleDeepLink(data: Uri?, defaultFragment: String?) {
         when {
             data?.path?.contains(DeepLinks.Routes.authLogin()) == true -> {
                 goToLoginFragment()
             }
-
             data?.path?.contains(DeepLinks.Routes.authRegister()) == true -> {
                 goToRegisterFragment()
             }
-
             defaultFragment == DeepLinks.Screen.LOGIN -> {
                 goToLoginFragment()
             }
-
             else -> {
                 goToRegisterFragment()
             }

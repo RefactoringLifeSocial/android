@@ -6,7 +6,7 @@
     <application>
         <activity
             android:name=".features.AuthActivity"
-            android:exported="false"
+            android:exported="true"
             android:launchMode="singleTop">
         </activity>
     </application>
