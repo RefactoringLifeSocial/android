@@ -1,16 +1,16 @@
-package com.refactoringlife.auth.features.login.presentation.fragment
+package com.refactoringlife.auth.features.register.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import androidx.fragment.app.Fragment
 import com.refactoringlife.auth.features.AuthActivity
-import com.refactoringlife.auth.features.login.presentation.screen.LoginScreen
+import com.refactoringlife.auth.features.register.presentation.screen.RegisterScreen
 
-class LoginFragment : Fragment() {
+class RegisterFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,11 +21,10 @@ class LoginFragment : Fragment() {
         composeView.setViewCompositionStrategy(
             ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
         )
-        //val viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         composeView.setContent {
-            LoginScreen(
-                onRegisterClick = {
-                    (requireActivity() as AuthActivity).goToRegisterFragment()
+            RegisterScreen(
+                onBack = {
+                    (requireActivity() as AuthActivity).goToLoginFragment()
                 }
             )
         }
@@ -33,6 +32,6 @@ class LoginFragment : Fragment() {
     }
 
     companion object {
-        fun createInstance(): LoginFragment = LoginFragment()
+        fun createInstance(): RegisterFragment = RegisterFragment()
     }
 }
