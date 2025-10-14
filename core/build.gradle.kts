@@ -64,7 +64,6 @@ dependencies {
     api(libs.gson)
     api(libs.lottie.compose)
 
-    // Navigation dependencies
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
