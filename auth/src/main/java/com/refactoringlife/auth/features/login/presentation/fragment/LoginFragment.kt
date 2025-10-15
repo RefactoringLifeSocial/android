@@ -25,7 +25,7 @@ class LoginFragment : Fragment() {
         composeView.setContent {
             LoginScreen(
                 onRegisterClick = {
-                    (requireActivity() as AuthActivity).goToRegisterFragment()
+
                 }
             )
         }
