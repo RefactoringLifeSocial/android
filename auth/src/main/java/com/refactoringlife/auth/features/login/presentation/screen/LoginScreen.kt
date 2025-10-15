@@ -14,5 +14,5 @@ fun LoginScreen(
         },
         onForgotPassword = {},
         onRegisterClick = {}
-    )
+    ) 
 }

@@ -1,23 +1,36 @@
 package com.refactoringlife.auth.features
 
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.FragmentActivity
 import com.refactoringlife.auth.R
+import com.refactoringlife.auth.features.home.presentation.fragment.HomeFragment
+import com.refactoringlife.auth.features.login.domain.state.LoginState
 import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment
+import com.refactoringlife.auth.features.register.presentation.fragment.RegisterFragment
+import com.refactoringlife.core.common.activities.BaseFragmentActivity
+import com.refactoringlife.core.common.navigation.NavigationManager
 
-class AuthActivity : FragmentActivity() {
+class AuthActivity : BaseFragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-        goToFragment()
+        navigationManager = NavigationManager(this, R.id.fragment_container)
+
+        setupBackPressedHandler()
+
+        goToRegister()
     }
 
-    private fun goToFragment() {
-        val fragment = LoginFragment.createInstance()
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.view, fragment)
-            .commit()
+    private fun goToRegister(){
+        navigationManager.navigateToRoot(RegisterFragment.createInstance())
+    }
+
+    private fun goToHome(){
+        navigationManager.navigateToRoot(HomeFragment.createInstance("id"))
+    }
+
+    private fun goToLogin(){
+        navigationManager.navigateToRoot(LoginFragment.createInstance())
     }
 }
