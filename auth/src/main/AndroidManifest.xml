@@ -16,9 +16,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
+                    android:scheme="huella"
                     android:host="refactoringlife.com"
-                    android:pathPrefix="/auth" />
+                    android:path="/auth" />
             </intent-filter>
 
         </activity>
