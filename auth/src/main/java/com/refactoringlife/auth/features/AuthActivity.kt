@@ -9,7 +9,6 @@ import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragme
 import com.refactoringlife.auth.features.register.presentation.fragment.RegisterFragment
 import com.refactoringlife.core.common.activities.BaseFragmentActivity
 import com.refactoringlife.core.common.navigation.NavigationManager
-import com.refactoringlife.core.common.utils.DeepLinks
 
 class AuthActivity : BaseFragmentActivity() {
 

@@ -8,7 +8,8 @@ import kotlinx.coroutines.flow.update
 
 object LocalDataUser {
 
-    private val userRegisterResponse: MutableStateFlow<UserRegisterResponse?> = MutableStateFlow(null)
+    private val userRegisterResponse: MutableStateFlow<UserRegisterResponse?> =
+        MutableStateFlow(null)
 
     fun listenerUserResponse(): Flow<UserRegisterResponse?> {
         return userRegisterResponse

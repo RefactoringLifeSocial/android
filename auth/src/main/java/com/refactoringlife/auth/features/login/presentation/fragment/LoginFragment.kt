@@ -21,7 +21,7 @@ class LoginFragment : Fragment() {
         composeView.setViewCompositionStrategy(
             ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
         )
-        //val viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+
         composeView.setContent {
             LoginScreen(
                 onRegisterClick = {
