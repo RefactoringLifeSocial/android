@@ -24,6 +24,8 @@ class LoginFragment : Fragment() {
             LoginScreen(
                 onLoginClick = {email, password ->
 
+                }
+
             )
         }
         return composeView
