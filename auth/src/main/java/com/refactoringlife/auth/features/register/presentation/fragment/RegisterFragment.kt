@@ -1,15 +1,16 @@
-package com.refactoringlife.auth.features.login.presentation.fragment
+package com.refactoringlife.auth.features.register.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import androidx.fragment.app.Fragment
-import com.refactoringlife.auth.features.login.presentation.screen.LoginScreen
+import com.refactoringlife.auth.features.AuthActivity
+import com.refactoringlife.auth.features.register.presentation.screen.RegisterScreen
 
-class LoginFragment : Fragment() {
+class RegisterFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,15 +22,16 @@ class LoginFragment : Fragment() {
             ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
         )
         composeView.setContent {
-            LoginScreen(
-                onLoginClick = {email, password ->
+            RegisterScreen(
+                onBack = {
 
+                }
             )
         }
         return composeView
     }
 
     companion object {
-        fun createInstance(): LoginFragment = LoginFragment()
+        fun createInstance(): RegisterFragment = RegisterFragment()
     }
 }

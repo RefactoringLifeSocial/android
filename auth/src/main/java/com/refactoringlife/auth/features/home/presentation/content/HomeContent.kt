@@ -27,7 +27,7 @@ import com.refactoringlife.auth.utils.TAG_SUPPORT_TEXT
 import com.refactoringlife.auth.utils.TAG_TITLE
 
 @Composable
-fun PreLoginView(
+fun HomeContent(
     onLoginClick: () -> Unit,
     onRegisterClick: () -> Unit,
     onGoogleLoginClick: () -> Unit,
