@@ -7,7 +7,7 @@ class NavigationManager(
     private val activity: FragmentActivity,
     private val containerId: Int
 ) {
-    fun navigateToInitial(fragment: Fragment) {
+    fun navigateToRoot(fragment: Fragment) {
         activity.supportFragmentManager.popBackStack(
             null,
             androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
@@ -24,16 +24,16 @@ class NavigationManager(
             .commit()
     }
 
-    fun navigateBack(): Boolean {
-        return if (activity.supportFragmentManager.backStackEntryCount > 0) {
-            activity.supportFragmentManager.popBackStack()
-            true
-        } else {
-            false
-        }
+    fun addFragment(fragment: Fragment, tag: String? = null) {
+        activity.supportFragmentManager.beginTransaction()
+            .add(containerId, fragment)
+            .addToBackStack(tag ?: fragment.javaClass.simpleName)
+            .commit()
     }
 
-    fun canGoBack(): Boolean {
-        return activity.supportFragmentManager.backStackEntryCount > 0
+    fun onBack() {
+        val fm = activity.supportFragmentManager
+        if (fm.backStackEntryCount > 0) fm.popBackStack()
+        else activity.finishAfterTransition()
     }
 }

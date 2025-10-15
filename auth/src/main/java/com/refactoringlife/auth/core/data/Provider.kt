@@ -5,4 +5,6 @@ import com.refactoringlife.core.data.network.OKHttpProvider
 import com.refactoringlife.core.data.network.RetrofitProvider
 
 val serviceProvider: UserService =
-    RetrofitProvider.create(OKHttpProvider.create()).create(UserService::class.java)
+    RetrofitProvider.create(
+        OKHttpProvider.create()
+    ).create(UserService::class.java)

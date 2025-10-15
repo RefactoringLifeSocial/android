@@ -8,7 +8,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
-import com.refactoringlife.auth.features.home.presentation.content.PreLoginView
+import com.refactoringlife.auth.features.home.presentation.content.HomeContent
 import com.refactoringlife.auth.utils.TAG_GOOGLE_BUTTON
 import com.refactoringlife.auth.utils.TAG_GOOGLE_ICON
 import com.refactoringlife.auth.utils.TAG_GOOGLE_TEXT
@@ -28,7 +28,7 @@ class PreLoginViewTest {
     @Test
     fun displaysAllComponents() {
         composeTestRule.setContent {
-            PreLoginView(
+            HomeContent(
                 onLoginClick = {},
                 onRegisterClick = {},
                 onGoogleLoginClick = {},
@@ -51,7 +51,7 @@ class PreLoginViewTest {
         var loginClicked by mutableStateOf(false)
 
         composeTestRule.setContent {
-            PreLoginView(
+            HomeContent(
                 onLoginClick = { loginClicked = true },
                 onRegisterClick = {},
                 onGoogleLoginClick = {},
@@ -71,7 +71,7 @@ class PreLoginViewTest {
         var registerClicked by mutableStateOf(false)
 
         composeTestRule.setContent {
-            PreLoginView(
+            HomeContent(
                 onLoginClick = {},
                 onRegisterClick = { registerClicked = true },
                 onGoogleLoginClick = {},
@@ -91,7 +91,7 @@ class PreLoginViewTest {
         var googleLoginClicked by mutableStateOf(false)
 
         composeTestRule.setContent {
-            PreLoginView(
+            HomeContent(
                 onLoginClick = {},
                 onRegisterClick = {},
                 onGoogleLoginClick = { googleLoginClicked = true },
@@ -111,7 +111,7 @@ class PreLoginViewTest {
         var supportClicked by mutableStateOf(false)
 
         composeTestRule.setContent {
-            PreLoginView(
+            HomeContent(
                 onLoginClick = {},
                 onRegisterClick = {},
                 onGoogleLoginClick = {},
@@ -129,7 +129,7 @@ class PreLoginViewTest {
     @Test
     fun buttonsAreClickable() {
         composeTestRule.setContent {
-            PreLoginView(
+            HomeContent(
                 onLoginClick = {},
                 onRegisterClick = {},
                 onGoogleLoginClick = {},
@@ -146,7 +146,7 @@ class PreLoginViewTest {
         var clickCount by mutableStateOf(0)
 
         composeTestRule.setContent {
-            PreLoginView(
+            HomeContent(
                 onLoginClick = { clickCount++ },
                 onRegisterClick = {},
                 onGoogleLoginClick = {},
@@ -172,7 +172,7 @@ class PreLoginViewTest {
         var supportClicked by mutableStateOf(false)
 
         composeTestRule.setContent {
-            PreLoginView(
+            HomeContent(
                 onLoginClick = { loginClicked = true },
                 onRegisterClick = { registerClicked = true },
                 onGoogleLoginClick = { googleLoginClicked = true },

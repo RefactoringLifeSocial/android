@@ -24,7 +24,7 @@ class RegisterFragment : Fragment() {
         composeView.setContent {
             RegisterScreen(
                 onBack = {
-                    (requireActivity() as AuthActivity).goToLoginFragment()
+
                 }
             )
         }
