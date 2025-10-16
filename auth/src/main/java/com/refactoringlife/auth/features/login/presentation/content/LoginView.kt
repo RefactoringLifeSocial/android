@@ -54,11 +54,11 @@ import com.refactoringlife.auth.features.login.presentation.theme.PurpleLight
 @Composable
 fun LoginView(
     onBack: () -> Unit,
-    onLoginClick: (String, String) -> Unit,
+    onLoginClick: (email : String, password : String) -> Unit,
     onForgotPassword: () -> Unit,
     onRegisterClick: () -> Unit,
     isError: Boolean = false,
-    errorMessage: String? = null
+    errorMessage: String? = null,
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }

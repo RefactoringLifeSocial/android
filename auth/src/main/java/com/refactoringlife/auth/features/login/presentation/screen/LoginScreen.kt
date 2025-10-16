@@ -5,15 +5,14 @@ import com.refactoringlife.auth.features.login.presentation.content.LoginView
 
 @Composable
 fun LoginScreen(
-    onBack: () -> Unit = {},
-    onLoginClick: (String, String) -> Unit = { _, _ -> },
-    onForgotPassword: () -> Unit = {},
-    onRegisterClick: () -> Unit = {}
+    onLoginClick: (email : String, password : String) -> Unit,
 ) {
     LoginView(
-        onBack = onBack,
-        onLoginClick = onLoginClick,
-        onForgotPassword = onForgotPassword,
-        onRegisterClick = onRegisterClick
-    )
+        onBack = {},
+        onLoginClick = { email, password ->
+            onLoginClick(email,password)
+        },
+        onForgotPassword = {},
+        onRegisterClick = {}
+    ) 
 }
