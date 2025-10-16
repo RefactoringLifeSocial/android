@@ -65,6 +65,9 @@ dependencies {
     api(libs.lottie.compose)
     api(libs.androidx.material.icons.extended)
 
+    api(libs.mockito.kotlin)
+    api(libs.mockito.core)
+
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
