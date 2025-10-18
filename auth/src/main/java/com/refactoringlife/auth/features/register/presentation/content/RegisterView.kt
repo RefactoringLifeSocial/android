@@ -5,11 +5,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.R
@@ -18,17 +21,20 @@ import com.refactoringlife.auth.features.register.presentation.theme.purpleLight
 
 @Composable
 fun RegisterView(
-    back: () -> Unit
+    back: () -> Unit,
+    onClickRegister: (email: String, password: String) -> Unit
 ) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
     BaseRegister(
         back = {
             back()
         },
         centerContent = {
             TextFieldCustom(
-                value = "",
-                onValueChange = { value ->
-
+                value = email,
+                onValueChange = { newValue ->
+                    email = newValue
                 },
                 modifier = Modifier,
                 placeholderText = stringResource(id = R.string.register_email),
@@ -42,9 +48,9 @@ fun RegisterView(
             Spacer(modifier = Modifier.height(50.dp))
 
             TextFieldCustom(
-                value = "",
+                value = password,
                 onValueChange = { newValue ->
-
+                    password = newValue
                 },
                 placeholderText = stringResource(id = R.string.register_password),
                 placeholderFontSize = 16.sp,
@@ -95,7 +101,7 @@ fun RegisterView(
 
             ButtonCustom(
                 onClick = {
-
+                    onClickRegister(email, password)
                 },
                 text = stringResource(id = R.string.register_button_),
                 backgroundColor = purpleLight,
@@ -118,10 +124,4 @@ fun RegisterView(
         }
     )
 
-}
-
-@Composable
-@Preview
-fun PreviewRegisterView(){
-    RegisterView {  }
 }

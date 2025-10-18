@@ -6,12 +6,17 @@ import com.refactoringlife.auth.features.register.presentation.content.RegisterV
 
 @Composable
 fun RegisterScreen(
-    onBack: () -> Unit = {}
-){
-    RegisterView(back = onBack)
+    onBack: () -> Unit = {},
+    onClickRegister: (email: String, password: String) -> Unit
+) {
+    RegisterView(
+        back = onBack,
+        onClickRegister = onClickRegister
+    )
 }
+
 @Composable
 @Preview(showBackground = true)
-fun PreviewRegister(){
-    RegisterScreen()
+fun PreviewRegister() {
+    RegisterScreen(onClickRegister = handle )
 }

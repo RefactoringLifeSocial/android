@@ -13,9 +13,7 @@ import com.refactoringlife.auth.features.register.presentation.screen.RegisterSc
 class RegisterFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         val composeView = ComposeView(requireContext())
         composeView.setViewCompositionStrategy(
@@ -25,8 +23,7 @@ class RegisterFragment : Fragment() {
             RegisterScreen(
                 onBack = {
                     (requireActivity() as AuthActivity).goToLoginFragment()
-                }
-            )
+                })
         }
         return composeView
     }

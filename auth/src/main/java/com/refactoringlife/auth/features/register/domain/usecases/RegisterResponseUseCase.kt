@@ -5,7 +5,7 @@ import com.refactoringlife.auth.features.register.domain.mappers.toUserRegisterM
 import com.refactoringlife.auth.features.register.domain.model.UserRegisterModel
 import com.refactoringlife.core.common.result.AsyncResult
 
-class RegisterResponseUseCase(val repositoryImp: UserRepositoryImp) {
+class RegisterResponseUseCase(val repositoryImp: UserRepositoryImp = UserRepositoryImp()) {
     suspend operator fun invoke(
         email: String,
         password: String
