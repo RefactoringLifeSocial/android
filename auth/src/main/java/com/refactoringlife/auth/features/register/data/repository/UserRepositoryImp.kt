@@ -9,17 +9,18 @@ import com.refactoringlife.core.common.result.AsyncResult
 import kotlinx.coroutines.flow.Flow
 
 class UserRepositoryImp(
-   private val service : UserServiceImp = UserServiceImp()
+    private val service: UserServiceImp = UserServiceImp()
 ) : UserRepository {
 
     override suspend fun userRegister(
         email: String?,
         password: String
     ): AsyncResult<UserRegisterResponse?, Exception> {
-        val userRegisterRequest = UserRegisterRequest(email.orEmpty(), password)
-        val result = service.userRegister(userRegisterRequest)
+        val result = service.userRegister(
+            UserRegisterRequest(email.orEmpty(), password)
+        )
 
-        result.getValueOrNull()?.let{
+        result.getValueOrNull()?.let {
             LocalDataUser.saveLocalData(it)
         }
         return result

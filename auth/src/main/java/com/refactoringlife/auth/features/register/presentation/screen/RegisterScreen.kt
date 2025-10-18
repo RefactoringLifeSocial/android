@@ -14,9 +14,3 @@ fun RegisterScreen(
         onClickRegister = onClickRegister
     )
 }
-
-@Composable
-@Preview(showBackground = true)
-fun PreviewRegister() {
-    RegisterScreen(onClickRegister = handle )
-}

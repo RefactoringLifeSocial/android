@@ -1,11 +1,15 @@
 package com.refactoringlife.auth.features.login.domain.blocs
 
+import com.refactoringlife.auth.features.login.data.dto.request.UserLoginRequest
 import com.refactoringlife.auth.features.login.domain.state.LoginState
+import com.refactoringlife.auth.features.login.domain.usecases.UserLoginUserCase
 import com.refactoringlife.auth.features.login.utils.isValidEmail
 import com.refactoringlife.auth.features.login.utils.isValidPassword
 import com.refactoringlife.core.common.result.AsyncResult
 
-class HandleLoginBloc : LoginBaseBloc {
+class HandleLoginBloc(
+    private val userLoginUserCase: UserLoginUserCase = UserLoginUserCase()
+): LoginBaseBloc {
 
     override fun canHandle(event: LoginEvent): Boolean = event is LoginEvent.Login
 
@@ -18,11 +22,19 @@ class HandleLoginBloc : LoginBaseBloc {
         val isValid = event.email.isValidEmail() && event.password.isValidPassword()
         if (!isValid){
             update{
-                it.copy(loading = false, error = true, success = false)
+                it.copy(loading = false, error = true)
             }
             return
         }
 
-        update{it.copy(loading = true, error = false, success = true)}
+        val result = userLoginUserCase(userLoginRequest = UserLoginRequest(email = event.email, password = event.password))
+        when(result){
+            is AsyncResult.Failure -> {
+                update{it.copy(error = true, errorMessage = result.error.message)}
+            }
+            is AsyncResult.Success -> {
+                update{it.copy(data = result.value, success = true)}
+            }
+        }
     }
 }

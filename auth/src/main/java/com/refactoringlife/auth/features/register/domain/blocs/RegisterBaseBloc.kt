@@ -1,7 +1,8 @@
 package com.refactoringlife.auth.features.register.domain.blocs
 
-import com.refactoringlife.auth.features.login.domain.state.LoginState
-import com.refactoringlife.auth.features.register.domain.state.RegisterState
+import com.refactoringlife.auth.features.register.presentation.state.RegisterState
+
+typealias RegisterStateUpdate = suspend (suspend (RegisterState) -> RegisterState) -> Unit
 
 typealias RegisterStateUpdater = suspend (suspend (RegisterState) -> RegisterState) -> Unit
 
