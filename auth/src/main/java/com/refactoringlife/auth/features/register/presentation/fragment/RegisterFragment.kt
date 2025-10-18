@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import com.refactoringlife.auth.features.AuthActivity
 import com.refactoringlife.auth.features.register.presentation.screen.RegisterScreen
 
 class RegisterFragment : Fragment() {
@@ -21,9 +20,11 @@ class RegisterFragment : Fragment() {
         )
         composeView.setContent {
             RegisterScreen(
-                onBack = {
-                    (requireActivity() as AuthActivity).goToLoginFragment()
-                })
+                onBack = {},
+                onClickRegister = { email, password ->
+
+                }
+            )
         }
         return composeView
     }
