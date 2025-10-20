@@ -1,6 +1,9 @@
 package com.refactoringlife.auth.features.register.domain.blocs
 
 import com.refactoringlife.auth.features.register.domain.usecases.RegisterResponseUseCase
+import com.refactoringlife.auth.features.register.presentation.util.isEmailValid
+import com.refactoringlife.auth.features.register.presentation.util.isPasswordMatch
+import com.refactoringlife.auth.features.register.presentation.util.isPasswordValid
 import com.refactoringlife.core.common.result.AsyncResult
 
 class SubmitRegisterBloc(
@@ -14,30 +17,24 @@ class SubmitRegisterBloc(
     override suspend fun handle(event: RegisterEvent, update: RegisterStateUpdate) {
         if (event is RegisterEvent.SubmitRegister) {
 
-            val isEmailValid = event.email.isNotBlank() && event.email.contains("@")
-            val isPasswordValid = event.password.isNotBlank() && event.password.length >= 6
-            val isPasswordMatchValid = event.password.isNotBlank() && event.password == event.confirmPassword
+            val isEmailValid = event.email.isEmailValid()
+            val isPasswordValid = event.password.isPasswordValid()
+            val isPasswordMatchValid = event.password.isPasswordMatch(event.confirmPassword)
 
-            val emailError = if (!isEmailValid) "El email no es valido" else null
-            val passwordError = when {
-                !isPasswordValid -> "La contraseña debe tener al menos 6 caracteres"
-                !isPasswordMatchValid -> "Las contraseñas no coinciden"
-                else -> null
-            }
+            val hasEmailError = !isEmailValid
+            val hasPasswordError = !isPasswordValid
+            val hasPasswordMatchError = !isPasswordMatchValid
 
             val isFormValid = isEmailValid && isPasswordValid && isPasswordMatchValid
 
             update { current ->
                 current.copy(
-                    isEmailValid = isEmailValid,
-                    isPasswordValid = isPasswordValid,
-                    isPasswordMatchValid = isPasswordMatchValid,
-                    emailError = emailError,
-                    passwordError = passwordError,
+                    hasEmailError = hasEmailError,
+                    hasPasswordError = hasPasswordError,
+                    hasPasswordMatchError = hasPasswordMatchError,
                     isFormValid = isFormValid
                 )
             }
-
             if (!isFormValid) return
 
             val result = userRegisterResponseUseCase(event.email, event.password)

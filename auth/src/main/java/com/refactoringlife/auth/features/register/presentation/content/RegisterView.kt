@@ -34,6 +34,14 @@ fun RegisterView(
     var showPassword by remember { mutableStateOf(false) }
     var showConfirmPassword by remember { mutableStateOf(false) }
 
+    val errorMessage = when {
+        state.hasEmailError -> stringResource(R.string.error_email_invalid)
+        state.hasPasswordError -> stringResource(R.string.error_password_invalid)
+        state.hasPasswordMatchError -> stringResource(R.string.error_password_mismatch)
+        state.isError.isNotEmpty() -> state.isError
+        else -> null
+    }
+
     BaseRegister(
         back = {
             back()
@@ -111,13 +119,6 @@ fun RegisterView(
 
             Spacer(modifier = Modifier.height(50.dp))
 
-            val errorMessage = when {
-                state.emailError != null -> state.emailError
-                state.passwordError != null -> state.passwordError
-                state.isError.isNotEmpty() -> state.isError
-                else -> null
-            }
-
             if (errorMessage != null) {
                 TextCustom(
                     title = errorMessage,
@@ -130,7 +131,6 @@ fun RegisterView(
                         .padding(horizontal = 42.dp, vertical = 8.dp)
                 )
             }
-
             Spacer(modifier = Modifier.height(10.dp))
 
             ButtonCustom(
