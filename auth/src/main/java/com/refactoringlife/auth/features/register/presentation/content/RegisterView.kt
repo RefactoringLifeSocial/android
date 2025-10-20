@@ -39,6 +39,7 @@ fun RegisterView(
             back()
         },
         centerContent = {
+            // Email field
             TextFieldCustom(
                 value = email,
                 onValueChange = { value ->
@@ -52,47 +53,27 @@ fun RegisterView(
                 iconHeight = 25.dp,
                 placeHolderColor = grayLight
             )
-            if (state.emailError != null) {
-                TextCustom(
-                    title = state.emailError,
-                    fontSize = 12.sp,
-                    color = Color.Red,
-                    fontWeight = FontWeight.Normal,
-                    textAlign = TextAlign.Start,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 42.dp, top = 4.dp)
-                )
-            }
 
             Spacer(modifier = Modifier.height(50.dp))
 
+            // Password field
             TextFieldCustom(
                 value = password,
                 onValueChange = { value ->
                     password = value
                 },
+                modifier = Modifier,
                 placeholderText = stringResource(id = R.string.register_password),
                 placeholderFontSize = 16.sp,
                 placeHolderColor = grayLight,
                 icon = R.drawable.locked,
                 iconWidth = 25.dp,
                 iconHeight = 25.dp,
-                modifier = Modifier
+                isPassword = true,
+                showPassword = showPassword
             )
-            if (state.passwordError != null) {
-                TextCustom(
-                    title = state.passwordError,
-                    fontSize = 12.sp,
-                    color = Color.Red,
-                    fontWeight = FontWeight.Normal,
-                    textAlign = TextAlign.Start,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 42.dp, top = 4.dp)
-                )
-            }
 
+            // Checkbox para mostrar/ocultar password
             ShowPassword(
                 checked = showPassword,
                 onCheckedChange = { showPassword = it },
@@ -103,18 +84,21 @@ fun RegisterView(
 
             Spacer(modifier = Modifier.height(2.dp))
 
+            // Confirm Password field
             TextFieldCustom(
                 value = confirmPassword,
                 onValueChange = { value ->
                     confirmPassword = value
                 },
+                modifier = Modifier,
                 placeholderText = stringResource(id = R.string.register_repeat_password),
                 placeholderFontSize = 16.sp,
                 placeHolderColor = grayLight,
                 icon = R.drawable.locked,
                 iconWidth = 25.dp,
                 iconHeight = 25.dp,
-                modifier = Modifier
+                isPassword = true,
+                showPassword = showConfirmPassword
             )
 
             ShowPassword(
@@ -125,11 +109,32 @@ fun RegisterView(
                 textFontWeight = FontWeight.SemiBold
             )
 
-            Spacer(modifier = Modifier.height(70.dp))
+            Spacer(modifier = Modifier.height(50.dp))
+
+            val errorMessage = when {
+                state.emailError != null -> state.emailError
+                state.passwordError != null -> state.passwordError
+                state.isError.isNotEmpty() -> state.isError
+                else -> null
+            }
+
+            if (errorMessage != null) {
+                TextCustom(
+                    title = errorMessage,
+                    fontSize = 14.sp,
+                    color = Color.Red,
+                    fontWeight = FontWeight.Medium,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 42.dp, vertical = 8.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(10.dp))
 
             ButtonCustom(
-                onClick = { onRegisterClick(email, password, confirmPassword)  },
-                enabled = true,
+                onClick = { onRegisterClick(email, password, confirmPassword) },
                 text = stringResource(id = R.string.register_button_),
                 backgroundColor = purpleLight,
                 textFontSize = 15.sp,

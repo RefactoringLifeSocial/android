@@ -18,7 +18,7 @@ class SubmitRegisterBloc(
             val isPasswordValid = event.password.isNotBlank() && event.password.length >= 6
             val isPasswordMatchValid = event.password.isNotBlank() && event.password == event.confirmPassword
 
-            val emailError = if (!isEmailValid) "El email debe contener @" else null
+            val emailError = if (!isEmailValid) "El email no es valido" else null
             val passwordError = when {
                 !isPasswordValid -> "La contraseña debe tener al menos 6 caracteres"
                 !isPasswordMatchValid -> "Las contraseñas no coinciden"

@@ -22,7 +22,6 @@ fun ButtonCustom(
     backgroundColor: Color,
     textFontSize: TextUnit,
     textFontWeight: FontWeight,
-    enabled: Boolean = true
 ) {
     Button(
         onClick = {
@@ -44,5 +43,4 @@ fun ButtonCustom(
             color = Color.White
         )
     }
-
 }
