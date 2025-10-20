@@ -64,6 +64,9 @@ dependencies {
     api(libs.gson)
     api(libs.lottie.compose)
     api(libs.androidx.material.icons.extended)
+    api(libs.androidx.runtime)
+    api(libs.androidx.lifecycle.viewmodel.compose)
+
 
     api(libs.mockito.kotlin)
     api(libs.mockito.core)
