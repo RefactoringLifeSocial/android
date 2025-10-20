@@ -67,7 +67,6 @@ dependencies {
     api(libs.androidx.runtime)
     api(libs.androidx.lifecycle.viewmodel.compose)
 
-
     api(libs.mockito.kotlin)
     api(libs.mockito.core)
 
