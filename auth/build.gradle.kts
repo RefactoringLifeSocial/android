@@ -38,6 +38,6 @@ android {
 }
 
 dependencies {
-    // Module
     implementation(project(":core"))
+    implementation(libs.androidx.fragment.ktx)
 }
