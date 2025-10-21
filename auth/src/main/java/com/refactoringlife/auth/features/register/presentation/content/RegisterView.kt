@@ -26,6 +26,7 @@ fun RegisterView(
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
     BaseRegister(
         back = {
             back()
@@ -74,9 +75,9 @@ fun RegisterView(
             Spacer(modifier = Modifier.height(2.dp))
 
             TextFieldCustom(
-                value = "",
+                value = confirmPassword,
                 onValueChange = { newValue ->
-
+                    confirmPassword = newValue
                 },
                 placeholderText = stringResource(id = R.string.register_repeat_password),
                 placeholderFontSize = 16.sp,
