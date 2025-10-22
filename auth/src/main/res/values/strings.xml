@@ -12,6 +12,7 @@
     <string name="registrate_aqui">Regístrate aquí</string>
     <!-- Strings de error para registro -->
     <string name="error_email_invalid">El email no es válido</string>
+    <string name="error_register_user">Error al registrar usuario</string>
     <string name="error_password_invalid">La contraseña debe tener al menos 6 caracteres</string>
     <string name="error_password_mismatch">Las contraseñas no coinciden</string>
     <!-- Strings de Registro -->

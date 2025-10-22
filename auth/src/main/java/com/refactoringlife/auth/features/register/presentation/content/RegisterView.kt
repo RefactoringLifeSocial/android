@@ -47,7 +47,6 @@ fun RegisterView(
             back()
         },
         centerContent = {
-            // Email field
             TextFieldCustom(
                 value = email,
                 onValueChange = { value ->
@@ -61,10 +60,8 @@ fun RegisterView(
                 iconHeight = 25.dp,
                 placeHolderColor = grayLight
             )
-
             Spacer(modifier = Modifier.height(50.dp))
 
-            // Password field
             TextFieldCustom(
                 value = password,
                 onValueChange = { value ->
@@ -81,7 +78,7 @@ fun RegisterView(
                 showPassword = showPassword
             )
 
-            // Checkbox para mostrar/ocultar password
+
             ShowPassword(
                 checked = showPassword,
                 onCheckedChange = { showPassword = it },
@@ -91,8 +88,6 @@ fun RegisterView(
             )
 
             Spacer(modifier = Modifier.height(2.dp))
-
-            // Confirm Password field
             TextFieldCustom(
                 value = confirmPassword,
                 onValueChange = { value ->
