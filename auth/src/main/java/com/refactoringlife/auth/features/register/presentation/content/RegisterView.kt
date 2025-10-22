@@ -5,6 +5,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -12,23 +16,41 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.graphics.Color
 import com.refactoringlife.auth.R
+import com.refactoringlife.auth.features.register.presentation.state.RegisterState
 import com.refactoringlife.auth.features.register.presentation.theme.grayLight
 import com.refactoringlife.auth.features.register.presentation.theme.purpleLight
 
 @Composable
 fun RegisterView(
+    state: RegisterState,
+    onRegisterClick: (String, String, String) -> Unit = { _, _, _ -> },
     back: () -> Unit
 ) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
+    var showPassword by remember { mutableStateOf(false) }
+    var showConfirmPassword by remember { mutableStateOf(false) }
+
+    val errorMessage = when {
+        state.hasEmailError -> stringResource(R.string.error_email_invalid)
+        state.hasPasswordError -> stringResource(R.string.error_password_invalid)
+        state.hasPasswordMatchError -> stringResource(R.string.error_password_mismatch)
+        state.isError.isNotEmpty() -> state.isError
+        else -> null
+    }
+
     BaseRegister(
         back = {
             back()
         },
         centerContent = {
             TextFieldCustom(
-                value = "",
+                value = email,
                 onValueChange = { value ->
-
+                    email = value
                 },
                 modifier = Modifier,
                 placeholderText = stringResource(id = R.string.register_email),
@@ -38,71 +60,81 @@ fun RegisterView(
                 iconHeight = 25.dp,
                 placeHolderColor = grayLight
             )
-
             Spacer(modifier = Modifier.height(50.dp))
 
             TextFieldCustom(
-                value = "",
-                onValueChange = { newValue ->
-
+                value = password,
+                onValueChange = { value ->
+                    password = value
                 },
+                modifier = Modifier,
                 placeholderText = stringResource(id = R.string.register_password),
                 placeholderFontSize = 16.sp,
                 placeHolderColor = grayLight,
                 icon = R.drawable.locked,
                 iconWidth = 25.dp,
                 iconHeight = 25.dp,
-                modifier = Modifier
+                isPassword = true,
+                showPassword = showPassword
             )
 
-            ShowPassword(
-                checked = false,
-                onCheckedChange = {
 
-                },
+            ShowPassword(
+                checked = showPassword,
+                onCheckedChange = { showPassword = it },
                 text = stringResource(id = R.string.register_show_password),
                 textFontSize = 14.sp,
                 textFontWeight = FontWeight.SemiBold
             )
 
             Spacer(modifier = Modifier.height(2.dp))
-
             TextFieldCustom(
-                value = "",
-                onValueChange = { newValue ->
-
+                value = confirmPassword,
+                onValueChange = { value ->
+                    confirmPassword = value
                 },
+                modifier = Modifier,
                 placeholderText = stringResource(id = R.string.register_repeat_password),
                 placeholderFontSize = 16.sp,
                 placeHolderColor = grayLight,
                 icon = R.drawable.locked,
                 iconWidth = 25.dp,
                 iconHeight = 25.dp,
-                modifier = Modifier
+                isPassword = true,
+                showPassword = showConfirmPassword
             )
 
             ShowPassword(
-                checked = false,
-                onCheckedChange = {
-
-                },
+                checked = showConfirmPassword,
+                onCheckedChange = { showConfirmPassword = it },
                 text = stringResource(id = R.string.register_show_password),
                 textFontSize = 14.sp,
                 textFontWeight = FontWeight.SemiBold
             )
 
-            Spacer(modifier = Modifier.height(70.dp))
+            Spacer(modifier = Modifier.height(50.dp))
+
+            if (errorMessage != null) {
+                TextCustom(
+                    title = errorMessage,
+                    fontSize = 14.sp,
+                    color = Color.Red,
+                    fontWeight = FontWeight.Medium,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 42.dp, vertical = 8.dp)
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
 
             ButtonCustom(
-                onClick = {
-
-                },
+                onClick = { onRegisterClick(email, password, confirmPassword) },
                 text = stringResource(id = R.string.register_button_),
                 backgroundColor = purpleLight,
                 textFontSize = 15.sp,
                 textFontWeight = FontWeight.SemiBold
             )
-
         },
         bottomContent = {
             TextCustom(
@@ -117,11 +149,12 @@ fun RegisterView(
             )
         }
     )
-
 }
 
 @Composable
 @Preview
 fun PreviewRegisterView(){
-    RegisterView {  }
+    RegisterView(
+        state = RegisterState()
+    ) {  }
 }

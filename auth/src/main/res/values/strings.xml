@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Strings de login -->
     <string name="iniciar_sesion">Iniciar sesión</string>
     <string name="volver">Volver</string>
     <string name="email">Email</string>
@@ -9,4 +10,23 @@
     <string name="olvidaste_contrasena">¿Olvidaste tu contraseña?</string>
     <string name="sin_cuenta">Si no tienes cuenta, </string>
     <string name="registrate_aqui">Regístrate aquí</string>
+    <!-- Strings de error para registro -->
+    <string name="error_email_invalid">El email no es válido</string>
+    <string name="error_register_user">Error al registrar usuario</string>
+    <string name="error_password_invalid">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="error_password_mismatch">Las contraseñas no coinciden</string>
+    <!-- Strings de Registro -->
+    <string name="register_email">Email</string>
+    <string name="register_password">Contraseña</string>
+    <string name="register_repeat_password">Repetir Contraseña</string>
+    <string name="register_show_password">Mostrar Contraseña</string>
+    <string name="register_button_">Registrarse</string>
+    <string name="register_title_">Registro</string>
+    <string name="register_communication_message">Si tienes problemas comunicate con nosotros</string>
+    <!-- Strings de Pre login -->
+    <string name="refactoring_life">Refactoring\nLife</string>
+    <string name="sign_in_text">Iniciar sesión</string>
+    <string name="register_text">Registrarse</string>
+    <string name="login_with_google">Login Google</string>
+    <string name="contact_support">Por cualquier problema comunicate con nosotros</string>
 </resources>
