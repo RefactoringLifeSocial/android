@@ -42,6 +42,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.R
+import com.refactoringlife.auth.features.login.domain.state.LoginState
 import com.refactoringlife.auth.features.login.presentation.theme.BackgroundColor
 import com.refactoringlife.auth.features.login.presentation.theme.Black50
 import com.refactoringlife.auth.features.login.presentation.theme.DividerColor
@@ -57,12 +58,19 @@ fun LoginView(
     onLoginClick: (email : String, password : String) -> Unit,
     onForgotPassword: () -> Unit,
     onRegisterClick: () -> Unit,
-    isError: Boolean = false,
-    errorMessage: String? = null,
+    state: LoginState,
+
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
+
+    val errorMessage = when {
+        state.hasEmailError -> stringResource(R.string.error_login_email_invalid)
+        state.hasPasswordError -> stringResource(R.string.error_login_password_invalid)
+        state.errorMessage?.isNotEmpty() == true -> state.errorMessage
+        else -> null
+    }
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -108,7 +116,7 @@ fun LoginView(
                     value = email,
                     onValueChange = { email = it },
                     singleLine = true,
-                    isError = isError,
+                    isError = state.hasEmailError,
                     placeholder = {
                         Text(
                             text = stringResource(R.string.email),
@@ -136,7 +144,7 @@ fun LoginView(
                     value = password,
                     onValueChange = { password = it },
                     singleLine = true,
-                    isError = isError,
+                    isError = state.hasPasswordError,
                     visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     placeholder = {
                         Text(
@@ -154,7 +162,7 @@ fun LoginView(
                         )
                     },
                     trailingIcon = {
-                        if (isError) {
+                        if (state.hasPasswordError) {
                             Icon(
                                 imageVector = Icons.Default.Warning,
                                 contentDescription = null,
@@ -174,7 +182,7 @@ fun LoginView(
                         .padding(horizontal = 42.dp)
                         .height(56.dp)
                 )
-                if (isError && errorMessage != null) {
+                if (errorMessage != null) {
                     Text(
                         text = errorMessage,
                         color = Color.Red,
@@ -190,9 +198,9 @@ fun LoginView(
                 Button(
                     onClick = { onLoginClick(email, password) },
                     shape = RoundedCornerShape(12.dp),
-                    enabled = !isError,
+                    enabled = true,
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (isError) Color.Gray else PurpleLight
+                        containerColor =  PurpleLight
                     ),
                     modifier = Modifier
                         .fillMaxWidth()

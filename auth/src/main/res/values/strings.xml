@@ -10,6 +10,10 @@
     <string name="olvidaste_contrasena">¿Olvidaste tu contraseña?</string>
     <string name="sin_cuenta">Si no tienes cuenta, </string>
     <string name="registrate_aqui">Regístrate aquí</string>
+    <!-- Strings de error para login -->
+    <string name="error_login_email_invalid">El email no es válido</string>
+    <string name="error_login_password_invalid">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="error_login_generic">Error en el usuario o contraseña</string>
     <!-- Strings de error para registro -->
     <string name="error_email_invalid">El email no es válido</string>
     <string name="error_register_user">Error al registrar usuario</string>

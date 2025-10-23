@@ -9,6 +9,6 @@ fun String?.isValidEmail():Boolean{
 }
 fun String?.isValidPassword():Boolean{
     return this?.let {
-        it.isNotBlank() && it.length >= 8
+        it.isNotBlank() && it.length >= 6
     } ?: false
 }

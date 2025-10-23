@@ -19,7 +19,7 @@ fun RegisterScreen(
     RegisterView(
         state = state,
         onRegisterClick = { email, password, confirmPassword ->
-            registerViewModel.sendEvent(RegisterEvent.SubmitRegister(email, password, confirmPassword))
+            registerViewModel.sendEvent(RegisterEvent.UserRegister(email, password, confirmPassword))
         },
         back = onBack
     )

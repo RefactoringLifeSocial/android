@@ -3,12 +3,12 @@ package com.refactoringlife.auth.features.login.domain.blocs
 import com.refactoringlife.auth.features.login.data.dto.request.UserLoginRequest
 import com.refactoringlife.auth.features.login.domain.state.LoginState
 import com.refactoringlife.auth.features.login.domain.usecases.UserLoginUserCase
-import com.refactoringlife.auth.features.login.utils.isValidEmail
-import com.refactoringlife.auth.features.login.utils.isValidPassword
+import com.refactoringlife.auth.features.login.utils.LoginFormValidator
 import com.refactoringlife.core.common.result.AsyncResult
 
 class HandleLoginBloc(
-    private val userLoginUserCase: UserLoginUserCase = UserLoginUserCase()
+    private val userLoginUserCase: UserLoginUserCase = UserLoginUserCase(),
+    private val formValidator: LoginFormValidator = LoginFormValidator()
 ): LoginBaseBloc {
 
     override fun canHandle(event: LoginEvent): Boolean = event is LoginEvent.Login
@@ -19,13 +19,17 @@ class HandleLoginBloc(
     ) {
         if (event !is LoginEvent.Login) return
 
-        val isValid = event.email.isValidEmail() && event.password.isValidPassword()
-        if (!isValid){
-            update{
-                it.copy(loading = false, error = true)
-            }
-            return
+        val validationResult = formValidator.validateForm(event)
+
+        update { current ->
+            current.copy(
+                hasEmailError = validationResult.hasEmailError,
+                hasPasswordError = validationResult.hasPasswordError,
+                isFormValid = validationResult.isFormValid
+            )
         }
+
+        if (!validationResult.isFormValid) return
 
         val result = userLoginUserCase(userLoginRequest = UserLoginRequest(email = event.email, password = event.password))
         when(result){

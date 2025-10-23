@@ -5,7 +5,7 @@ import com.refactoringlife.auth.features.register.presentation.state.RegisterSta
 
 class FormValidator {
 
-    fun validateForm(event: RegisterEvent.SubmitRegister): RegisterState {
+    fun validateForm(event: RegisterEvent.UserRegister): RegisterState {
         val isEmailValid = event.email.isEmailValid()
         val isPasswordValid = event.password.isPasswordValid()
         val isPasswordMatchValid = event.password.isPasswordMatch(event.confirmPassword)
