@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import com.refactoringlife.auth.features.AuthActivity
+import androidx.fragment.app.Fragment
+import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.register.presentation.screen.RegisterScreen
+import com.refactoringlife.core.common.navigation.NavigationManager
 
 class RegisterFragment : Fragment() {
 
@@ -21,10 +22,11 @@ class RegisterFragment : Fragment() {
         composeView.setViewCompositionStrategy(
             ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
         )
+        val navigationManager = NavigationManager(requireActivity(), R.id.fragment_container)
         composeView.setContent {
             RegisterScreen(
                 onBack = {
-
+                    onBack(navigationManager = navigationManager)
                 }
             )
         }
@@ -33,5 +35,9 @@ class RegisterFragment : Fragment() {
 
     companion object {
         fun createInstance(): RegisterFragment = RegisterFragment()
+    }
+
+    private fun onBack(navigationManager: NavigationManager) {
+        navigationManager.onBack()
     }
 }
