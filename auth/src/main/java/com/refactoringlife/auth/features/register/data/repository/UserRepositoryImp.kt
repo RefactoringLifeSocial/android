@@ -12,6 +12,8 @@ class UserRepositoryImp(
     private val service: UserServiceImp = UserServiceImp()
 ) : UserRepository {
 
+    private val localDataUser = LocalDataUser()
+
     override suspend fun userRegister(
         email: String?,
         password: String
@@ -21,12 +23,12 @@ class UserRepositoryImp(
         )
 
         result.getValueOrNull()?.let {
-            LocalDataUser.saveLocalData(it)
+            localDataUser.saveLocalData(it)  // ← Usar instancia
         }
         return result
     }
 
     override fun listenerUserResponse(): Flow<UserRegisterResponse?> {
-        return LocalDataUser.listenerUserResponse()
+        return localDataUser.listenerUserResponse()  // ← Usar instancia
     }
 }

@@ -1,25 +1,27 @@
 package com.refactoringlife.auth.features.register.data.datasource.localData
 
 import com.refactoringlife.auth.features.register.data.dto.responses.UserRegisterResponse
+import com.refactoringlife.core.data.local.LocalDataRepositoryImpl
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.flow.update
 
-object LocalDataUser {
+class LocalDataUser {
 
-    private val userRegisterResponse: MutableStateFlow<UserRegisterResponse?> =
-        MutableStateFlow(null)
+    private val dataRepository: LocalDataRepositoryImpl<UserRegisterResponse> =
+        LocalDataRepositoryImpl("user_register_response")
 
     fun listenerUserResponse(): Flow<UserRegisterResponse?> {
-        return userRegisterResponse
+        return dataRepository.observe()
     }
 
-    fun saveLocalData(data: UserRegisterResponse) {
-        userRegisterResponse.update { data }
+    suspend fun saveLocalData(data: UserRegisterResponse) {
+        dataRepository.saveData(data)
     }
 
-    fun clear() {
-        userRegisterResponse.value = null
+    suspend fun clear() {
+        dataRepository.clearData()
+    }
+
+    suspend fun getCurrentData(): UserRegisterResponse? {
+        return dataRepository.getData()
     }
 }

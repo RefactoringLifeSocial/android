@@ -4,11 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-/**
- * Implementación del repositorio de datos locales.
- * Combina persistencia con reactive programming.
- */
-class DataRepositoryImpl<T>(
+class LocalDataRepositoryImpl<T>(
     private val key: String,
     private val localDataManager: LocalDataManager = LocalDataManager.getInstance()
 ) : LocalDataRepository<T> {
