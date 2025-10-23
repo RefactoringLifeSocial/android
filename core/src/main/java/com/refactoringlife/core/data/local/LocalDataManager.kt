@@ -27,6 +27,7 @@ class LocalDataManager private constructor() {
 
     suspend fun <T> getData(key: String): T? {
         return mutex.withLock {
+            @Suppress("UNCHECKED_CAST")
             dataStore[key] as? T
         }
     }

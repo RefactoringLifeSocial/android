@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import com.refactoringlife.auth.features.AuthActivity
+import androidx.fragment.app.Fragment
 import com.refactoringlife.auth.features.register.presentation.screen.RegisterScreen
 
 class RegisterFragment : Fragment() {
