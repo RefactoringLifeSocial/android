@@ -12,7 +12,7 @@ import com.refactoringlife.auth.features.register.presentation.viewmodel.Registe
 @Composable
 fun RegisterScreen(
     registerViewModel: RegisterViewModel = viewModel(),
-    onBack: () -> Unit = {}
+    onBack: () -> Unit
 ){
     val state by registerViewModel.state.collectAsState()
 
@@ -21,12 +21,14 @@ fun RegisterScreen(
         onRegisterClick = { email, password, confirmPassword ->
             registerViewModel.sendEvent(RegisterEvent.SubmitRegister(email, password, confirmPassword))
         },
-        back = onBack
+        back = {
+            onBack()
+        }
     )
 }
 
 @Composable
 @Preview(showBackground = true)
 fun PreviewRegister(){
-    RegisterScreen()
+    RegisterScreen(onBack = {})
 }

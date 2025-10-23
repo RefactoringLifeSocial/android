@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
+import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.home.presentation.content.HomeContent
+import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment
+import com.refactoringlife.auth.features.register.presentation.fragment.RegisterFragment
+import com.refactoringlife.core.common.navigation.NavigationManager
 
 class HomeFragment : Fragment() {
 
@@ -25,11 +29,16 @@ class HomeFragment : Fragment() {
         arguments?.let {
             id = it.getString("id").toString()
         }
+        val navigationManager = NavigationManager(requireActivity(), R.id.fragment_container)
 
         composeView.setContent {
             HomeContent(
-                onRegisterClick = {},
-                onLoginClick = {},
+                onRegisterClick = {
+                    goToRegister(navigationManager = navigationManager)
+                },
+                onLoginClick = {
+                    goToLogin(navigationManager = navigationManager)
+                },
                 onGoogleLoginClick = {},
                 goToSupport = {}
             )
@@ -45,5 +54,11 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+    private fun goToRegister(navigationManager: NavigationManager){
+        navigationManager.navigateTo(fragment = RegisterFragment.createInstance())
+    }
+    private fun goToLogin(navigationManager: NavigationManager){
+        navigationManager.navigateTo(fragment = LoginFragment.createInstance())
     }
 }
