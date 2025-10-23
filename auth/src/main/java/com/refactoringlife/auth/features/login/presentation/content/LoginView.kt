@@ -64,8 +64,8 @@ fun LoginView(
     var passwordVisible by remember { mutableStateOf(false) }
 
     val errorMessage = when {
-        state.hasEmailError -> stringResource(R.string.error_login_email_invalid)
-        state.hasPasswordError -> stringResource(R.string.error_login_password_invalid)
+        state.hasEmailError -> stringResource(R.string.error_login_generic)
+        state.hasPasswordError -> stringResource(R.string.error_login_generic)
         state.errorMessage?.isNotEmpty() == true -> state.errorMessage
         else -> null
     }
@@ -180,6 +180,9 @@ fun LoginView(
                         .padding(horizontal = 42.dp)
                         .height(56.dp)
                 )
+
+
+                Spacer(modifier = Modifier.height(40.dp))
                 if (errorMessage != null) {
                     Text(
                         text = errorMessage,
@@ -190,8 +193,7 @@ fun LoginView(
                             .align(Alignment.Start)
                     )
                 }
-
-                Spacer(modifier = Modifier.height(40.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 Button(
                     onClick = { onLoginClick(email, password) },
