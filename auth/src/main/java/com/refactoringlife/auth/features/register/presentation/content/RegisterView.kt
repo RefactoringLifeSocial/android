@@ -38,7 +38,7 @@ fun RegisterView(
         state.hasEmailError -> stringResource(R.string.error_email_invalid)
         state.hasPasswordError -> stringResource(R.string.error_password_invalid)
         state.hasPasswordMatchError -> stringResource(R.string.error_password_mismatch)
-        state.isError.isNotEmpty() -> state.isError
+        state.errorMessage?.isNotEmpty() == true -> state.errorMessage
         else -> null
     }
 
