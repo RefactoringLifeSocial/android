@@ -2,6 +2,9 @@ package com.refactoringlife.auth.features.login.utils
 
 import com.refactoringlife.auth.features.login.domain.blocs.LoginEvent
 import com.refactoringlife.auth.features.login.domain.state.LoginState
+import com.refactoringlife.core.common.utils.isValidEmail
+import com.refactoringlife.core.common.utils.isValidPassword
+
 
 class LoginFormValidator {
 

@@ -34,10 +34,10 @@ class HandleLoginBloc(
         val result = userLoginUserCase(userLoginRequest = UserLoginRequest(email = event.email, password = event.password))
         when(result){
             is AsyncResult.Failure -> {
-                update{it.copy(error = true, errorMessage = result.error.message)}
+                update{it.copy(error = true, errorMessage = result.error.message ?: "Error en el login")}
             }
             is AsyncResult.Success -> {
-                update{it.copy(data = result.value, success = true)}
+                update{it.copy(error = false, errorMessage = "")}
             }
         }
     }

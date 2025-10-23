@@ -1,13 +1,13 @@
-package com.refactoringlife.auth.features.register.presentation.util
+package com.refactoringlife.core.common.utils
 
 import android.util.Patterns
 
-fun String?.isEmailValid(): Boolean {
+fun String?.isValidEmail(): Boolean {
     return if (this.isNullOrBlank()) false
     else Patterns.EMAIL_ADDRESS.matcher(this).matches()
 }
 
-fun String?.isPasswordValid(): Boolean {
+fun String?.isValidPassword(): Boolean {
     return if (this.isNullOrBlank()) false
     else this.length >= 6
 }

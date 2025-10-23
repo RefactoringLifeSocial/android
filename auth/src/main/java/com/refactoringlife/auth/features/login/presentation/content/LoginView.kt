@@ -49,8 +49,6 @@ import com.refactoringlife.auth.features.login.presentation.theme.DividerColor
 import com.refactoringlife.auth.features.login.presentation.theme.GrayLight
 import com.refactoringlife.auth.features.login.presentation.theme.PurpleLight
 
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginView(

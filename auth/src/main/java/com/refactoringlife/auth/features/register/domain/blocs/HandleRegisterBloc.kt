@@ -29,13 +29,13 @@ class HandleRegisterBloc(
 
             if (!validationResult.isFormValid) return
 
-            val result = userRegisterResponseUseCase(event.email, event.password)
+            val result = userRegisterResponseUseCase(event.email ?: "", event.password ?: "")
             when (result) {
                 is AsyncResult.Success -> {
-                    update { it.copy(isError = "") }
+                    update { it.copy(error = false, errorMessage = "") }
                 }
                 is AsyncResult.Failure -> {
-                    update { it.copy(isError = result.error.message ?: "Error al registrar usuario") }
+                    update { it.copy(error = true, errorMessage = result.error.message ?: "Error al registrar usuario") }
                 }
             }
         }
