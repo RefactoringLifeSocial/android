@@ -1,7 +1,7 @@
 package com.refactoringlife.auth.features.register.presentation.util
 
 import com.refactoringlife.auth.features.register.domain.blocs.RegisterEvent
-import com.refactoringlife.auth.features.register.presentation.state.RegisterState
+import com.refactoringlife.auth.features.register.domain.state.RegisterState
 import com.refactoringlife.core.common.utils.isPasswordMatch
 import com.refactoringlife.core.common.utils.isValidEmail
 import com.refactoringlife.core.common.utils.isValidPassword

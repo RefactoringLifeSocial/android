@@ -22,7 +22,7 @@ import com.refactoringlife.auth.features.register.presentation.theme.purpleLight
 @Composable
 fun RegisterView(
     back: () -> Unit,
-    onClickRegister: (email: String, password: String) -> Unit
+    onClickRegister: (email: String, password: String, confirmPassword: String) -> Unit
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -102,7 +102,7 @@ fun RegisterView(
 
             ButtonCustom(
                 onClick = {
-                    onClickRegister(email, password)
+                    onClickRegister(email, password, confirmPassword)
                 },
                 text = stringResource(id = R.string.register_button_),
                 backgroundColor = purpleLight,

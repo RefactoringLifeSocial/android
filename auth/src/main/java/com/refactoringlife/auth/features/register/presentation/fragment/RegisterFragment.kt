@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.fragment.app.viewModels
 import com.refactoringlife.auth.features.register.domain.blocs.RegisterEvent
 import com.refactoringlife.auth.features.register.presentation.screen.RegisterScreen
 import com.refactoringlife.auth.features.register.presentation.viewmodel.RegisterViewModel
@@ -24,8 +25,8 @@ class RegisterFragment : Fragment() {
         composeView.setContent {
             RegisterScreen(
                 onBack = {},
-                onClickRegister = { email, password ->
-                    viewModel.sendEvent(RegisterEvent.UserRegister(email, password))
+                onClickRegister = { email, password, confirmPassword ->
+                    viewModel.sendEvent(RegisterEvent.UserRegister(email, password, confirmPassword))
                 }
             )
         }

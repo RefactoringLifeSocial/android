@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.refactoringlife.auth.features.register.domain.blocs.RegisterBaseBloc
 import com.refactoringlife.auth.features.register.domain.blocs.RegisterBlocs
 import com.refactoringlife.auth.features.register.domain.blocs.RegisterEvent
-import com.refactoringlife.auth.features.register.presentation.state.RegisterState
+import com.refactoringlife.auth.features.register.domain.state.RegisterState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
