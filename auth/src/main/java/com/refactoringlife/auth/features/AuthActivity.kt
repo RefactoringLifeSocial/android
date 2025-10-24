@@ -19,7 +19,7 @@ class AuthActivity : BaseFragmentActivity() {
 
         setupBackPressedHandler()
 
-        goToLogin()
+        goToHome()
     }
 
     private fun goToRegister(){

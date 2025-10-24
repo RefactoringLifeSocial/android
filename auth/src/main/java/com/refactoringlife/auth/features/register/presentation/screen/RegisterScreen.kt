@@ -5,11 +5,16 @@ import com.refactoringlife.auth.features.register.presentation.content.RegisterV
 
 @Composable
 fun RegisterScreen(
-    onBack: () -> Unit = {},
-    onClickRegister: (email: String, password: String, confirmPassword: String) -> Unit
-) {
+    registerViewModel: RegisterViewModel = viewModel(),
+    onBack: () -> Unit
+){
+    val state by registerViewModel.state.collectAsState()
+
     RegisterView(
-        back = onBack,
-        onClickRegister = onClickRegister
+        state = state,
+        onRegisterClick = { email, password, confirmPassword ->
+            registerViewModel.sendEvent(RegisterEvent.UserRegister(email, password, confirmPassword))
+        },
+        back = {onBack()}
     )
 }
