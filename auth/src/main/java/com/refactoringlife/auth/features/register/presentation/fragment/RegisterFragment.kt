@@ -27,7 +27,7 @@ class RegisterFragment : Fragment() {
         )
         val navigationManager = NavigationManager(requireActivity(), R.id.fragment_container)
         composeView.setContent {
-           RegisterScreen(
+            RegisterScreen(
                 onBack = {
                     onBack(navigationManager = navigationManager)
                 }
