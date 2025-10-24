@@ -1,8 +1,10 @@
 package com.refactoringlife.auth.features.register.domain.blocs
 
-import com.refactoringlife.auth.features.register.presentation.state.RegisterState
+import com.refactoringlife.auth.features.register.domain.state.RegisterState
+
 
 typealias RegisterStateUpdate = suspend (suspend (RegisterState) -> RegisterState) -> Unit
+
 
 interface RegisterBaseBloc {
     fun canHandle(event: RegisterEvent): Boolean

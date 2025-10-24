@@ -8,3 +8,5 @@ const val TAG_GOOGLE_ICON = "prelogin_google_icon"
 const val TAG_GOOGLE_TEXT = "prelogin_google_text"
 const val TAG_SUPPORT_TEXT = "prelogin_support_text"
 const val TAG_GOOGLE_BUTTON = "google_button_tag"
+
+const val EMPTY = ""

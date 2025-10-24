@@ -38,6 +38,5 @@ android {
 }
 
 dependencies {
-    // Module
     implementation(project(":core"))
 }

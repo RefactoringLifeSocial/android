@@ -1,13 +1,25 @@
 package com.refactoringlife.auth.features.register.domain.usecases
 
-import com.refactoringlife.auth.features.register.data.dto.responses.UserRegisterResponse
 import com.refactoringlife.auth.features.register.data.repository.UserRepositoryImp
-import com.refactoringlife.auth.features.register.domain.repository.UserRepository
+import com.refactoringlife.auth.features.register.domain.mappers.toUserRegisterModel
+import com.refactoringlife.auth.features.register.domain.model.UserRegisterModel
 import com.refactoringlife.core.common.result.AsyncResult
 
-class RegisterResponseUseCase(private val repository: UserRepository = UserRepositoryImp()) {
+class RegisterResponseUseCase(val repositoryImp: UserRepositoryImp = UserRepositoryImp()) {
+    suspend operator fun invoke(
+        email: String,
+        password: String
+    ): AsyncResult<UserRegisterModel?, Exception> {
+        return when (val result = repositoryImp.userRegister(email, password)) {
+            is AsyncResult.Failure -> {
+                AsyncResult.Failure(error = result.error)
+            }
 
-    suspend operator fun invoke(email: String, password: String): AsyncResult<UserRegisterResponse?, Exception> {
-        return repository.userRegister(email, password) // capturar el caso con when y modelar con toModel
+            is AsyncResult.Success -> {
+                result.value?.let { response ->
+                    AsyncResult.Success(response.toUserRegisterModel())
+                } ?: AsyncResult.Failure(Exception("Data is null"))
+            }
+        }
     }
 }
