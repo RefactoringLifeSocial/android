@@ -69,6 +69,8 @@ dependencies {
 
     api(libs.mockito.kotlin)
     api(libs.mockito.core)
+    api(libs.mockito.android)
+    api(libs.androidx.junit.ktx)
 
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.fragment.ktx)

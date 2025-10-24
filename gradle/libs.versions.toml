@@ -38,6 +38,8 @@ lottieCompose = "6.6.10"
 coroutines = "1.8.1"
 
 # Testing
+junitKtxVersion = "1.1.5"
+mockitoAndroid = "5.3.1"
 mockitoCore = "5.10.0"
 mockitoKotlin = "5.2.1"
 junit = "4.13.2"
@@ -94,6 +96,8 @@ lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 
 # Testing
+androidx-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "junitKtxVersion" }
+mockito-android = { module = "org.mockito:mockito-android", version.ref = "mockitoAndroid" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
