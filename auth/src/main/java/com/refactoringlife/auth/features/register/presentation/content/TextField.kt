@@ -15,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -30,13 +32,20 @@ fun TextFieldCustom(
     icon : Int,
     iconHeight : Dp,
     iconWidth : Dp,
-    placeHolderColor : Color
-) {
+    placeHolderColor : Color,
+    isPassword: Boolean = false,
+    showPassword: Boolean = false,
 
+) {
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         singleLine = true,
+        visualTransformation = if (isPassword && !showPassword) {
+            PasswordVisualTransformation()
+        } else {
+            VisualTransformation.None
+        },
         modifier = modifier
             .height(56.dp)
             .fillMaxWidth()
@@ -66,5 +75,4 @@ fun TextFieldCustom(
             )
         }
     )
-
 }

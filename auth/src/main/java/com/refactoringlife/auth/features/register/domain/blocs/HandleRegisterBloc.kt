@@ -1,21 +1,21 @@
 package com.refactoringlife.auth.features.register.domain.blocs
 
-import com.refactoringlife.auth.features.login.utils.isValidEmail
-import com.refactoringlife.auth.features.login.utils.isValidPassword
 import com.refactoringlife.auth.features.register.domain.usecases.RegisterResponseUseCase
 import com.refactoringlife.core.common.result.AsyncResult
+import com.refactoringlife.core.common.utils.isValidEmail
+import com.refactoringlife.core.common.utils.isValidPassword
 
 class HandleRegisterBloc(val registerResponseUseCase: RegisterResponseUseCase = RegisterResponseUseCase()) :
     RegisterBaseBloc {
 
-    override fun canHandle(event: RegisterEvent): Boolean = event is RegisterEvent.Register
+    override fun canHandle(event: RegisterEvent): Boolean = event is RegisterEvent.UserRegister
 
     override suspend fun handle(
         event: RegisterEvent,
-        update: RegisterStateUpdater
+        update: RegisterStateUpdate
     ) {
 
-        if (event !is RegisterEvent.Register) return
+        if (event !is RegisterEvent.UserRegister) return
 
         val isValid = event.email.isValidEmail() && event.password.isValidPassword()
 
