@@ -1,13 +1,7 @@
 package com.refactoringlife.auth.features.register.presentation.screen
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.compose.ui.tooling.preview.Preview
-import com.refactoringlife.auth.features.register.domain.blocs.RegisterEvent
 import com.refactoringlife.auth.features.register.presentation.content.RegisterView
-import com.refactoringlife.auth.features.register.presentation.viewmodel.RegisterViewModel
 
 @Composable
 fun RegisterScreen(
@@ -23,10 +17,4 @@ fun RegisterScreen(
         },
         back = {onBack()}
     )
-}
-
-@Composable
-@Preview(showBackground = true)
-fun PreviewRegister(){
-    RegisterScreen(onBack = {})
 }
