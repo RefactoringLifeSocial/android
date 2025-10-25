@@ -2,14 +2,10 @@ package com.refactoringlife.auth.features.register.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.refactoringlife.auth.features.login.domain.blocs.LoginBaseBloc
-import com.refactoringlife.auth.features.login.domain.blocs.LoginBlocs
-import com.refactoringlife.auth.features.login.domain.blocs.LoginEvent
-import com.refactoringlife.auth.features.register.domain.blocs.HandleRegisterBloc
 import com.refactoringlife.auth.features.register.domain.blocs.RegisterBaseBloc
 import com.refactoringlife.auth.features.register.domain.blocs.RegisterBlocs
 import com.refactoringlife.auth.features.register.domain.blocs.RegisterEvent
-import com.refactoringlife.auth.features.register.presentation.state.RegisterState
+import com.refactoringlife.auth.features.register.domain.state.RegisterState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,10 +1,8 @@
 package com.refactoringlife.auth.features.register.presentation.content
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -27,51 +25,51 @@ fun BaseRegister(
     centerContent: @Composable () -> Unit,
     bottomContent: @Composable () -> Unit
 ) {
-    Box(
+    Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
+            .wrapContentHeight()
             .background(Color.White)
     ) {
-        Column(
+        BackIcon(
+            onBack = { back() },
+            width = 30.dp,
+            height = 30.dp,
+            image = R.drawable.back,
             modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-        ) {
-            BackIcon(
-                onBack = { back() },
-                width = 30.dp,
-                height = 30.dp,
-                image = R.drawable.back,
-                modifier = Modifier
-                    .align(Alignment.Start)
-                    .padding(start = 16.dp, top = 16.dp)
-            )
-            Spacer(modifier = Modifier.height(70.dp))
+                .align(Alignment.Start)
+                .padding(start = 16.dp, top = 16.dp)
+        )
+        Spacer(modifier = Modifier.height(70.dp))
 
-            TextCustom(
-                title = stringResource(id = R.string.register_title_),
-                fontSize = 36.sp,
-                color = Color.Black,
-                fontWeight = FontWeight.SemiBold,
-                textAlign = TextAlign.Start,
-                modifier = Modifier
-                    .align(Alignment.Start)
-                    .fillMaxWidth()
-                    .padding(start = 42.dp)
-            )
-            Spacer(modifier = Modifier.height(80.dp))
-            centerContent()
-        }
-        Column(
+        TextCustom(
+            title = stringResource(id = R.string.register_title_),
+            fontSize = 36.sp,
+            color = Color.Black,
+            fontWeight = FontWeight.SemiBold,
+            textAlign = TextAlign.Start,
             modifier = Modifier
-                .align(Alignment.BottomCenter)
+                .align(Alignment.Start)
                 .fillMaxWidth()
-                .padding(bottom = 30.dp)
-        ) {
-            HorizontalDivider(modifier = Modifier.padding(bottom = 30.dp, start = 16.dp, end = 16.dp))
-            bottomContent()
-        }
+                .padding(start = 42.dp)
+        )
 
+        Spacer(modifier = Modifier.height(80.dp))
+
+        centerContent()
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        HorizontalDivider(
+            modifier = Modifier.padding(
+                bottom = 30.dp,
+                start = 16.dp,
+                end = 16.dp
+            )
+        )
+
+        bottomContent()
+
+        Spacer(modifier = Modifier.height(30.dp))
     }
-
 }

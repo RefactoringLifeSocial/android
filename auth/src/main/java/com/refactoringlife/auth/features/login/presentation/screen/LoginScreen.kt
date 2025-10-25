@@ -12,12 +12,14 @@ import com.refactoringlife.auth.features.login.presentation.viewmodel.LoginViewM
 @Composable
 fun LoginScreen(
     loginViewModel: LoginViewModel = viewModel(),
-    onBack: () -> Unit = {}
+    onBack: () -> Unit,
+    goToRegister : () -> Unit,
+    success : () -> Unit
 ){
     val state by loginViewModel.state.collectAsState()
 
     LoginView(
-        onBack = onBack,
+        onBack ={onBack()},
         onLoginClick = { email, password ->
             loginViewModel.sendEvent(LoginEvent.Login(email, password))
         },
@@ -25,14 +27,17 @@ fun LoginScreen(
             // Manejar olvidé contraseña
         },
         onRegisterClick = {
-            // Manejar navegación a registro
+            goToRegister()
         },
         state = state
     )
+    if (state.success){
+        success()
+    }
 }
 
 @Composable
 @Preview(showBackground = true)
 fun PreviewLogin(){
-    LoginScreen()
+    LoginScreen(goToRegister = {}, onBack = {}, success = {})
 }

@@ -5,6 +5,8 @@ import com.refactoringlife.auth.features.register.domain.model.UserRegisterModel
 
 fun UserRegisterResponse.toUserRegisterModel(): UserRegisterModel {
     return UserRegisterModel(
-        token = this.status.orEmpty()
+        message = this.message,
+        status = this.status,
+        errorCode = this.errorCode
     )
 }

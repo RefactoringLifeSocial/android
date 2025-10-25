@@ -1,36 +1,40 @@
 package com.refactoringlife.auth.features
 
-import android.net.Uri
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.refactoringlife.auth.R
+import com.refactoringlife.auth.core.share.ShareStatus
+import com.refactoringlife.auth.core.share.ShareViewModel
 import com.refactoringlife.auth.features.home.presentation.fragment.HomeFragment
-import com.refactoringlife.auth.features.login.domain.state.LoginState
-import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment
-import com.refactoringlife.auth.features.register.presentation.fragment.RegisterFragment
-import com.refactoringlife.core.common.activities.BaseFragmentActivity
-import com.refactoringlife.core.common.navigation.NavigationManager
+import com.refactoringlife.core.common.activities.BaseActivity
 
-class AuthActivity : BaseFragmentActivity() {
+class AuthActivity : BaseActivity(R.id.fragment_container) {
+
+    val shareViewModel by viewModels <ShareViewModel> ()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-        navigationManager = NavigationManager(this, R.id.fragment_container)
 
-        setupBackPressedHandler()
-
-        goToLogin()
+        navigateToRoot(HomeFragment.createInstance("id"))
+        observer()
     }
 
-    private fun goToRegister(){
-        navigationManager.navigateToRoot(RegisterFragment.createInstance())
-    }
+    fun observer(){
+        shareViewModel.status.observe(this){status->
+            when(status){
+                is ShareStatus.GoToBack -> {
+                    onBack()
+                }
 
-    private fun goToHome(){
-        navigationManager.navigateToRoot(HomeFragment.createInstance("id"))
-    }
+                is ShareStatus.NavigateTo -> {
+                    navigateTo(status.fragment)
+                }
 
-    private fun goToLogin(){
-        navigationManager.navigateToRoot(LoginFragment.createInstance())
+                is ShareStatus.NavigateToRoot -> {
+                    navigateToRoot(HomeFragment.createInstance("id"))
+                }
+            }
+        }
     }
 }
