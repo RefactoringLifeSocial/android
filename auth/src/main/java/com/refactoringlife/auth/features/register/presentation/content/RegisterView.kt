@@ -18,18 +18,24 @@ import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.register.presentation.theme.grayLight
 import com.refactoringlife.auth.features.register.presentation.theme.purpleLight
+import com.refactoringlife.core.common.utils.Constants.EMPTY
+
+typealias email = String
+typealias password = String
+typealias confirmPassword = String
 
 @Composable
 fun RegisterView(
     back: () -> Unit,
-    onClickRegister: (email: String, password: String, confirmPassword: String) -> Unit
+    onClickRegister: (email, password, confirmPassword) -> Unit
 ) {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var confirmPassword by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf(EMPTY) }
+    var password by remember { mutableStateOf(EMPTY) }
+    var confirmPassword by remember { mutableStateOf(EMPTY) }
+
     BaseRegister(
         back = {
-            back()
+            back.invoke()
         },
         centerContent = {
             TextFieldCustom(
@@ -124,5 +130,4 @@ fun RegisterView(
             )
         }
     )
-
 }

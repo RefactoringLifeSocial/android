@@ -23,7 +23,6 @@ fun ShowPassword(
     textFontSize: TextUnit,
     textFontWeight: FontWeight
 ) {
-
     Row(
         modifier = modifier.fillMaxWidth().padding(start = 28.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -41,5 +40,4 @@ fun ShowPassword(
             fontWeight = textFontWeight
         )
     }
-
 }

@@ -1,8 +1,7 @@
 package com.refactoringlife.auth.features.register.domain.state
 
-import android.R
 import com.refactoringlife.auth.features.register.domain.model.UserRegisterModel
-import com.refactoringlife.auth.utils.EMPTY
+import com.refactoringlife.core.common.utils.Constants.EMPTY
 
 data class RegisterState(
     val data: UserRegisterModel? = null,
