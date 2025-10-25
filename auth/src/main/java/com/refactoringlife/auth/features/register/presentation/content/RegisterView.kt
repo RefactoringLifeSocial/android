@@ -28,6 +28,7 @@ fun RegisterView(
     onRegisterClick: (String, String, String) -> Unit = { _, _, _ -> },
     back: () -> Unit
 ) {
+    //develop estable
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
