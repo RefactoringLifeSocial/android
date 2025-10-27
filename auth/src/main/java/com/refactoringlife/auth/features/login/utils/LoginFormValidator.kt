@@ -5,7 +5,6 @@ import com.refactoringlife.auth.features.login.domain.state.LoginState
 import com.refactoringlife.core.common.utils.isValidEmail
 import com.refactoringlife.core.common.utils.isValidPassword
 
-
 class LoginFormValidator {
 
     fun validateForm(event: LoginEvent.Login): LoginState {
