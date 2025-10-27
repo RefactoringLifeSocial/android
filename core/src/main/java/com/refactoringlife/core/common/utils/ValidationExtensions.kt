@@ -1,10 +1,10 @@
 package com.refactoringlife.core.common.utils
 
-import android.util.Patterns
+private val EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$".toRegex()
 
 fun String?.isValidEmail(): Boolean {
     return if (this.isNullOrBlank()) false
-    else Patterns.EMAIL_ADDRESS.matcher(this).matches()
+    else EMAIL_REGEX.matches(this)
 }
 
 fun String?.isValidPassword(): Boolean {
