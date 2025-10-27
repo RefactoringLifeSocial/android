@@ -14,8 +14,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -39,6 +37,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.R
@@ -48,6 +47,7 @@ import com.refactoringlife.auth.features.login.presentation.theme.Black50
 import com.refactoringlife.auth.features.login.presentation.theme.DividerColor
 import com.refactoringlife.auth.features.login.presentation.theme.GrayLight
 import com.refactoringlife.auth.features.login.presentation.theme.PurpleLight
+import com.refactoringlife.auth.features.register.presentation.content.ShowPassword
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -57,7 +57,6 @@ fun LoginView(
     onForgotPassword: () -> Unit,
     onRegisterClick: () -> Unit,
     state: LoginState,
-
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -100,7 +99,6 @@ fun LoginView(
                     modifier = Modifier.padding(start = 26.dp)
                 )
             }
-
 
             Column(
                 modifier = Modifier
@@ -167,12 +165,6 @@ fun LoginView(
                                 tint = Color.Red,
                                 modifier = Modifier.size(20.dp)
                             )
-                        } else {
-                            Icon(
-                                imageVector = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
-                                contentDescription = null,
-                                modifier = Modifier.clickable { passwordVisible = !passwordVisible }
-                            )
                         }
                     },
                     modifier = Modifier
@@ -181,16 +173,25 @@ fun LoginView(
                         .height(56.dp)
                 )
 
+                ShowPassword(
+                    checked = passwordVisible,
+                    onCheckedChange = { passwordVisible = it },
+                    text = stringResource(R.string.mostrar_contrasena),
+                    textFontSize = 14.sp,
+                    textFontWeight = FontWeight.SemiBold
+                )
 
                 Spacer(modifier = Modifier.height(40.dp))
+
                 if (errorMessage != null) {
                     Text(
                         text = errorMessage,
                         color = Color.Red,
                         fontSize = 13.sp,
+                        textAlign = TextAlign.Center,
                         modifier = Modifier
-                            .padding(start = 42.dp, top = 8.dp)
-                            .align(Alignment.Start)
+                            .fillMaxWidth()
+                            .padding(horizontal = 40.dp)
                     )
                 }
                 Spacer(modifier = Modifier.height(10.dp))
@@ -226,7 +227,6 @@ fun LoginView(
                         .padding(horizontal = 42.dp),
                 )
             }
-
 
             Column(
                 modifier = Modifier

@@ -2,7 +2,6 @@ package com.refactoringlife.auth.features.register.presentation.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import com.refactoringlife.auth.features.register.domain.blocs.RegisterEvent
 import com.refactoringlife.auth.features.register.presentation.content.RegisterView
 import com.refactoringlife.auth.features.register.presentation.viewmodel.RegisterViewModel
@@ -18,6 +17,7 @@ fun RegisterScreen(
         onClickRegister = { email, password, confirmPassword ->
             registerViewModel.sendEvent(RegisterEvent.UserRegister(email, password, confirmPassword))
         },
-        back = onBack
+        back = onBack,
+        state = state
     )
 }

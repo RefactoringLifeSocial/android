@@ -7,8 +7,8 @@ data class RegisterState(
     val data: UserRegisterModel? = null,
     val loading: Boolean = false,
     val error: String? = EMPTY,
-    val hasEmailError: Boolean? = null,
-    val hasPasswordError: Boolean? = null,
-    val hasPasswordMatchError: Boolean? = null,
-    val isFormValid: Boolean? = null
+    val hasEmailError: Boolean = false,
+    val hasPasswordError: Boolean = false,
+    val hasPasswordMatchError: Boolean = false,
+    val isFormValid: Boolean = false
 )
