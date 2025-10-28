@@ -24,7 +24,7 @@ fun LoginScreen(
             loginViewModel.sendEvent(LoginEvent.Login(email, password))
         },
         onForgotPassword = {
-            // Manejar olvidé contraseña
+
         },
         onRegisterClick = {
             goToRegister()
