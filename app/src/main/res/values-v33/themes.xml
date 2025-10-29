@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SocialPets" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.App.Starting" parent="Theme.SocialPets">
+        <!-- Fondo del splash -->
+        <item name="android:windowSplashScreenBackground">@color/white</item>
+
+        <!-- Icono del splash -->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/refactoringlifeicon</item>
+
+        <!-- Duración de la animación del icono -->
+        <item name="android:windowSplashScreenAnimationDuration">500</item>
+
+        <!-- Comportamiento al salir del splash -->
+        <item name="android:windowSplashScreenBehavior">default</item>
+    </style>
+</resources>
