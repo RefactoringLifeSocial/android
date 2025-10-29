@@ -5,13 +5,14 @@ import android.content.Intent
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.refactoringlife.auth.R
 
 class GoogleUiClient(
     private val context: Context
 ) {
     private val googleSignInClient by lazy {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("")
+            .requestIdToken(context.getString(R.string.web_client_id))
             .requestEmail()
             .build()
 
