@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import com.refactoringlife.auth.R
 import com.refactoringlife.auth.core.share.ShareStatus
 import com.refactoringlife.auth.core.share.ShareViewModel
-import com.refactoringlife.auth.features.home.presentation.fragment.HomeFragment
+import com.refactoringlife.auth.features.splash.presentation.fragment.SplashFragment
 import com.refactoringlife.core.common.activities.BaseActivity
 
 class AuthActivity : BaseActivity(R.id.fragment_container) {
@@ -16,7 +16,7 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
-        navigateToRoot(HomeFragment.createInstance("id"))
+        navigateToRoot(SplashFragment.createInstance())
         observer()
     }
 
@@ -32,7 +32,7 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
                 }
 
                 is ShareStatus.NavigateToRoot -> {
-                    navigateToRoot(HomeFragment.createInstance("id"))
+                    navigateToRoot(SplashFragment.createInstance())
                 }
             }
         }

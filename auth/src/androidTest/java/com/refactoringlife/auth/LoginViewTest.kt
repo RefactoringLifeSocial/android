@@ -5,6 +5,7 @@ import androidx.compose.ui.test.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.refactoringlife.auth.features.login.domain.state.LoginState
 import com.refactoringlife.auth.features.login.presentation.content.LoginView
 import org.junit.Rule
 import org.junit.Test
@@ -39,7 +40,8 @@ class LoginViewTest {
                 onBack = {},
                 onLoginClick = { _, _ -> clicked = true },
                 onForgotPassword = {},
-                onRegisterClick = {}
+                onRegisterClick = {},
+                state = LoginState()
             )
         }
 
@@ -55,7 +57,8 @@ class LoginViewTest {
                 onBack = {},
                 onLoginClick = { _, _ -> },
                 onForgotPassword = { clicked = true },
-                onRegisterClick = {}
+                onRegisterClick = {},
+                state = LoginState()
             )
         }
 
@@ -71,7 +74,8 @@ class LoginViewTest {
                 onBack = {},
                 onLoginClick = { _, _ -> },
                 onForgotPassword = {},
-                onRegisterClick = { clicked = true }
+                onRegisterClick = { clicked = true },
+                state = LoginState()
             )
         }
 
@@ -87,6 +91,7 @@ private fun LoginViewTestWrapper() {
         onBack = {},
         onLoginClick = { _, _ -> },
         onForgotPassword = {},
-        onRegisterClick = {}
+        onRegisterClick = {},
+        state = LoginState()
     )
 }
