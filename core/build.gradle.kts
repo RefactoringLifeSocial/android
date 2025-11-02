@@ -57,7 +57,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     api(libs.hilt.android)
     kapt(libs.hilt.compiler)
-
+    api(libs.play.services.auth)
     api(libs.junit)
     api(libs.androidx.junit)
     api(libs.androidx.espresso.core)
