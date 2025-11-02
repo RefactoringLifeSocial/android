@@ -5,7 +5,6 @@ import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,7 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
@@ -32,7 +30,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -42,7 +39,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.register.presentation.theme.grayLight
 import com.refactoringlife.auth.features.register.presentation.theme.purpleLight
 import com.refactoringlife.core.common.utils.Constants.EMPTY
@@ -53,20 +49,13 @@ private const val RESEND_TIME_SECONDS = 60
 
 @Composable
 fun CodeInputComponent(
-    modifier: Modifier = Modifier,
     onCodeChanged: (String) -> Unit,
     onResendClicked: () -> Unit = {}
 ) {
-    // Estado interno para el código (usando TextFieldValue para controlar la selección/cursor)
     var codeValue by remember { mutableStateOf(TextFieldValue(EMPTY)) }
-
-    // Estado para el contador de tiempo
     var timeLeft by remember { mutableIntStateOf(RESEND_TIME_SECONDS) }
-
-    // Estado para el FocusRequester
     val focusRequester = remember { FocusRequester() }
 
-    // --- Lógica del Contador de Tiempo ---
     LaunchedEffect(timeLeft) {
         if (timeLeft > 0) {
             delay(1000L)
@@ -81,7 +70,7 @@ fun CodeInputComponent(
 
     // Función para manejar los cambios en el input
     val onValueChange: (TextFieldValue) -> Unit = { newValue ->
-        val text = newValue.text.filter { it.isDigit() }.take(CODE_LENGTH)
+        val text = newValue.text.filter { it.isLetterOrDigit() }.take(CODE_LENGTH).uppercase()
 
         // Actualiza el estado
         codeValue = newValue.copy(
@@ -106,10 +95,10 @@ fun CodeInputComponent(
             modifier = Modifier
                 .size(0.dp) // Lo hacemos invisible
                 .focusRequester(focusRequester),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password) // Permite letras y números
         )
 
-        // Visualización del Código (6 cajas)
+        // Visualización del Código (6 líneas)
         CodeDisplay(code = codeValue.text)
 
         // Espaciador entre el código y el contador
@@ -119,7 +108,7 @@ fun CodeInputComponent(
         if (timeLeft > 0) {
             // Estado de "Contador Activo"
             Text(
-                text = "Reenviar código de validación", //stringResource(id = R.string.resend_code_in)
+                text = "Reenviar código de validación",
                 fontSize = 13.sp,
                 color = grayLight,
                 textAlign = TextAlign.Center
@@ -152,7 +141,7 @@ fun CodeInputComponent(
         } else {
             // Estado de "Reenviar Disponible"
             Text(
-                text = "Reenviar Código", //stringResource(id = R.string.resend_code), //
+                text = "Reenviar Código",
                 fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = purpleLight,
@@ -166,7 +155,7 @@ fun CodeInputComponent(
     }
 }
 
-// Composable interno para dibujar las 6 cajas
+// Composable interno para dibujar las 6 líneas (estilo Figma)
 @Composable
 private fun CodeDisplay(code: String) {
     Row(
@@ -175,32 +164,78 @@ private fun CodeDisplay(code: String) {
     ) {
         repeat(CODE_LENGTH) { index ->
             val char = code.getOrElse(index) { ' ' }
+            val isFilled = char != ' '
             val isFocused = index == code.length
 
-            Box(
-                modifier = Modifier
-                    .size(50.dp)
-                    .background(Color.Transparent)
-                    .border(
-                        width = 2.dp,
-                        color = if (isFocused) purpleLight else grayLight,
-                        shape = RoundedCornerShape(8.dp)
-                    ),
-                contentAlignment = Alignment.Center
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                // Le damos una altura fija para contener tanto el texto como la línea
+                modifier = Modifier.height(40.dp)
             ) {
+                // Dígito
                 Text(
-                    text = char.toString(),
+                    text = char.toString(), // Muestra el dígito (o espacio si está vacío)
                     style = TextStyle(
                         fontSize = 24.sp,
                         fontWeight = FontWeight.SemiBold,
                         textAlign = TextAlign.Center,
                         color = Color.Black
-                    )
+                    ),
+                    modifier = Modifier.weight(1f) // Esto empuja el texto hacia arriba y centra solo el dígito
+                )
+
+                // Línea inferior (guion bajo si está vacío, línea de color si tiene foco/lleno)
+                Box(
+                    modifier = Modifier
+                        .size(width = 30.dp, height = 2.dp) // Ancho ajustado para la línea
+                        .background(
+                            when {
+                                isFocused -> purpleLight // Foco
+                                isFilled -> Color.Black // Lleno
+                                else -> grayLight // Vacío (se convierte en el guion)
+                            }
+                        )
                 )
             }
         }
     }
 }
+
+// Composable interno para dibujar las 6 cajas
+//@Composable
+//private fun CodeDisplay(code: String) {
+//    Row(
+//        modifier = Modifier.fillMaxWidth(),
+//        horizontalArrangement = Arrangement.SpaceEvenly
+//    ) {
+//        repeat(CODE_LENGTH) { index ->
+//            val char = code.getOrElse(index) { ' ' }
+//            val isFocused = index == code.length
+//
+//            Box(
+//                modifier = Modifier
+//                    .size(50.dp)
+//                    .background(Color.Transparent)
+//                    .border(
+//                        width = 2.dp,
+//                        color = if (isFocused) purpleLight else grayLight,
+//                        shape = RoundedCornerShape(8.dp)
+//                    ),
+//                contentAlignment = Alignment.Center
+//            ) {
+//                Text(
+//                    text = char.toString(),
+//                    style = TextStyle(
+//                        fontSize = 24.sp,
+//                        fontWeight = FontWeight.SemiBold,
+//                        textAlign = TextAlign.Center,
+//                        color = Color.Black
+//                    )
+//                )
+//            }
+//        }
+//    }
+//}
 
 @Preview(showBackground = true)
 @Composable

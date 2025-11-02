@@ -47,7 +47,7 @@ fun SendEmailView(
             modifier = Modifier
                 .align(Alignment.Start)
                 .fillMaxWidth()
-                .padding(start = 42.dp, top = 80.dp, bottom = 40.dp)
+                .padding(start = 42.dp, top = 80.dp, bottom = 40.dp, end = 60.dp)
         )
 
         TextFieldCustom(
