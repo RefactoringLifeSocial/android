@@ -34,4 +34,7 @@
     <string name="login_with_google">Login Google</string>
     <string name="contact_support">Por cualquier problema comunicate con nosotros</string>
     <string name="web_client_id">254591114805-cotflkm6lf4242kqinja1bo3fbj7qkuc.apps.googleusercontent.com</string>
+    !-- Strings de Forgot Password -->
+    <string name="continue_send_email">Continuar</string>
+    <string name="forgot_password">Recuperar contraseña</string>
 </resources>
