@@ -40,4 +40,8 @@
     !-- Strings de Reset Password -->
     <string name="new_password">Nueva contraseña</string>
     <string name="confirm">Confirmar</string>
+    !-- Strings de Verify Code -->
+    <string name="thanks">Gracias!</string>
+    <string name="message_send_code">Te enviamos un codigo de verificacion</string>
+    <string name="error_code_verify">Error en el codigo de verificacion</string>
 </resources>
