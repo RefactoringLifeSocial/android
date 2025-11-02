@@ -37,4 +37,7 @@
     !-- Strings de Forgot Password -->
     <string name="continue_send_email">Continuar</string>
     <string name="forgot_password">Recuperar contraseña</string>
+    !-- Strings de Reset Password -->
+    <string name="new_password">Nueva contraseña</string>
+    <string name="confirm">Confirmar</string>
 </resources>

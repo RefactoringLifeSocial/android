@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
@@ -22,24 +23,29 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.register.presentation.content.ButtonCustom
+import com.refactoringlife.auth.features.register.presentation.content.ShowPassword
 import com.refactoringlife.auth.features.register.presentation.content.TextFieldCustom
-import com.refactoringlife.auth.features.register.presentation.content.email
 import com.refactoringlife.auth.features.register.presentation.theme.grayLight
 import com.refactoringlife.auth.features.register.presentation.theme.purpleLight
 import com.refactoringlife.core.common.utils.Constants.EMPTY
 import com.refactoringlife.core.presentation.content.TextCustom
 
+typealias password = String
+
 @Composable
-fun SendEmailView(
-    onSendEmail: (email) -> Unit = {}
+fun ResetPasswordView(
+    onConfirm: (password) -> Unit = {}
 ) {
 
-    var email by remember { mutableStateOf(EMPTY) }
+    var password by remember { mutableStateOf(EMPTY) }
+    var confirmPassword by remember { mutableStateOf(EMPTY) }
+    var showPassword by remember { mutableStateOf(false) }
+    var showConfirmPassword by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.fillMaxSize()) {
 
         TextCustom(
-            title = stringResource(id = R.string.forgot_password),
+            title = stringResource(id = R.string.new_password),
             fontSize = 36.sp,
             color = Color.Black,
             fontWeight = FontWeight.SemiBold,
@@ -47,29 +53,65 @@ fun SendEmailView(
             modifier = Modifier
                 .align(Alignment.Start)
                 .fillMaxWidth()
-                .padding(start = 42.dp, top = 80.dp, bottom = 40.dp)
+                .padding(start = 42.dp, top = 80.dp, bottom = 40.dp, end = 60.dp)
         )
 
         TextFieldCustom(
-            value = email,
+            value = password,
             onValueChange = { newValue ->
-                email = newValue
+                password = newValue
             },
-            modifier = Modifier,
-            placeholderText = stringResource(id = R.string.register_email),
+            placeholderText = stringResource(id = R.string.register_password),
             placeholderFontSize = 16.sp,
-            icon = R.drawable.user,
+            placeHolderColor = grayLight,
+            icon = R.drawable.locked,
             iconWidth = 25.dp,
             iconHeight = 25.dp,
-            placeHolderColor = grayLight
+            modifier = Modifier,
+            isPassword = true,
+            showPassword = showPassword
+        )
+
+        ShowPassword(
+            checked = showPassword,
+            onCheckedChange = { showPassword = it },
+            text = stringResource(id = R.string.register_show_password),
+            textFontSize = 14.sp,
+            textFontWeight = FontWeight.SemiBold
+        )
+
+        Spacer(modifier = Modifier.height(2.dp))
+
+        TextFieldCustom(
+            value = confirmPassword,
+            onValueChange = { newValue ->
+                confirmPassword = newValue
+            },
+            placeholderText = stringResource(id = R.string.register_repeat_password),
+            placeholderFontSize = 16.sp,
+            placeHolderColor = grayLight,
+            icon = R.drawable.locked,
+            iconWidth = 25.dp,
+            iconHeight = 25.dp,
+            modifier = Modifier,
+            isPassword = true,
+            showPassword = showConfirmPassword
+        )
+
+        ShowPassword(
+            checked = showConfirmPassword,
+            onCheckedChange = { showConfirmPassword = it },
+            text = stringResource(id = R.string.register_show_password),
+            textFontSize = 14.sp,
+            textFontWeight = FontWeight.SemiBold
         )
         Spacer(modifier = Modifier.weight(1f))
 
         ButtonCustom(
             onClick = {
-                onSendEmail(email)
+                onConfirm(password)
             },
-            text = stringResource(id = R.string.continue_send_email),
+            text = stringResource(id = R.string.confirm),
             backgroundColor = purpleLight,
             textFontSize = 15.sp,
             textFontWeight = FontWeight.SemiBold,
@@ -95,6 +137,6 @@ fun SendEmailView(
 
 @Preview(showBackground = true)
 @Composable
-fun SendEmailViewPreview() { // <-- Cambio de nombre
-    SendEmailView()
+fun PreviewResetPasswordView() {
+    ResetPasswordView()
 }
