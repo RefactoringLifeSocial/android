@@ -36,7 +36,6 @@ typealias password = String
 fun ResetPasswordView(
     onConfirm: (password) -> Unit = {}
 ) {
-
     var password by remember { mutableStateOf(EMPTY) }
     var confirmPassword by remember { mutableStateOf(EMPTY) }
     var showPassword by remember { mutableStateOf(false) }
@@ -133,10 +132,4 @@ fun ResetPasswordView(
                 .padding(start = 42.dp, bottom = 20.dp)
         )
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewResetPasswordView() {
-    ResetPasswordView()
 }

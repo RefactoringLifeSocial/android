@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.R
@@ -91,10 +90,4 @@ fun SendEmailView(
                 .padding(start = 42.dp, bottom = 20.dp)
         )
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SendEmailViewPreview() { // <-- Cambio de nombre
-    SendEmailView()
 }

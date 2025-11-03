@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,20 +15,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.forgotpassword.presentation.composables.CodeInputComponent
 import com.refactoringlife.auth.features.register.presentation.content.ButtonCustom
-import com.refactoringlife.auth.features.register.presentation.theme.grayLight
 import com.refactoringlife.auth.features.register.presentation.theme.purpleLight
 import com.refactoringlife.auth.utils.theme.Purple40
-import com.refactoringlife.auth.utils.theme.Purple80
 import com.refactoringlife.core.common.utils.Constants.EMPTY
 import com.refactoringlife.core.presentation.content.TextCustom
 
@@ -109,13 +104,5 @@ fun VerifyCodeView(
                 .fillMaxWidth()
                 .padding(bottom = 20.dp)
         )
-
     }
-
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewVerifyCodeView(){
-    VerifyCodeView()
 }

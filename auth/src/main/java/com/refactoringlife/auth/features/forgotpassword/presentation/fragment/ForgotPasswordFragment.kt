@@ -28,8 +28,7 @@ class ForgotPasswordFragment : Fragment() {
         composeView.setContent {
             ForgotPasswordScreen(
                 onSendEmail = { email ->
-                    // Aquí implementarás la lógica para enviar el email
-                    // Por ahora solo navegamos de vuelta para probar
+
                 },
                 onBack = {
                     shareViewModel.goToBack()

@@ -46,4 +46,6 @@
     <string name="error_code_verify">Error en el codigo de confirmacion</string>
     <string name="send">Enviar</string>
     <string name="go_to_email">Ir al Email</string>
+    <string name="resend_code">Reenviar codigo</string>
+    <string name="resend_code_validation">Reenviar codigo de validacion</string>
 </resources>
