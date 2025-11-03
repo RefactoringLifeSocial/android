@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitProvider {
 
-    private const val BASE_URL = "https://api.example.com/"
+    private const val BASE_URL = "https://stoplight.io/mocks/refactoringlife/refactoringlife/1305192047/"
 
     fun create(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()

@@ -22,6 +22,7 @@ fun LoginScreen(
     loginViewModel: LoginViewModel,
     onBack: () -> Unit,
     goToRegister: () -> Unit,
+    onForgotPassword: () -> Unit,
     success: () -> Unit
 ) {
     val context = LocalContext.current
@@ -48,6 +49,7 @@ fun LoginScreen(
             loginViewModel.sendEvent(LoginEvent.Login(email, password))
         },
         onForgotPassword = {
+            onForgotPassword()
 
         },
         onRegisterClick = {
@@ -63,5 +65,5 @@ fun LoginScreen(
 @Composable
 @Preview(showBackground = true)
 fun PreviewLogin() {
-    LoginScreen(goToRegister = {}, onBack = {}, success = {}, loginViewModel = viewModel())
+    LoginScreen(goToRegister = {}, onBack = {}, success = {}, loginViewModel = viewModel(), onForgotPassword = {})
 }

@@ -34,4 +34,18 @@
     <string name="login_with_google">Login Google</string>
     <string name="contact_support">Por cualquier problema comunicate con nosotros</string>
     <string name="web_client_id">254591114805-cotflkm6lf4242kqinja1bo3fbj7qkuc.apps.googleusercontent.com</string>
+    !-- Strings de Forgot Password -->
+    <string name="continue_send_email">Continuar</string>
+    <string name="forgot_password">Recuperar contraseña</string>
+    !-- Strings de Reset Password -->
+    <string name="new_password">Nueva contraseña</string>
+    <string name="confirm">Confirmar</string>
+    !-- Strings de Verify Code -->
+    <string name="thanks">Gracias!</string>
+    <string name="message_send_code">Te enviamos un codigo de verificacion</string>
+    <string name="error_code_verify">Error en el codigo de confirmacion</string>
+    <string name="send">Enviar</string>
+    <string name="go_to_email">Ir al Email</string>
+    <string name="resend_code">Reenviar codigo</string>
+    <string name="resend_code_validation">Reenviar codigo de validacion</string>
 </resources>

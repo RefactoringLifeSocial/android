@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.refactoringlife.auth.core.share.ShareViewModel
+import com.refactoringlife.auth.features.forgotpassword.presentation.fragment.ForgotPasswordFragment
 import com.refactoringlife.auth.features.login.presentation.screen.LoginScreen
 import com.refactoringlife.auth.features.login.presentation.viewmodel.LoginViewModel
 import com.refactoringlife.auth.features.register.presentation.fragment.RegisterFragment
@@ -40,6 +41,9 @@ class LoginFragment : Fragment() {
                 },
                 success = {
 
+                },
+                onForgotPassword = {
+                    shareViewModel.navigateTo(ForgotPasswordFragment())
                 }
             )
         }
