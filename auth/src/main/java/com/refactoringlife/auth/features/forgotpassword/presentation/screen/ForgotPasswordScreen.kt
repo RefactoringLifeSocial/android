@@ -1,6 +1,7 @@
 package com.refactoringlife.auth.features.forgotpassword.presentation.screen
 
 import androidx.compose.runtime.Composable
+import com.refactoringlife.auth.features.forgotpassword.presentation.content.ResetPasswordView
 import com.refactoringlife.auth.features.forgotpassword.presentation.content.SendEmailView
 import com.refactoringlife.auth.features.forgotpassword.presentation.content.VerifyCodeView
 

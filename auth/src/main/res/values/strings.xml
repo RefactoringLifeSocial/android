@@ -43,5 +43,7 @@
     !-- Strings de Verify Code -->
     <string name="thanks">Gracias!</string>
     <string name="message_send_code">Te enviamos un codigo de verificacion</string>
-    <string name="error_code_verify">Error en el codigo de verificacion</string>
+    <string name="error_code_verify">Error en el codigo de confirmacion</string>
+    <string name="send">Enviar</string>
+    <string name="go_to_email">Ir al Email</string>
 </resources>

@@ -28,6 +28,8 @@ import com.refactoringlife.auth.features.forgotpassword.presentation.composables
 import com.refactoringlife.auth.features.register.presentation.content.ButtonCustom
 import com.refactoringlife.auth.features.register.presentation.theme.grayLight
 import com.refactoringlife.auth.features.register.presentation.theme.purpleLight
+import com.refactoringlife.auth.utils.theme.Purple40
+import com.refactoringlife.auth.utils.theme.Purple80
 import com.refactoringlife.core.common.utils.Constants.EMPTY
 import com.refactoringlife.core.presentation.content.TextCustom
 
@@ -71,22 +73,22 @@ fun VerifyCodeView(
         Spacer(modifier = Modifier.weight(1f))
 
         //falta manejar mensaje de error segun state
-            Text(
-                text = stringResource(id = R.string.error_code_verify),
-                color = Red,
-                fontSize = 13.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 40.dp),
-            )
+//            Text(
+//                text = stringResource(id = R.string.error_code_verify),
+//                color = Red,
+//                fontSize = 13.sp,
+//                textAlign = TextAlign.Center,
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(horizontal = 40.dp),
+//            )
 
         Spacer(modifier = Modifier.height(10.dp))
         ButtonCustom(
             onClick = {
                 onSendCode(code)
             },
-            text = stringResource(id = R.string.continue_send_email),
+            text = stringResource(id = R.string.send),
             backgroundColor = purpleLight,
             textFontSize = 15.sp,
             textFontWeight = FontWeight.SemiBold,
@@ -98,14 +100,14 @@ fun VerifyCodeView(
                 .padding(start = 30.dp, end = 30.dp, bottom = 30.dp)
         )
         TextCustom(
-            title = stringResource(id = R.string.register_communication_message),
+            title = stringResource(id = R.string.go_to_email),
             fontSize = 15.sp,
-            color = grayLight,
-            fontWeight = FontWeight.Normal,
-            textAlign = TextAlign.Start,
+            color = Purple40,
+            fontWeight = FontWeight.SemiBold,
+            textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 42.dp, bottom = 20.dp)
+                .padding(bottom = 20.dp)
         )
 
     }

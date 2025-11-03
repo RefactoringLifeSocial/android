@@ -15,7 +15,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +32,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -52,9 +56,14 @@ fun CodeInputComponent(
     onCodeChanged: (String) -> Unit,
     onResendClicked: () -> Unit = {}
 ) {
-    var codeValue by remember { mutableStateOf(TextFieldValue(EMPTY)) }
+    // Array de caracteres individuales para cada campo
+    var codeChars by remember { mutableStateOf(CharArray(CODE_LENGTH) { ' ' }) }
+    var focusedIndex by remember { mutableIntStateOf(0) }
     var timeLeft by remember { mutableIntStateOf(RESEND_TIME_SECONDS) }
-    val focusRequester = remember { FocusRequester() }
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+    // Focus requester para cada campo
+    val focusRequesters = remember { List(CODE_LENGTH) { FocusRequester() } }
 
     LaunchedEffect(timeLeft) {
         if (timeLeft > 0) {
@@ -63,23 +72,48 @@ fun CodeInputComponent(
         }
     }
 
-    // Al iniciar, forzar el foco en el campo (para abrir el teclado)
+    // Al iniciar, enfocar el primer campo
     LaunchedEffect(Unit) {
-        focusRequester.requestFocus()
+        focusRequesters[0].requestFocus()
+        keyboardController?.show()
     }
 
-    // Función para manejar los cambios en el input
-    val onValueChange: (TextFieldValue) -> Unit = { newValue ->
-        val text = newValue.text.filter { it.isLetterOrDigit() }.take(CODE_LENGTH).uppercase()
+    // Actualizar el código completo cuando cambian los caracteres
+    LaunchedEffect(codeChars.joinToString("").trim().length) {
+        val fullCode = codeChars.joinToString("").trim()
+        onCodeChanged(fullCode)
+    }
 
-        // Actualiza el estado
-        codeValue = newValue.copy(
-            text = text,
-            selection = TextRange(text.length) // Mueve el cursor al final
-        )
+    // Función para actualizar un carácter específico
+    val updateChar: (Int, Char) -> Unit = { index, char ->
+        codeChars = codeChars.copyOf().apply {
+            this[index] = char
+        }
 
-        // Notifica al Composable padre
-        onCodeChanged(text)
+        // Si escribimos un carácter y no es el último campo, mover al siguiente
+        if (char != ' ' && index < CODE_LENGTH - 1) {
+            focusedIndex = index + 1
+            focusRequesters[index + 1].requestFocus()
+        }
+    }
+
+    // Función para borrar un carácter específico
+    val deleteChar: (Int) -> Unit = { index ->
+        codeChars = codeChars.copyOf().apply {
+            this[index] = ' '
+        }
+        // Si borramos y no es el primer campo, retroceder
+        if (index > 0) {
+            focusedIndex = index - 1
+            focusRequesters[index - 1].requestFocus()
+        }
+    }
+
+    // Función para manejar clicks en los slots
+    val onSlotClick: (Int) -> Unit = { index ->
+        focusedIndex = index
+        focusRequesters[index].requestFocus()
+        keyboardController?.show()
     }
 
     Column(
@@ -88,18 +122,23 @@ fun CodeInputComponent(
             .padding(horizontal = 40.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Campo de texto invisible que captura todos los inputs
-        BasicTextField(
-            value = codeValue,
-            onValueChange = onValueChange,
-            modifier = Modifier
-                .size(0.dp) // Lo hacemos invisible
-                .focusRequester(focusRequester),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password) // Permite letras y números
-        )
-
-        // Visualización del Código (6 líneas)
-        CodeDisplay(code = codeValue.text)
+        // Visualización del Código (6 campos independientes)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            repeat(CODE_LENGTH) { index ->
+                CodeSlot(
+                    char = codeChars[index],
+                    isFocused = index == focusedIndex,
+                    onCharChange = { char -> updateChar(index, char) },
+                    onDelete = { deleteChar(index) },
+                    onClick = { onSlotClick(index) },
+                    focusRequester = focusRequesters[index],
+                    modifier = Modifier
+                )
+            }
+        }
 
         // Espaciador entre el código y el contador
         Spacer(modifier = Modifier.height(30.dp))
@@ -109,8 +148,8 @@ fun CodeInputComponent(
             // Estado de "Contador Activo"
             Text(
                 text = "Reenviar código de validación",
-                fontSize = 13.sp,
-                color = grayLight,
+                fontSize = 12.sp,
+                color = Color.Black,
                 textAlign = TextAlign.Center
             )
 
@@ -141,6 +180,15 @@ fun CodeInputComponent(
         } else {
             // Estado de "Reenviar Disponible"
             Text(
+                text = "Reenviar código de validación",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Normal,
+                color = Color.Black,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
+
+            Text(
                 text = "Reenviar Código",
                 fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,
@@ -148,94 +196,113 @@ fun CodeInputComponent(
                 modifier = Modifier
                     .clickable {
                         onResendClicked()
-                        timeLeft = RESEND_TIME_SECONDS // Reinicia el contador
+                        timeLeft = RESEND_TIME_SECONDS
+                        codeChars = CharArray(CODE_LENGTH) { ' ' }
+                        focusedIndex = 0
+                        focusRequesters[0].requestFocus()
+                        keyboardController?.show()
                     }
+                    .padding(top = 4.dp)
             )
         }
     }
 }
 
-// Composable interno para dibujar las 6 líneas (estilo Figma)
+// Composable para cada slot individual del código
 @Composable
-private fun CodeDisplay(code: String) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly
+private fun CodeSlot(
+    char: Char,
+    isFocused: Boolean,
+    onCharChange: (Char) -> Unit,
+    onDelete: () -> Unit,
+    onClick: () -> Unit,
+    focusRequester: FocusRequester,
+    modifier: Modifier = Modifier
+) {
+    val displayChar = if (char == ' ') "" else char.toString()
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+            .height(50.dp)
+            .width(40.dp)
+            .clickable(onClick = onClick)
     ) {
-        repeat(CODE_LENGTH) { index ->
-            val char = code.getOrElse(index) { ' ' }
-            val isFilled = char != ' '
-            val isFocused = index == code.length
+        // Campo de texto invisible pero funcional
+        BasicTextField(
+            value = TextFieldValue(
+                text = displayChar,
+                selection = TextRange(displayChar.length)
+            ),
+            onValueChange = { newValue ->
+                val inputText = newValue.text.filter { it.isLetterOrDigit() }.uppercase()
 
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                // Le damos una altura fija para contener tanto el texto como la línea
-                modifier = Modifier.height(40.dp)
-            ) {
-                // Dígito
-                Text(
-                    text = char.toString(), // Muestra el dígito (o espacio si está vacío)
-                    style = TextStyle(
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        textAlign = TextAlign.Center,
-                        color = Color.Black
-                    ),
-                    modifier = Modifier.weight(1f) // Esto empuja el texto hacia arriba y centra solo el dígito
-                )
-
-                // Línea inferior (guion bajo si está vacío, línea de color si tiene foco/lleno)
+                if (inputText.isNotEmpty()) {
+                    // Si hay input, tomar el último carácter y actualizar
+                    val newChar = inputText.last()
+                    onCharChange(newChar)
+                } else {
+                    // Si está vacío, borrar este campo
+                    onDelete()
+                }
+            },
+            modifier = Modifier
+                .focusRequester(focusRequester)
+                .size(width = 40.dp, height = 40.dp),
+            textStyle = TextStyle(
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+                textAlign = TextAlign.Center
+            ),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text,
+                autoCorrect = false
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    keyboardController?.hide()
+                }
+            ),
+            cursorBrush = SolidColor(Color.Transparent),
+            singleLine = true,
+            decorationBox = { innerTextField ->
                 Box(
-                    modifier = Modifier
-                        .size(width = 30.dp, height = 2.dp) // Ancho ajustado para la línea
-                        .background(
-                            when {
-                                isFocused -> purpleLight // Foco
-                                isFilled -> Color.Black // Lleno
-                                else -> grayLight // Vacío (se convierte en el guion)
-                            }
+                    modifier = Modifier.size(width = 40.dp, height = 40.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    // Mostrar el carácter visualmente
+                    Text(
+                        text = displayChar.ifEmpty { EMPTY },
+                        style = TextStyle(
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black,
+                            textAlign = TextAlign.Center
                         )
-                )
+                    )
+                    innerTextField()
+                }
             }
-        }
+        )
+
+        // Línea inferior
+        Spacer(modifier = Modifier.height(6.dp))
+        Box(
+            modifier = Modifier
+                .width(40.dp)
+                .height(2.dp)
+                .background(
+                    when {
+                        isFocused -> purpleLight
+                        char != ' ' -> Color.Black
+                        else -> grayLight
+                    }
+                )
+        )
     }
 }
-
-// Composable interno para dibujar las 6 cajas
-//@Composable
-//private fun CodeDisplay(code: String) {
-//    Row(
-//        modifier = Modifier.fillMaxWidth(),
-//        horizontalArrangement = Arrangement.SpaceEvenly
-//    ) {
-//        repeat(CODE_LENGTH) { index ->
-//            val char = code.getOrElse(index) { ' ' }
-//            val isFocused = index == code.length
-//
-//            Box(
-//                modifier = Modifier
-//                    .size(50.dp)
-//                    .background(Color.Transparent)
-//                    .border(
-//                        width = 2.dp,
-//                        color = if (isFocused) purpleLight else grayLight,
-//                        shape = RoundedCornerShape(8.dp)
-//                    ),
-//                contentAlignment = Alignment.Center
-//            ) {
-//                Text(
-//                    text = char.toString(),
-//                    style = TextStyle(
-//                        fontSize = 24.sp,
-//                        fontWeight = FontWeight.SemiBold,
-//                        textAlign = TextAlign.Center,
-//                        color = Color.Black
-//                    )
-//                )
-//            }
-//        }
-//    }
-//}
 
 @Preview(showBackground = true)
 @Composable
