@@ -45,7 +45,6 @@ class LoginFragment : Fragment() {
         }
         return composeView
     }
-
     companion object {
         fun createInstance(): LoginFragment = LoginFragment()
     }

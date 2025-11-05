@@ -2,7 +2,6 @@ package com.refactoringlife.auth.features.login.presentation.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,12 +17,10 @@ fun ImageLogo(
     image: Painter = painterResource(R.drawable.logo_huella),
     width: Dp = 116.dp,
     height: Dp = 142.dp
-
-
 ){
     Image(
         painter = image,
-        contentDescription = "logo_huella",
+        contentDescription = null,
         modifier = modifier
             .width(width)
             .height(height)
