@@ -13,8 +13,6 @@ import com.refactoringlife.auth.core.share.ShareViewModel
 import com.refactoringlife.auth.features.forgotpassword.presentation.fragment.ForgotPasswordFragment
 import com.refactoringlife.auth.features.login.presentation.screen.LoginScreen
 import com.refactoringlife.auth.features.login.presentation.viewmodel.LoginViewModel
-import com.refactoringlife.auth.features.register.presentation.fragment.RegisterFragment
-import kotlin.getValue
 
 class LoginFragment : Fragment() {
 
@@ -33,17 +31,15 @@ class LoginFragment : Fragment() {
         composeView.setContent {
             LoginScreen(
                 loginViewModel = viewModel,
-                onBack = {
-                    shareViewModel.goToBack()
-                },
-                goToRegister = {
-                    shareViewModel.navigateTo(RegisterFragment())
-                },
+
                 success = {
 
                 },
                 onForgotPassword = {
                     shareViewModel.navigateTo(ForgotPasswordFragment())
+                },
+                onLoginForGoogle = {
+
                 }
             )
         }
