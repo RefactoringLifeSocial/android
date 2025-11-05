@@ -7,6 +7,8 @@ import com.refactoringlife.auth.core.share.ShareStatus
 import com.refactoringlife.auth.core.share.ShareViewModel
 import com.refactoringlife.auth.features.home.presentation.fragment.HomeFragment
 import com.refactoringlife.core.common.activities.BaseActivity
+import com.refactoringlife.core.common.utils.ADOPTION_DEEPLINK
+import com.refactoringlife.core.common.utils.navigateToDeeplink
 
 class AuthActivity : BaseActivity(R.id.fragment_container) {
 
@@ -33,6 +35,10 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
 
                 is ShareStatus.NavigateToRoot -> {
                     navigateToRoot(HomeFragment.createInstance("id"))
+                }
+                is ShareStatus.GoToAdoption -> {
+                    this.navigateToDeeplink(deeplink = ADOPTION_DEEPLINK)
+                    this.finish()
                 }
             }
         }
