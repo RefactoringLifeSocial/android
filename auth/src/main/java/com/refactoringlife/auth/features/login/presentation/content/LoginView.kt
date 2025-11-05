@@ -17,6 +17,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -56,7 +57,7 @@ fun LoginView(
     onLoginClick: (email : String, password : String) -> Unit,
     onForgotPassword: () -> Unit,
     onRegisterClick: () -> Unit,
-    state: LoginState,
+    state: LoginState
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -208,11 +209,15 @@ fun LoginView(
                         .padding(horizontal = 42.dp)
                         .height(48.dp)
                 ) {
-                    Text(
-                        text = stringResource(R.string.entrar),
-                        color = Color.White,
-                        fontSize = 16.sp,
-                    )
+                    if (state.loading){
+                        CircularProgressIndicator(modifier = Modifier.size(25.dp), color = Color.DarkGray)
+                    }else{
+                        Text(
+                            text = stringResource(R.string.entrar),
+                            color = Color.White,
+                            fontSize = 16.sp,
+                        )
+                    }
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))
