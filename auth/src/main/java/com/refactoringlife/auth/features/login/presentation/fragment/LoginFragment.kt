@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
                 loginViewModel = viewModel,
 
                 success = {
-
+                    shareViewModel.goToAdoption()
                 },
                 onForgotPassword = {
                     shareViewModel.navigateTo(ForgotPasswordFragment())

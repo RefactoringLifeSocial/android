@@ -35,7 +35,7 @@ fun LoginScreen(
             val intent = result.data
             scope.launch {
                 val idToken = intent?.let { googleAuthUiClient.getSignInResultFromIntent(it) }
-                loginViewModel.sendEvent(event = LoginEvent.Login(token = idToken))
+                loginViewModel.sendEvent(event = LoginEvent.LoginGoogle(token = idToken))
             }
         }
     }

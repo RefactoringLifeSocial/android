@@ -32,6 +32,9 @@ class RegisterFragment : Fragment() {
                 registerViewModel = registerViewModel,
                 onBack = {
                     shareViewModel.navigateToRoot()
+                },
+                goToAdoption = {
+                    shareViewModel.goToAdoption()
                 }
             )
         }

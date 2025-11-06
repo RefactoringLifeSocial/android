@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(project(":auth"))
     implementation(project(":core"))
+    implementation(project(":adoption"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

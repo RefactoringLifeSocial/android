@@ -9,7 +9,8 @@ import com.refactoringlife.auth.features.register.presentation.viewmodel.Registe
 @Composable
 fun RegisterScreen(
     registerViewModel: RegisterViewModel,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    goToAdoption : () -> Unit
 ){
     val state = registerViewModel.state.collectAsState().value
 
