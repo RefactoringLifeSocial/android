@@ -16,7 +16,7 @@ import kotlin.getValue
 
 class HomeFragment : Fragment() {
 
-    val shareViewModel by activityViewModels <ShareViewModel> ()
+    val shareViewModel by activityViewModels<ShareViewModel>()
     private var id = ""
 
     override fun onCreateView(
@@ -40,8 +40,6 @@ class HomeFragment : Fragment() {
                 onLoginClick = {
                     shareViewModel.navigateTo(LoginFragment())
                 },
-                onGoogleLoginClick = {},
-                goToSupport = {}
             )
         }
         return composeView
@@ -56,5 +54,4 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
 }

@@ -2,7 +2,6 @@ package com.refactoringlife.auth.features.login.presentation.composables
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Icon
@@ -13,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.features.login.presentation.theme.GrayLight
 import com.refactoringlife.auth.features.login.presentation.theme.HuellaErrorRed
@@ -21,7 +19,7 @@ import com.refactoringlife.auth.features.login.presentation.theme.HuellaErrorRed
 @Composable
 fun OutlineTextFieldPassword(
     modifier: Modifier = Modifier,
-    text: String,
+
     label: String,
     value: String,
     onValueChange: (String) -> Unit,
@@ -39,13 +37,6 @@ fun OutlineTextFieldPassword(
                     fontSize = 14.sp,
                 )
             },
-            placeholder = {
-                Text(
-                    text = text,
-                    fontSize = 16.sp,
-                    color = GrayLight
-                )
-            },
             trailingIcon = {
                 if (isError) {
                     Icon(
@@ -57,6 +48,8 @@ fun OutlineTextFieldPassword(
             },
             visualTransformation = PasswordVisualTransformation(),
             colors = OutlinedTextFieldDefaults.colors(
+                unfocusedLabelColor = GrayLight,
+                focusedLabelColor = if (isError) HuellaErrorRed else Color.Unspecified,
                 focusedTextColor = if (isError) HuellaErrorRed else Color.Unspecified,
                 unfocusedTextColor = if (isError) HuellaErrorRed else Color.Unspecified,
                 errorTextColor = HuellaErrorRed,
@@ -68,7 +61,6 @@ fun OutlineTextFieldPassword(
             ),
             modifier = modifier
                 .fillMaxWidth()
-                .height(56.dp)
         )
     }
 }

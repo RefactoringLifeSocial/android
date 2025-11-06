@@ -28,7 +28,7 @@
     <string name="register_password">Contraseña</string>
     <string name="register_repeat_password">Repetir Contraseña</string>
     <string name="register_show_password">Mostrar Contraseña</string>
-    <string name="register_button_">Registrarse</string>
+    <string name="register_button_">Register</string>
     <string name="register_title_">Registro</string>
     <string name="register_communication_message">Si tienes problemas comunicate con nosotros</string>
     <!-- Strings de Pre login -->
