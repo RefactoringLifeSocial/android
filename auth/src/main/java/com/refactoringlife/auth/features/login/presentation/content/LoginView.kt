@@ -70,7 +70,6 @@ fun LoginView(
             TitleLogin(modifier = Modifier.padding(bottom = 30.dp))
 
             OutlineTextFieldEmail(
-
                 label = stringResource(R.string.username),
                 value = email,
                 onValueChange = { email = it },

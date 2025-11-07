@@ -11,13 +11,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.refactoringlife.auth.core.share.ShareViewModel
 import com.refactoringlife.auth.features.forgotpassword.presentation.fragment.ForgotPasswordFragment
+import com.refactoringlife.auth.features.login.domain.blocs.LoginEvent
 import com.refactoringlife.auth.features.login.presentation.screen.LoginScreen
 import com.refactoringlife.auth.features.login.presentation.viewmodel.LoginViewModel
 
 class LoginFragment : Fragment() {
-
-    val shareViewModel by activityViewModels <ShareViewModel> ()
-    private val viewModel : LoginViewModel by viewModels()
+    val shareViewModel by activityViewModels<ShareViewModel>()
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +36,7 @@ class LoginFragment : Fragment() {
                     shareViewModel.goToAdoption()
                 },
                 onForgotPassword = {
+                    viewModel.sendEvent(LoginEvent.ClearErrors)
                     shareViewModel.navigateTo(ForgotPasswordFragment())
                 },
                 onLoginForGoogle = {
