@@ -20,9 +20,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun LoginScreen(
     loginViewModel: LoginViewModel,
-    onBack: () -> Unit,
-    goToRegister: () -> Unit,
     onForgotPassword: () -> Unit,
+    onLoginForGoogle: () -> Unit,
     success: () -> Unit
 ) {
     val context = LocalContext.current
@@ -44,7 +43,6 @@ fun LoginScreen(
     val state by loginViewModel.state.collectAsState()
 
     LoginView(
-        onBack = { onBack() },
         onLoginClick = { email, password ->
             loginViewModel.sendEvent(LoginEvent.Login(email, password))
         },
@@ -52,8 +50,9 @@ fun LoginScreen(
             onForgotPassword()
 
         },
-        onRegisterClick = {
-            goToRegister()
+        onLoginForGoogle = {
+            onLoginForGoogle()
+
         },
         state = state
     )
@@ -65,5 +64,5 @@ fun LoginScreen(
 @Composable
 @Preview(showBackground = true)
 fun PreviewLogin() {
-    LoginScreen(goToRegister = {}, onBack = {}, success = {}, loginViewModel = viewModel(), onForgotPassword = {})
+    LoginScreen(success = {}, loginViewModel = viewModel(), onForgotPassword = {}, onLoginForGoogle = {})
 }
