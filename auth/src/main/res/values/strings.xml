@@ -35,6 +35,8 @@
     <string name="register_button_">Register</string>
     <string name="register_button_next">Continuar</string>
     <string name="register_title_">Ingresa tus datos</string>
+    <string name="register_requirement">300 px x 300px minimo</string>
+    <string name="register_type_image">JPG, GIF, o PNG. Peso máximo de archivo 4 MB</string>
     <string name="register_communication_message">Si tienes problemas comunicate con nosotros</string>
     <!-- Strings de Pre login -->
     <string name="refactoring_life">Refactoring\nLife</string>

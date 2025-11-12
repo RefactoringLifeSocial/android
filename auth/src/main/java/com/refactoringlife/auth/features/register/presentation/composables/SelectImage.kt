@@ -16,9 +16,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.refactoringlife.auth.R
 
 @Composable
 fun SelectImage() {
@@ -30,7 +32,7 @@ fun SelectImage() {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
-            painter = painterResource(id = com.refactoringlife.auth.R.drawable.add_image),
+            painter = painterResource(id = R.drawable.add_image),
             contentDescription = "",
             modifier = Modifier
                 .size(70.dp)
@@ -41,14 +43,14 @@ fun SelectImage() {
             modifier = Modifier.weight(1f)
         ) {
             Text(
-                text = "300 px x 300px minimo",
+                text = stringResource(R.string.register_requirement),
                 fontSize = 14.5.sp,
                 color = Color.Black,
                 fontWeight = FontWeight.Normal,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             Text(
-                text = "JPG, GIF, o PNG. Peso máximo de archivo 4 MB",
+                text = stringResource(R.string.register_type_image),
                 fontSize = 11.5.sp,
                 color = Color.LightGray,
                 modifier = Modifier.widthIn(max = 170.dp)

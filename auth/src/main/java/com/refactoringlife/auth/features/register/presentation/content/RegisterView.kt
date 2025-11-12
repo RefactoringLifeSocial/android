@@ -58,9 +58,6 @@ fun RegisterView(
                 modifier = Modifier,
                 placeholderText = stringResource(id = R.string.register_name),
                 placeholderFontSize = 16.sp,
-                icon = R.drawable.user,
-                iconWidth = 25.dp,
-                iconHeight = 25.dp,
                 placeHolderColor = grayLight,
 
                 )
@@ -73,9 +70,6 @@ fun RegisterView(
                 placeholderText = stringResource(id = R.string.register_Country),
                 placeholderFontSize = 16.sp,
                 placeHolderColor = grayLight,
-                icon = R.drawable.locked,
-                iconWidth = 25.dp,
-                iconHeight = 25.dp,
                 modifier = Modifier,
                 isPassword = true,
                 showPassword = showPassword
@@ -89,9 +83,6 @@ fun RegisterView(
                 placeholderText = stringResource(id = R.string.register_addres),
                 placeholderFontSize = 16.sp,
                 placeHolderColor = grayLight,
-                icon = R.drawable.locked,
-                iconWidth = 25.dp,
-                iconHeight = 25.dp,
                 modifier = Modifier,
                 isPassword = true,
                 showPassword = showConfirmPassword
@@ -105,9 +96,6 @@ fun RegisterView(
                 placeholderText = stringResource(id = R.string.register_phone),
                 placeholderFontSize = 16.sp,
                 placeHolderColor = grayLight,
-                icon = R.drawable.locked,
-                iconWidth = 25.dp,
-                iconHeight = 25.dp,
                 modifier = Modifier,
                 isPassword = true,
                 showPassword = showConfirmPassword

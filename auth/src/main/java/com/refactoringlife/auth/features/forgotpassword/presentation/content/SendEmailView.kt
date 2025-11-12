@@ -57,9 +57,6 @@ fun SendEmailView(
             modifier = Modifier,
             placeholderText = stringResource(id = R.string.register_email),
             placeholderFontSize = 16.sp,
-            icon = R.drawable.user,
-            iconWidth = 25.dp,
-            iconHeight = 25.dp,
             placeHolderColor = grayLight
         )
         Spacer(modifier = Modifier.weight(1f))

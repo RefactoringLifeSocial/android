@@ -37,8 +37,8 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
                     navigateToRoot(HomeFragment.createInstance("id"))
                 }
                 is ShareStatus.GoToAdoption -> {
-                    this.navigateToDeeplink(deeplink = ADOPTION_DEEPLINK)
-                    this.finish()
+                    navigateToDeeplink(deeplink = ADOPTION_DEEPLINK)
+                    finish()
                 }
             }
         }
