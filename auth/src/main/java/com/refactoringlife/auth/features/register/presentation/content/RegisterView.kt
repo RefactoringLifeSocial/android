@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.register.domain.state.RegisterState
+import com.refactoringlife.auth.features.register.presentation.theme.backgroundRegister
 import com.refactoringlife.auth.features.register.presentation.theme.grayLight
-import com.refactoringlife.auth.features.register.presentation.theme.purpleLight
 import com.refactoringlife.core.common.utils.Constants.EMPTY
 
 typealias email = String
@@ -38,7 +38,6 @@ fun RegisterView(
     var confirmPassword by remember { mutableStateOf(EMPTY) }
     var showPassword by remember { mutableStateOf(false) }
     var showConfirmPassword by remember { mutableStateOf(false) }
-
     val errorMessage = when {
         state.hasEmailError -> stringResource(R.string.error_email_invalid)
         state.hasPasswordError -> stringResource(R.string.error_password_invalid)
@@ -46,7 +45,6 @@ fun RegisterView(
         state.error?.isNotEmpty() == true -> state.error
         else -> null
     }
-
     BaseRegister(
         back = {
             back.invoke()
@@ -58,23 +56,21 @@ fun RegisterView(
                     email = newValue
                 },
                 modifier = Modifier,
-                placeholderText = stringResource(id = R.string.register_email),
+                placeholderText = stringResource(id = R.string.register_name),
                 placeholderFontSize = 16.sp,
                 icon = R.drawable.user,
                 iconWidth = 25.dp,
                 iconHeight = 25.dp,
                 placeHolderColor = grayLight,
 
-            )
-
-            Spacer(modifier = Modifier.height(50.dp))
-
+                )
+            Spacer(modifier = Modifier.height(16.dp))
             TextFieldCustom(
                 value = password,
                 onValueChange = { newValue ->
                     password = newValue
                 },
-                placeholderText = stringResource(id = R.string.register_password),
+                placeholderText = stringResource(id = R.string.register_Country),
                 placeholderFontSize = 16.sp,
                 placeHolderColor = grayLight,
                 icon = R.drawable.locked,
@@ -84,23 +80,13 @@ fun RegisterView(
                 isPassword = true,
                 showPassword = showPassword
             )
-
-            ShowPassword(
-                checked = showPassword,
-                onCheckedChange = { showPassword = it },
-                text = stringResource(id = R.string.register_show_password),
-                textFontSize = 14.sp,
-                textFontWeight = FontWeight.SemiBold
-            )
-
-            Spacer(modifier = Modifier.height(2.dp))
-
+            Spacer(modifier = Modifier.height(16.dp))
             TextFieldCustom(
                 value = confirmPassword,
                 onValueChange = { newValue ->
                     confirmPassword = newValue
                 },
-                placeholderText = stringResource(id = R.string.register_repeat_password),
+                placeholderText = stringResource(id = R.string.register_addres),
                 placeholderFontSize = 16.sp,
                 placeHolderColor = grayLight,
                 icon = R.drawable.locked,
@@ -110,17 +96,23 @@ fun RegisterView(
                 isPassword = true,
                 showPassword = showConfirmPassword
             )
+            Spacer(modifier = Modifier.height(16.dp))
+            TextFieldCustom(
+                value = "",
+                onValueChange = { newValue ->
 
-            ShowPassword(
-                checked = showConfirmPassword,
-                onCheckedChange = { showConfirmPassword = it },
-                text = stringResource(id = R.string.register_show_password),
-                textFontSize = 14.sp,
-                textFontWeight = FontWeight.SemiBold
+                },
+                placeholderText = stringResource(id = R.string.register_phone),
+                placeholderFontSize = 16.sp,
+                placeHolderColor = grayLight,
+                icon = R.drawable.locked,
+                iconWidth = 25.dp,
+                iconHeight = 25.dp,
+                modifier = Modifier,
+                isPassword = true,
+                showPassword = showConfirmPassword
             )
-
-            Spacer(modifier = Modifier.height(70.dp))
-
+            Spacer(modifier = Modifier.height(30.dp))
             if (errorMessage != null) {
                 Text(
                     text = errorMessage,
@@ -133,27 +125,14 @@ fun RegisterView(
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))
-
             ButtonCustom(
                 onClick = {
                     onClickRegister(email, password, confirmPassword)
                 },
-                text = stringResource(id = R.string.register_button_),
-                backgroundColor = purpleLight,
-                textFontSize = 15.sp,
+                text = stringResource(id = R.string.register_button_next),
+                backgroundColor = backgroundRegister,
+                textFontSize = 16.5.sp,
                 textFontWeight = FontWeight.SemiBold
-            )
-        },
-        bottomContent = {
-            TextCustom(
-                title = stringResource(id = R.string.register_communication_message),
-                fontSize = 15.sp,
-                color = grayLight,
-                fontWeight = FontWeight.Normal,
-                textAlign = TextAlign.Start,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 42.dp)
             )
         }
     )

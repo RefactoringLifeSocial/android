@@ -30,11 +30,11 @@ fun ButtonCustom(
         colors = ButtonDefaults.buttonColors(
             containerColor = backgroundColor
         ),
-        shape = RoundedCornerShape(6.dp),
+        shape = RoundedCornerShape(30.dp),
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 42.dp)
-            .height(50.dp)
+            .height(55.dp)
     ) {
         Text(
             text = text,
