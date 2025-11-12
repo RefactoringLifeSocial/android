@@ -11,6 +11,10 @@ import androidx.fragment.app.activityViewModels
 import com.refactoringlife.auth.core.share.ShareViewModel
 import com.refactoringlife.auth.features.home.presentation.content.HomeContent
 import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment
+import com.refactoringlife.auth.features.onboarding.presentation.content.ContentOnboardingPage1
+import com.refactoringlife.auth.features.onboarding.presentation.content.ContentOnboardingPage2
+import com.refactoringlife.auth.features.onboarding.presentation.content.ContentOnboardingPage3
+import com.refactoringlife.auth.features.onboarding.presentation.content.ContentOnboardingPage4
 import com.refactoringlife.auth.features.register.presentation.fragment.RegisterFragment
 import kotlin.getValue
 
@@ -33,14 +37,15 @@ class HomeFragment : Fragment() {
         }
 
         composeView.setContent {
-            HomeContent(
-                onRegisterClick = {
-                    shareViewModel.navigateTo(RegisterFragment())
-                },
-                onLoginClick = {
-                    shareViewModel.navigateTo(LoginFragment())
-                },
-            )
+            ContentOnboardingPage2()
+//            HomeContent(
+//                onRegisterClick = {
+//                    shareViewModel.navigateTo(RegisterFragment())
+//                },
+//                onLoginClick = {
+//                    shareViewModel.navigateTo(LoginFragment())
+//                },
+//            )
         }
         return composeView
     }
