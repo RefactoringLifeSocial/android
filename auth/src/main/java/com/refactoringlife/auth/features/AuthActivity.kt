@@ -6,6 +6,7 @@ import com.refactoringlife.auth.R
 import com.refactoringlife.auth.core.share.ShareStatus
 import com.refactoringlife.auth.core.share.ShareViewModel
 import com.refactoringlife.auth.features.home.presentation.fragment.HomeFragment
+import com.refactoringlife.auth.features.onboarding.presentation.fragment.OnboardingPage1Fragment
 import com.refactoringlife.core.common.activities.BaseActivity
 import com.refactoringlife.core.common.utils.ADOPTION_DEEPLINK
 import com.refactoringlife.core.common.utils.navigateToDeeplink
@@ -18,7 +19,7 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
-        navigateToRoot(HomeFragment.createInstance("id"))
+        navigateToRoot(OnboardingPage1Fragment.createInstance())
         observer()
     }
 
@@ -35,6 +36,9 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
 
                 is ShareStatus.NavigateToRoot -> {
                     navigateToRoot(HomeFragment.createInstance("id"))
+                }
+                is ShareStatus.NavigateToRootFragment -> {
+                    navigateToRoot(status.fragment)
                 }
                 is ShareStatus.GoToAdoption -> {
                     this.navigateToDeeplink(deeplink = ADOPTION_DEEPLINK)

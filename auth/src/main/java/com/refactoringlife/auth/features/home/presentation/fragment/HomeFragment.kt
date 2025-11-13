@@ -37,15 +37,15 @@ class HomeFragment : Fragment() {
         }
 
         composeView.setContent {
-            ContentOnboardingPage2()
-//            HomeContent(
-//                onRegisterClick = {
-//                    shareViewModel.navigateTo(RegisterFragment())
-//                },
-//                onLoginClick = {
-//                    shareViewModel.navigateTo(LoginFragment())
-//                },
-//            )
+
+            HomeContent(
+                onRegisterClick = {
+                    shareViewModel.navigateTo(RegisterFragment())
+                },
+                onLoginClick = {
+                    shareViewModel.navigateTo(LoginFragment())
+                },
+            )
         }
         return composeView
     }

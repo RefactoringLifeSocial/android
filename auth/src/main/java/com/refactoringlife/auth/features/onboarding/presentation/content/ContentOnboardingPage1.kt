@@ -42,6 +42,7 @@ import com.refactoringlife.auth.features.onboarding.presentation.composables.Onb
 fun ContentOnboardingPage1(
     onNextClick: () -> Unit = {},
     onSkipClick: () -> Unit = {},
+    onAlreadyHaveAccountClick: () -> Unit = {},
 ) {
     val scrollState = rememberScrollState()
 
@@ -84,7 +85,8 @@ fun ContentOnboardingPage1(
             showAlreadyHaveAccount = true,
             onNextClick = onNextClick,
             onSkipClick = onSkipClick,
-            modifier = Modifier.offset(y = (-10).dp)
+            onAlreadyHaveAccountClick = onAlreadyHaveAccountClick,
+            modifier = Modifier.offset(y = (-2).dp)
 
         )
     }

@@ -20,7 +20,8 @@ import com.refactoringlife.auth.features.onboarding.presentation.composables.Onb
 @Composable
 fun ContentOnboardingPage4(
     onNextClick: () -> Unit = {},
-    onSkipClick: () -> Unit = {}
+    onSkipClick: () -> Unit = {},
+    onStartClick: () -> Unit = {}
 ) {
     BackGroundColorOnboarding(
         modifier = Modifier.fillMaxSize()
@@ -38,6 +39,7 @@ fun ContentOnboardingPage4(
                 showAlreadyHaveAccount = false,
                 onNextClick = onNextClick,
                 onSkipClick = onSkipClick,
+                onStartClick = onStartClick,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 30.dp)
