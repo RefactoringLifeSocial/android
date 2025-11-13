@@ -56,7 +56,7 @@ fun ContentOnboardingPage2(
             showAlreadyHaveAccount = false,
             onNextClick = onNextClick,
             onSkipClick = onSkipClick,
-            modifier = Modifier.fillMaxWidth().padding(bottom = 40.dp)
+            modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp)
         )
     }
 }

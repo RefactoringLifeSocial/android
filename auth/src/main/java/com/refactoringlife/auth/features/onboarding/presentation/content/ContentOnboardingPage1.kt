@@ -75,7 +75,7 @@ fun ContentOnboardingPage1(
             onNextClick = onNextClick,
             onSkipClick = onSkipClick,
             onAlreadyHaveAccountClick = onAlreadyHaveAccountClick,
-            modifier = Modifier.offset(y = (-3).dp)
+            modifier = Modifier.offset(y = (-16).dp)
 
         )
     }

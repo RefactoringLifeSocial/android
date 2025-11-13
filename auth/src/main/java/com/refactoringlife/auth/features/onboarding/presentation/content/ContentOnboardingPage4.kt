@@ -61,7 +61,7 @@ fun ContentOnboardingPage4(
                 onStartClick = onStartClick,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 40.dp)
+                    .padding(bottom = 20.dp)
             )
         }
     }
