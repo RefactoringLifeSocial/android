@@ -34,9 +34,6 @@ class TextFieldCustomTest {
                 placeholderText = placeholderText,
                 placeholderFontSize = 16.sp,
                 placeHolderColor = Color.Gray,
-                icon = R.drawable.locked,
-                iconWidth = 25.dp,
-                iconHeight = 25.dp,
                 modifier = Modifier.testTag(Constants.TEXT_FIELD_REGISTER)
             )
         }
@@ -60,9 +57,6 @@ class TextFieldCustomTest {
                 placeholderText = "Contraseña",
                 placeholderFontSize = 16.sp,
                 placeHolderColor = Color.Gray,
-                icon = R.drawable.locked,
-                iconWidth = 25.dp,
-                iconHeight = 25.dp,
                 modifier = Modifier.testTag(Constants.TEXT_FIELD_REGISTER)
             )
         }

@@ -1,20 +1,19 @@
 package com.refactoringlife.auth.features.register.presentation.content
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
@@ -29,14 +28,11 @@ fun TextFieldCustom(
     modifier: Modifier,
     placeholderText: String,
     placeholderFontSize: TextUnit,
-    icon : Int,
-    iconHeight : Dp,
-    iconWidth : Dp,
-    placeHolderColor : Color,
+    placeHolderColor: Color,
     isPassword: Boolean = false,
     showPassword: Boolean = false,
 
-) {
+    ) {
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
@@ -54,25 +50,29 @@ fun TextFieldCustom(
                 color = Color.White,
                 shape = RoundedCornerShape(10.dp)
             )
-            .border(
-                width = 1.dp,
-                color = Color.Black.copy(0.3f),
-            )
+            .drawBehind {
+                val strokeWidth = 1.dp.toPx()
+                val y = size.height - strokeWidth / 2
+                drawLine(
+                    color = Color(0xFF8C61A5),
+                    start = Offset(0f, y),
+                    end = Offset(size.width, y),
+                    strokeWidth = strokeWidth
+                )
+            }
             .testTag(Constants.TEXT_FIELD_REGISTER),
-        leadingIcon = {
-            Icon(
-                painter = painterResource(id = icon),
-                contentDescription = "",
-                modifier = modifier.size(height = iconHeight, width = iconWidth),
-                tint = Color.Black
-            )
-        },
         placeholder = {
             Text(
                 text = placeholderText,
                 fontSize = placeholderFontSize,
                 color = placeHolderColor
             )
-        }
+        },
+        colors = OutlinedTextFieldDefaults.colors(
+            unfocusedBorderColor = Color.Transparent,
+            focusedBorderColor = Color.Transparent,
+            unfocusedContainerColor = Color.Transparent,
+            focusedContainerColor = Color.Transparent
+        ),
     )
 }

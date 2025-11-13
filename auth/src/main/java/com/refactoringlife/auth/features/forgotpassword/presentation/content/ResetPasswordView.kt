@@ -62,9 +62,6 @@ fun ResetPasswordView(
             placeholderText = stringResource(id = R.string.register_password),
             placeholderFontSize = 16.sp,
             placeHolderColor = grayLight,
-            icon = R.drawable.locked,
-            iconWidth = 25.dp,
-            iconHeight = 25.dp,
             modifier = Modifier,
             isPassword = true,
             showPassword = showPassword
@@ -88,9 +85,6 @@ fun ResetPasswordView(
             placeholderText = stringResource(id = R.string.register_repeat_password),
             placeholderFontSize = 16.sp,
             placeHolderColor = grayLight,
-            icon = R.drawable.locked,
-            iconWidth = 25.dp,
-            iconHeight = 25.dp,
             modifier = Modifier,
             isPassword = true,
             showPassword = showConfirmPassword
