@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,7 +58,7 @@ fun OnboardingNavigationButtons(
             ) {
                 Icon(
                     painter = painterResource(nextButtonIcon),
-                    contentDescription = "Avance",
+                    contentDescription = "next button",
                     tint = HuellaBlue,
                     modifier = Modifier.size(63.dp)
                 )
@@ -80,7 +81,7 @@ fun OnboardingNavigationButtons(
                     .padding(horizontal = 20.dp)
             ) {
                 Text(
-                    text = "Empezar",
+                    text = stringResource(R.string.start),
                     color = Color.White,
                     fontSize = 16.sp,
                 )
@@ -95,7 +96,7 @@ fun OnboardingNavigationButtons(
                     .padding(start = 20.dp)
             ) {
                 Text(
-                    text = "Saltar",
+                    text = stringResource(R.string.skip),
                     fontSize = 16.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Start,
@@ -111,7 +112,7 @@ fun OnboardingNavigationButtons(
                     .fillMaxWidth()
             ) {
                 Text(
-                    text = "Ya tengo una cuenta",
+                    text = stringResource(R.string.already_have_account),
                     fontSize = 16.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Center,

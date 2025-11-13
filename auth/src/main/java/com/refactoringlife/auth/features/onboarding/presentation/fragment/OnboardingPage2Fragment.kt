@@ -37,8 +37,4 @@ class OnboardingPage2Fragment : Fragment() {
         }
         return composeView
     }
-
-    companion object {
-        fun createInstance(): OnboardingPage2Fragment = OnboardingPage2Fragment()
-    }
 }

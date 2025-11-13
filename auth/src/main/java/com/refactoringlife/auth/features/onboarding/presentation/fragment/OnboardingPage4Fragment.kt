@@ -13,7 +13,6 @@ import com.refactoringlife.auth.features.home.presentation.fragment.HomeFragment
 import com.refactoringlife.auth.features.onboarding.presentation.content.ContentOnboardingPage4
 
 class OnboardingPage4Fragment : Fragment() {
-
     val shareViewModel by activityViewModels<ShareViewModel>()
 
     override fun onCreateView(
@@ -27,18 +26,11 @@ class OnboardingPage4Fragment : Fragment() {
         )
         composeView.setContent {
             ContentOnboardingPage4(
-                onNextClick = {}, // No se usa en página 4
-                onSkipClick = {}, // No se usa en página 4
                 onStartClick = {
-                    // Navegar a HomeFragment cuando se presiona "Empezar"
                     shareViewModel.navigateToRoot(HomeFragment.createInstance("id"))
                 }
             )
         }
         return composeView
-    }
-
-    companion object {
-        fun createInstance(): OnboardingPage4Fragment = OnboardingPage4Fragment()
     }
 }

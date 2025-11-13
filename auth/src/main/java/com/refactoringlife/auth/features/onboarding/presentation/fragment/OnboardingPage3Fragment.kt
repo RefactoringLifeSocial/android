@@ -13,7 +13,6 @@ import com.refactoringlife.auth.features.home.presentation.fragment.HomeFragment
 import com.refactoringlife.auth.features.onboarding.presentation.content.ContentOnboardingPage3
 
 class OnboardingPage3Fragment : Fragment() {
-
     val shareViewModel by activityViewModels<ShareViewModel>()
 
     override fun onCreateView(
@@ -36,9 +35,5 @@ class OnboardingPage3Fragment : Fragment() {
             )
         }
         return composeView
-    }
-
-    companion object {
-        fun createInstance(): OnboardingPage3Fragment = OnboardingPage3Fragment()
     }
 }
