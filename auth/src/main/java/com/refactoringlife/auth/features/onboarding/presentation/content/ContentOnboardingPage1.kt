@@ -19,7 +19,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.R
@@ -76,14 +75,8 @@ fun ContentOnboardingPage1(
             onNextClick = onNextClick,
             onSkipClick = onSkipClick,
             onAlreadyHaveAccountClick = onAlreadyHaveAccountClick,
-            modifier = Modifier.offset(y = (-2).dp)
+            modifier = Modifier.offset(y = (-3).dp)
 
         )
     }
-}
-
-@Composable
-@Preview(device = "id:pixel_7_pro", showBackground = true)
-fun ContentOnboardingPage1Preview() {
-    ContentOnboardingPage1()
 }

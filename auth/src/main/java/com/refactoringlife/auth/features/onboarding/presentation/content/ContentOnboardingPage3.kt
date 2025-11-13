@@ -1,17 +1,25 @@
 package com.refactoringlife.auth.features.onboarding.presentation.content
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.refactoringlife.auth.R
+import com.refactoringlife.auth.features.login.presentation.theme.HuellaBackgraund
 import com.refactoringlife.auth.features.onboarding.presentation.composables.BackGroundColorOnboarding
-import com.refactoringlife.auth.features.onboarding.presentation.composables.OnboardingContentSection
+import com.refactoringlife.auth.features.onboarding.presentation.composables.OnboardingContentWithBackground
 import com.refactoringlife.auth.features.onboarding.presentation.composables.OnboardingNavigationButtons
 
 @Composable
@@ -19,33 +27,42 @@ fun ContentOnboardingPage3(
     onNextClick: () -> Unit = {},
     onSkipClick: () -> Unit = {}
 ) {
+    val scrollState = rememberScrollState()
+    val configuration = LocalConfiguration.current
+    val screenHeight = configuration.screenHeightDp.dp
+
     BackGroundColorOnboarding(
         modifier = Modifier.fillMaxSize()
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            OnboardingContentSection(
-                title = stringResource(R.string.title_page3),
-                subtitle = stringResource(R.string.subtitle_page3),
-                modifier = Modifier.align(Alignment.Center)
-            )
-            OnboardingNavigationButtons(
-                showNextButton = true,
-                showSkipButton = true,
-                showStartButton = false,
-                nextButtonIcon = R.drawable.ic_next_page3,
-                showAlreadyHaveAccount = false,
-                onNextClick = onNextClick,
-                onSkipClick = onSkipClick,
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .background(HuellaBackgraund)) {
+
+            Column(
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(bottom = 40.dp)
-            )
+                    .fillMaxSize()
+                    .verticalScroll(scrollState),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Spacer(modifier = Modifier.height((screenHeight * 0.15f).coerceAtLeast(40.dp)))
+
+                OnboardingContentWithBackground(
+                    title = stringResource(R.string.title_page3),
+                    subtitle = stringResource(R.string.subtitle_page3),
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                OnboardingNavigationButtons(
+                    showNextButton = true,
+                    showSkipButton = true,
+                    showStartButton = false,
+                    nextButtonIcon = R.drawable.ic_next_page3,
+                    showAlreadyHaveAccount = false,
+                    onNextClick = onNextClick,
+                    onSkipClick = onSkipClick,
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 40.dp)
+                )
+            }
         }
     }
-}
-
-@Composable
-@Preview(showBackground = true)
-fun ContentOnboardingPage3Preview() {
-    ContentOnboardingPage3()
 }
