@@ -14,6 +14,7 @@ import com.refactoringlife.auth.features.forgotpassword.presentation.fragment.Fo
 import com.refactoringlife.auth.features.login.domain.blocs.LoginEvent
 import com.refactoringlife.auth.features.login.presentation.screen.LoginScreen
 import com.refactoringlife.auth.features.login.presentation.viewmodel.LoginViewModel
+import com.refactoringlife.auth.features.resetpassword.fragment.ResetPasswordFragment
 
 class LoginFragment : Fragment() {
     val shareViewModel by activityViewModels<ShareViewModel>()
@@ -37,7 +38,7 @@ class LoginFragment : Fragment() {
                 },
                 onForgotPassword = {
                     viewModel.sendEvent(LoginEvent.ClearErrors)
-                    shareViewModel.navigateTo(ForgotPasswordFragment())
+                    shareViewModel.navigateTo(ResetPasswordFragment())
                 },
                 onLoginForGoogle = {
 

@@ -2,9 +2,9 @@ package com.refactoringlife.auth.features.forgotpassword.domain.bloc
 
 import com.refactoringlife.auth.features.forgotpassword.domain.state.ForgotPasswordState
 
-typealias ResetPasswordStateUpdater = suspend (suspend (ForgotPasswordState) -> ForgotPasswordState) -> Unit
+typealias ForgotPasswordStateUpdater = suspend (suspend (ForgotPasswordState) -> ForgotPasswordState) -> Unit
 
-interface ResetPasswordBaseBloc {
+interface ForgotPasswordBaseBloc {
     fun canHandle(event: ForgotPasswordEvent): Boolean
-    suspend fun handle(event: ForgotPasswordEvent, update: ResetPasswordStateUpdater)
+    suspend fun handle(event: ForgotPasswordEvent, update: ForgotPasswordStateUpdater)
 }

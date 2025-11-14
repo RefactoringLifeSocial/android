@@ -2,17 +2,15 @@ package com.refactoringlife.auth.features.forgotpassword.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.refactoringlife.auth.features.forgotpassword.domain.bloc.ResetPasswordBaseBloc
+import com.refactoringlife.auth.features.forgotpassword.domain.bloc.ForgotPasswordBaseBloc
 import com.refactoringlife.auth.features.forgotpassword.domain.bloc.ForgotPasswordBlocs
 import com.refactoringlife.auth.features.forgotpassword.domain.bloc.ForgotPasswordEvent
 import com.refactoringlife.auth.features.forgotpassword.domain.state.ForgotPasswordState
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ForgotPasswordViewModel(
-    private val blocs: List<ResetPasswordBaseBloc> = ForgotPasswordBlocs.getResetPasswordBlocs()
+    private val blocs: List<ForgotPasswordBaseBloc> = ForgotPasswordBlocs.getForgotPasswordBlocs()
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ForgotPasswordState())
@@ -26,7 +24,7 @@ class ForgotPasswordViewModel(
     }
 
     suspend fun updateState(reducer: suspend (ForgotPasswordState) -> ForgotPasswordState) {
-        withContext(context = Dispatchers.Main) {
+        viewModelScope.launch {
             val next = reducer(_uiState.value)
             _uiState.value = next
         }

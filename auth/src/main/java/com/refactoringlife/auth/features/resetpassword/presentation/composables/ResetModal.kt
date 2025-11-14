@@ -1,4 +1,4 @@
-package com.refactoringlife.auth.features.forgotpassword.presentation.composables
+package com.refactoringlife.auth.features.resetpassword.presentation.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -33,7 +33,7 @@ import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.register.presentation.theme.backgroundRegister
 
 @Composable
-fun SendEmailModal(
+fun ResetModal(
     onClickClose: () -> Unit
 ) {
     Dialog(
@@ -53,7 +53,7 @@ fun SendEmailModal(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = stringResource(R.string.title_modal),
+                    text = stringResource(R.string.title_reset_modal),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
                     lineHeight = 17.sp,
@@ -82,7 +82,7 @@ fun SendEmailModal(
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = stringResource(R.string.button_modal),
+                            text = stringResource(R.string.sign_in_text),
                             fontSize = 14.sp,
                             color = Color.White,
                             fontWeight = FontWeight.Medium
