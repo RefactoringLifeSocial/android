@@ -1,7 +1,6 @@
 package com.refactoringlife.auth.features.forgotpassword.presentation.composables
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,11 +18,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.register.presentation.theme.backgroundRegister
 
 @Composable
@@ -47,7 +48,7 @@ fun SendEmailModal(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Revisa tu bandeja de entrada. Si no ves el correo, revisa tu carpeta de spam.",
+                    text = stringResource(R.string.title_modal),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
                     lineHeight = 17.sp,
@@ -67,7 +68,7 @@ fun SendEmailModal(
                     colors = ButtonDefaults.buttonColors(containerColor = backgroundRegister)
                 ) {
                     Text(
-                        text = "Volver a iniciar sesion",
+                        text = stringResource(R.string.button_modal),
                         fontSize = 14.sp,
                         color = Color.White,
                         fontWeight = FontWeight.Medium
