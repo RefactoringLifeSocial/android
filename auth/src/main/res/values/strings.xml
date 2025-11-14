@@ -25,11 +25,18 @@
     <string name="error_password_mismatch">Las contraseñas no coinciden</string>
     <!-- Strings de Registro -->
     <string name="register_email">Email</string>
+    <string name="register_name">Nombre Completo</string>
     <string name="register_password">Contraseña</string>
+    <string name="register_Country">Pais</string>
+    <string name="register_addres">Direccion</string>
+    <string name="register_phone">Telefono</string>
     <string name="register_repeat_password">Repetir Contraseña</string>
     <string name="register_show_password">Mostrar Contraseña</string>
     <string name="register_button_">Register</string>
-    <string name="register_title_">Registro</string>
+    <string name="register_button_next">Continuar</string>
+    <string name="register_title_">Ingresa tus datos</string>
+    <string name="register_requirement">300 px x 300px minimo</string>
+    <string name="register_type_image">JPG, GIF, o PNG. Peso máximo de archivo 4 MB</string>
     <string name="register_communication_message">Si tienes problemas comunicate con nosotros</string>
     <!-- Strings de Pre login -->
     <string name="refactoring_life">Refactoring\nLife</string>
@@ -64,4 +71,11 @@
     <string name="already_have_account">Ya tengo una cuenta</string>
     <string name="skip">Saltar</string>
 
+    <string name="error">Error</string>
+    <string name="toggle_password_visibility">Toggle password visibility</string>
+    <string name="al_continuar_aceptas_los">"Al continuar aceptas los "</string>
+    <string name="terms">TERMS</string>
+    <string name="t_rminos_y_condiciones_y_pol_ticas_de_privacidad_de_huellas">Términos y condiciones y políticas de privacidad de Huellas</string>
+    <string name="olvidaste_tu_contrase_a">¿Olvidaste tu contraseña?</string>
+    <string name="usuario_xyz">Usuario XYZ</string>
 </resources>
