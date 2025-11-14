@@ -54,6 +54,9 @@ fun LoginScreen(
             onLoginForGoogle()
 
         },
+        onTermsClick = {
+
+        },
         state = state
     )
     if (state.success) {

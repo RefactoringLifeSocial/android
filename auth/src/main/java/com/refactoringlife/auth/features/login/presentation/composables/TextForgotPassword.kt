@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.refactoringlife.auth.features.login.presentation.theme.ForgotPasswordColor
+import com.refactoringlife.auth.features.login.presentation.theme.HuellaPurple
 
 @Composable
 fun TextForgotPassword(
@@ -28,9 +28,9 @@ fun TextForgotPassword(
         Text(
             text = text,
             fontSize = 15.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Normal,
             modifier = modifier.fillMaxWidth().wrapContentWidth(Alignment.End),
-            color = ForgotPasswordColor
+            color = HuellaPurple
         )
     }
 }
