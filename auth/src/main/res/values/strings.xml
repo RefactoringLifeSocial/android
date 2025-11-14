@@ -50,6 +50,9 @@
     <!-- Strings de Reset Password -->
     <string name="new_password">Nueva contraseña</string>
     <string name="confirm">Confirmar</string>
+    <string name="input_email">Ingresar email</string>
+    <string name="send_email">Enviar enlace</string>
+    <string name="description_reset_password">Ingresa el correo electrónico asociado a tu cuenta y te enviaremos un enlace para restablecer tu contraseña</string>
     <!-- Strings de Verify Code -->
     <string name="thanks">Gracias!</string>
     <string name="message_send_code">Te enviamos un codigo de verificacion</string>
