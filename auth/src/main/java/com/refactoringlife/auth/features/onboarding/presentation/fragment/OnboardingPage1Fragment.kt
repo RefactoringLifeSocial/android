@@ -1,4 +1,4 @@
-package com.refactoringlife.auth.features.home.presentation.fragment
+package com.refactoringlife.auth.features.onboarding.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,14 +9,12 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.refactoringlife.auth.core.share.ShareViewModel
-import com.refactoringlife.auth.features.home.presentation.content.HomeContent
 import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment
-import com.refactoringlife.auth.features.register.presentation.fragment.RegisterFragment
+import com.refactoringlife.auth.features.onboarding.presentation.content.ContentOnboardingPage1
 
-class HomeFragment : Fragment() {
+class OnboardingPage1Fragment : Fragment() {
 
     val shareViewModel by activityViewModels<ShareViewModel>()
-    private var id = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,31 +25,19 @@ class HomeFragment : Fragment() {
         composeView.setViewCompositionStrategy(
             ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
         )
-        arguments?.let {
-            id = it.getString("id").toString()
-        }
-
         composeView.setContent {
-
-            HomeContent(
-                onRegisterClick = {
-                    shareViewModel.navigateTo(RegisterFragment())
+            ContentOnboardingPage1(
+                onNextClick = {
+                    shareViewModel.navigateTo(OnboardingPage2Fragment())
                 },
-                onLoginClick = {
-                    shareViewModel.navigateTo(LoginFragment())
-                },
+                onAlreadyHaveAccountClick = {
+                    shareViewModel.navigateTo(LoginFragment.createInstance())
+                }
             )
         }
         return composeView
     }
-
     companion object {
-        fun createInstance(id: String): HomeFragment {
-            return HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString("id", id)
-                }
-            }
-        }
+        fun createInstance(): OnboardingPage1Fragment = OnboardingPage1Fragment()
     }
 }

@@ -58,6 +58,19 @@
     <string name="go_to_email">Ir al Email</string>
     <string name="resend_code">Reenviar codigo</string>
     <string name="resend_code_validation">Reenviar codigo de validacion</string>
+    <!-- Strings de Onboarding -->
+    <string name="title_page1">Bienvenido, somos</string>
+    <string name="subtitle_page1">Unite para ayudar a reencontrar, \nrescatar y dar hogar a quienes \nmás lo necesitan.</string>
+    <string name="title_page2">Busca o Reportá</string>
+    <string name="subtitle_page2">Podés buscar a tu mascota o\nreportar una pérdida \nfácilmente.</string>
+    <string name="title_page3">Conectá con \nfundaciones y hogares \ntemporales</string>
+    <string name="subtitle_page3">Encontra apoyo y difundi casos \ncerca de tu zona.</string>
+    <string name="title_page4">Tu proxima historia \ncomienza con una \nHuella</string>
+    <string name="subtitle_page4">Crea tu perfil y sumate a \nquienes hacen la diferencia.</string>
+    <string name="start">Comenzar</string>
+    <string name="already_have_account">Ya tengo una cuenta</string>
+    <string name="skip">Saltar</string>
+
     <string name="error">Error</string>
     <string name="toggle_password_visibility">Toggle password visibility</string>
     <string name="al_continuar_aceptas_los">"Al continuar aceptas los "</string>

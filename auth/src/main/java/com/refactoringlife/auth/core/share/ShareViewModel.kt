@@ -21,6 +21,7 @@ class ShareViewModel : ViewModel() {
     fun navigateToRoot() {
         _status.value = ShareStatus.NavigateToRoot
     }
+
     fun goToAdoption(){
         _status.value = ShareStatus.GoToAdoption
     }
