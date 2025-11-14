@@ -9,12 +9,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.login.presentation.theme.GrayLight
-import com.refactoringlife.auth.features.login.presentation.theme.HuellaPurple
+import com.refactoringlife.auth.features.login.presentation.theme.HuellaBlue
 
 
 @Composable
@@ -26,13 +27,14 @@ fun LegalText(
         buildAnnotatedString {
             append(stringResource(R.string.al_continuar_aceptas_los))
             pushStringAnnotation(tag = stringResource(R.string.terms), annotation = stringResource(R.string.terms))
-            withStyle(style = SpanStyle(color = HuellaPurple)) {
+            withStyle(style = SpanStyle(color = HuellaBlue)) {
                 append(stringResource(R.string.t_rminos_y_condiciones_y_pol_ticas_de_privacidad_de_huellas))
             }
             pop()
         },
-        style = TextStyle(fontSize = 12.sp, color = GrayLight),
+        style = TextStyle(fontSize = 16.sp, color = GrayLight),
         textAlign = TextAlign.Center,
+        fontWeight = FontWeight.Bold,
         modifier = modifier
             .fillMaxWidth()
             .clickable { onTermsClick() }
