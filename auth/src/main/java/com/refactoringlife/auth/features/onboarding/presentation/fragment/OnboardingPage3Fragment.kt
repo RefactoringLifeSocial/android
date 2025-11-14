@@ -30,7 +30,7 @@ class OnboardingPage3Fragment : Fragment() {
                     shareViewModel.navigateTo(OnboardingPage4Fragment())
                 },
                 onSkipClick = {
-                    shareViewModel.navigateToRoot(HomeFragment.createInstance("id"))
+                    shareViewModel.navigateTo(HomeFragment.createInstance("id"))
                 }
             )
         }

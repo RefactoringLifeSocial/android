@@ -72,11 +72,12 @@ fun ContentOnboardingPage1(
             showSkipButton = false,
             showStartButton = false,
             showAlreadyHaveAccount = true,
+            currentPage = 1,
+            totalPages = 4,
             onNextClick = onNextClick,
             onSkipClick = onSkipClick,
             onAlreadyHaveAccountClick = onAlreadyHaveAccountClick,
             modifier = Modifier.offset(y = (-16).dp)
-
         )
     }
 }

@@ -56,8 +56,8 @@ fun ContentOnboardingPage3(
                     showNextButton = true,
                     showSkipButton = true,
                     showStartButton = false,
-                    nextButtonIcon = R.drawable.ic_next_page3,
-                    showAlreadyHaveAccount = false,
+                    currentPage = 3,
+                    totalPages = 4,
                     onNextClick = onNextClick,
                     onSkipClick = onSkipClick,
                     modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp)

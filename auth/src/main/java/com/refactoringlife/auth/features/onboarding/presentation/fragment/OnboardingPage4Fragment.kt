@@ -27,7 +27,7 @@ class OnboardingPage4Fragment : Fragment() {
         composeView.setContent {
             ContentOnboardingPage4(
                 onStartClick = {
-                    shareViewModel.navigateToRoot(HomeFragment.createInstance("id"))
+                    shareViewModel.navigateTo(HomeFragment.createInstance("id"))
                 }
             )
         }
