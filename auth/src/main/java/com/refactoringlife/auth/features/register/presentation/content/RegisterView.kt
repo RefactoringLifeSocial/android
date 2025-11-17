@@ -6,10 +6,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.res.stringResource
@@ -21,7 +18,8 @@ import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.register.domain.state.RegisterState
 import com.refactoringlife.auth.features.register.presentation.theme.backgroundRegister
 import com.refactoringlife.auth.features.register.presentation.theme.grayLight
-import com.refactoringlife.core.common.utils.Constants.EMPTY
+import com.refactoringlife.auth.features.register.presentation.viewmodel.RegisterViewModel
+import kotlinx.coroutines.launch
 
 typealias email = String
 typealias password = String
@@ -30,14 +28,11 @@ typealias confirmPassword = String
 @Composable
 fun RegisterView(
     back: () -> Unit,
-    onClickRegister: (email, password, confirmPassword) -> Unit,
+    onClickRegister: () -> Unit,
+    viewModel: RegisterViewModel,
     state: RegisterState
 ) {
-    var email by remember { mutableStateOf(EMPTY) }
-    var password by remember { mutableStateOf(EMPTY) }
-    var confirmPassword by remember { mutableStateOf(EMPTY) }
-    var showPassword by remember { mutableStateOf(false) }
-    var showConfirmPassword by remember { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
     val errorMessage = when {
         state.hasEmailError -> stringResource(R.string.error_email_invalid)
         state.hasPasswordError -> stringResource(R.string.error_password_invalid)
@@ -51,54 +46,55 @@ fun RegisterView(
         },
         centerContent = {
             TextFieldCustom(
-                value = email,
+                value = state.name,
                 onValueChange = { newValue ->
-                    email = newValue
+                    scope.launch {
+                        viewModel.updateState(reducer = { state.copy(name = newValue) })
+                    }
                 },
                 modifier = Modifier,
                 placeholderText = stringResource(id = R.string.register_name),
                 placeholderFontSize = 16.sp,
                 placeHolderColor = grayLight,
-
-                )
+            )
             Spacer(modifier = Modifier.height(16.dp))
             TextFieldCustom(
-                value = password,
+                value = state.country,
                 onValueChange = { newValue ->
-                    password = newValue
+                    scope.launch {
+                        viewModel.updateState(reducer = { state.copy(country = newValue) })
+                    }
                 },
                 placeholderText = stringResource(id = R.string.register_Country),
                 placeholderFontSize = 16.sp,
                 placeHolderColor = grayLight,
-                modifier = Modifier,
-                isPassword = true,
-                showPassword = showPassword
+                modifier = Modifier
             )
             Spacer(modifier = Modifier.height(16.dp))
             TextFieldCustom(
-                value = confirmPassword,
+                value = state.address,
                 onValueChange = { newValue ->
-                    confirmPassword = newValue
+                    scope.launch {
+                        viewModel.updateState(reducer = { state.copy(address = newValue) })
+                    }
                 },
                 placeholderText = stringResource(id = R.string.register_addres),
                 placeholderFontSize = 16.sp,
                 placeHolderColor = grayLight,
-                modifier = Modifier,
-                isPassword = true,
-                showPassword = showConfirmPassword
+                modifier = Modifier
             )
             Spacer(modifier = Modifier.height(16.dp))
             TextFieldCustom(
-                value = "",
+                value = state.phone,
                 onValueChange = { newValue ->
-
+                    scope.launch {
+                        viewModel.updateState(reducer = { state.copy(phone = newValue) })
+                    }
                 },
                 placeholderText = stringResource(id = R.string.register_phone),
                 placeholderFontSize = 16.sp,
                 placeHolderColor = grayLight,
-                modifier = Modifier,
-                isPassword = true,
-                showPassword = showConfirmPassword
+                modifier = Modifier
             )
             Spacer(modifier = Modifier.height(30.dp))
             if (errorMessage != null) {
@@ -115,7 +111,7 @@ fun RegisterView(
             Spacer(modifier = Modifier.height(10.dp))
             ButtonCustom(
                 onClick = {
-                    onClickRegister(email, password, confirmPassword)
+                    onClickRegister()
                 },
                 text = stringResource(id = R.string.register_button_next),
                 backgroundColor = backgroundRegister,
