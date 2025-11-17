@@ -1,4 +1,4 @@
-package com.refactoringlife.auth.features.forgotpassword.presentation.fragment
+package com.refactoringlife.auth.features.resetpassword.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,16 +7,13 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import com.refactoringlife.auth.core.share.ShareViewModel
-import com.refactoringlife.auth.features.forgotpassword.presentation.screen.ForgotPasswordScreen
-import com.refactoringlife.auth.features.forgotpassword.presentation.viewmodel.ForgotPasswordViewModel
+import com.refactoringlife.auth.features.resetpassword.presentation.screen.ResetPasswordScreen
+import com.refactoringlife.auth.features.resetpassword.presentation.viewmodel.ResetPasswordViewModel
 
-class ForgotPasswordFragment : Fragment() {
+class ResetPasswordFragment : Fragment() {
 
-    val shareViewModel by activityViewModels<ShareViewModel>()
-    private val viewModel: ForgotPasswordViewModel by viewModels()
+    private val viewModel: ResetPasswordViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,13 +25,15 @@ class ForgotPasswordFragment : Fragment() {
             ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
         )
         composeView.setContent {
-            ForgotPasswordScreen(
+            ResetPasswordScreen(
                 viewModel = viewModel
             )
         }
+
         return composeView
     }
+
     companion object {
-        fun createInstance(): ForgotPasswordFragment = ForgotPasswordFragment()
+        fun createInstance(): ResetPasswordFragment = ResetPasswordFragment()
     }
 }

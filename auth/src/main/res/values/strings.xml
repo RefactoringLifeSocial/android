@@ -47,9 +47,16 @@
     <!-- Strings de Forgot Password -->
     <string name="continue_send_email">Continuar</string>
     <string name="forgot_password">Recuperar contraseña</string>
+    <string name="title_modal">Revisa tu bandeja de entrada. Si no ves el correo, revisa tu carpeta de spam.</string>
+    <string name="button_modal">Volver a iniciar sesion</string>
     <!-- Strings de Reset Password -->
     <string name="new_password">Nueva contraseña</string>
     <string name="confirm">Confirmar</string>
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="input_email">Ingresar email</string>
+    <string name="send_email">Enviar enlace</string>
+    <string name="title_reset_modal">Tu contraseña ha sido actualizada exitosamente.</string>
+    <string name="description_reset_password">Ingresa el correo electrónico asociado a tu cuenta y te enviaremos un enlace para restablecer tu contraseña</string>
     <!-- Strings de Verify Code -->
     <string name="thanks">Gracias!</string>
     <string name="message_send_code">Te enviamos un codigo de verificacion</string>
