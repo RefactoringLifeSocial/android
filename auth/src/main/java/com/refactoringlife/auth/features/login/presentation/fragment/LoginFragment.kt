@@ -39,9 +39,6 @@ class LoginFragment : Fragment() {
                     viewModel.sendEvent(LoginEvent.ClearErrors)
                     shareViewModel.navigateTo(ForgotPasswordFragment())
                 },
-                onLoginForGoogle = {
-
-                }
             )
         }
         return composeView

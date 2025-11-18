@@ -14,13 +14,23 @@ class HandleLoginGoogleBloc(
         update: suspend (suspend (LoginState) -> LoginState) -> Unit
     ) {
         if (event !is LoginEvent.LoginGoogle) return
-        when (val result = googleSignInUseCase.invoke(token = event.token.toString())) {
+
+        // Validar que el token no sea nulo
+        if (event.token == null) {
+            update { it.copy(error = true, errorMessage = "Error al obtener el token de Google", loading = false) }
+            return
+        }
+
+        // Iniciar loading
+        update { it.copy(loading = true, error = false) }
+
+        when (val result = googleSignInUseCase.invoke(token = event.token)) {
             is AsyncResult.Failure -> {
-                update { it.copy(error = true, errorMessage = result.error.message) }
+                update { it.copy(error = true, errorMessage = result.error.message, loading = false) }
             }
 
             is AsyncResult.Success -> {
-                update { it.copy(success = true) }
+                update { it.copy(success = true, loading = false) }
             }
         }
     }
