@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.map
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "app_preferences")
 
 class AppPreferencesSerializer(private val context: Context) {
-
     private val dataStore = context.dataStore
 
     companion object {
@@ -27,9 +26,7 @@ class AppPreferencesSerializer(private val context: Context) {
     }
 
     suspend fun getOnboardingCompleted(): Boolean {
-        return dataStore.data.map { preferences ->
-            preferences[ONBOARDING_COMPLETED_KEY] ?: false
-        }.first()
+        return appPreferencesFlow.first().onboardingCompleted
     }
 
     suspend fun setOnboardingCompleted(completed: Boolean) {
