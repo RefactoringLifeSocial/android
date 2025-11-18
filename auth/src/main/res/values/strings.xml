@@ -27,6 +27,7 @@
     <string name="register_email">Email</string>
     <string name="register_name">Nombre Completo</string>
     <string name="register_password">Contraseña</string>
+    <string name="register_password_confirm">Comfirmar Contraseña</string>
     <string name="register_Country">Pais</string>
     <string name="register_addres">Direccion</string>
     <string name="register_phone">Telefono</string>

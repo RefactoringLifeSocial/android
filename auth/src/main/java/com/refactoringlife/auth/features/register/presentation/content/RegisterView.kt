@@ -96,6 +96,45 @@ fun RegisterView(
                 placeHolderColor = grayLight,
                 modifier = Modifier
             )
+            Spacer(modifier = Modifier.height(16.dp))
+            TextFieldCustom(
+                value = state.email,
+                onValueChange = { newValue ->
+                    scope.launch {
+                        viewModel.updateState(reducer = { state.copy(email = newValue) })
+                    }
+                },
+                placeholderText = stringResource(id = R.string.register_email),
+                placeholderFontSize = 16.sp,
+                placeHolderColor = grayLight,
+                modifier = Modifier
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            TextFieldCustom(
+                value = state.password,
+                onValueChange = { newValue ->
+                    scope.launch {
+                        viewModel.updateState(reducer = { state.copy(password = newValue) })
+                    }
+                },
+                placeholderText = stringResource(id = R.string.register_password),
+                placeholderFontSize = 16.sp,
+                placeHolderColor = grayLight,
+                modifier = Modifier
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            TextFieldCustom(
+                value = state.confirmPassword,
+                onValueChange = { newValue ->
+                    scope.launch {
+                        viewModel.updateState(reducer = { state.copy(confirmPassword =  newValue) })
+                    }
+                },
+                placeholderText = stringResource(id = R.string.register_password),
+                placeholderFontSize = 16.sp,
+                placeHolderColor = grayLight,
+                modifier = Modifier
+            )
             Spacer(modifier = Modifier.height(30.dp))
             if (errorMessage != null) {
                 Text(
@@ -118,6 +157,7 @@ fun RegisterView(
                 textFontSize = 16.5.sp,
                 textFontWeight = FontWeight.SemiBold
             )
+            Spacer(modifier = Modifier.height(15.dp))
         }
     )
 }
