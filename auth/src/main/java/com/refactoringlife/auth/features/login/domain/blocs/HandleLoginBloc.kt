@@ -26,11 +26,20 @@ class HandleLoginBloc(
                 hasEmailError = validationResult.hasEmailError,
                 hasPasswordError = validationResult.hasPasswordError,
                 isFormValid = validationResult.isFormValid,
-                loading = true
+                loading = false,
+                error = false
             )
         }
 
-        if (!validationResult.isFormValid) return
+        if (!validationResult.isFormValid) {
+            return
+        }
+        update { current ->
+            current.copy(
+                loading = true,
+                error = false
+            )
+        }
 
         val result = userLoginUserCase(userLoginRequest = UserLoginRequest(email = event.email, password = event.password))
         when(result){
