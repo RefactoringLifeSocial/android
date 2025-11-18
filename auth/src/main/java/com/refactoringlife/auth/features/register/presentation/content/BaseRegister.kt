@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,11 +29,13 @@ fun BaseRegister(
     back: () -> Unit,
     centerContent: @Composable () -> Unit
 ) {
+    val scroll = rememberScrollState()
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(Color.White),
+            .background(Color.White)
+            .verticalScroll(state = scroll),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         BackIcon(

@@ -26,8 +26,8 @@ class RegisterViewModel(
         }
     }
 
-    private suspend fun updateState(reducer: suspend (RegisterState) -> RegisterState) {
-        withContext(Dispatchers.Main) {
+    suspend fun updateState(reducer: suspend (RegisterState) -> RegisterState) {
+        withContext(Dispatchers.Main + viewModelScope.coroutineContext) {
             val next = reducer(_state.value)
             _state.value = next
         }
