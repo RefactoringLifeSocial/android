@@ -5,7 +5,7 @@ class LoginBlocs {
         fun getLoginBlocs() = listOf(
             HandleLoginBloc(),
             HandleLoginGoogleBloc(),
-            HandleClearErrorsBloc()
+            HandleClearStateBloc()
         )
     }
 }

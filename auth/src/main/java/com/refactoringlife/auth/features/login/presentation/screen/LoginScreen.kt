@@ -56,7 +56,10 @@ fun LoginScreen(
         onTermsClick = {
 
         },
-        state = state
+        state = state,
+        onClearState = {
+            loginViewModel.sendEvent(LoginEvent.ClearState)
+        }
     )
     if (state.success) {
         success()

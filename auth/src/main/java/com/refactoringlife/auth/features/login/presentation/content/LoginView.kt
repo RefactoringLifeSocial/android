@@ -44,6 +44,7 @@ fun LoginView(
     onLoginForGoogle: () -> Unit,
     onTermsClick: () -> Unit,
     state: LoginState,
+    onClearState: () -> Unit = {}
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -75,7 +76,11 @@ fun LoginView(
             UnderlineTextField(
                 label = stringResource(R.string.email),
                 value = email,
-                onValueChange = { email = it },
+                onValueChange = { email = it
+                    if (state.hasEmailError) {
+                        onClearState()
+                    }
+                },
                 isError = state.hasEmailError,
                 isPassword = false,
                 underlineColor = HuellaPurple,
@@ -85,7 +90,11 @@ fun LoginView(
             UnderlineTextField(
                 label = stringResource(R.string.password),
                 value = password,
-                onValueChange = { password = it },
+                onValueChange = { password = it
+                    if (state.hasPasswordError || state.error) {
+                        onClearState()
+                    }
+                },
                 isError = state.hasPasswordError || state.error,
                 isPassword = true,
                 showErrorIcon = state.hasPasswordError || state.error,

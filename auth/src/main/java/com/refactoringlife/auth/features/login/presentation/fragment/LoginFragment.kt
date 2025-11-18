@@ -36,7 +36,7 @@ class LoginFragment : Fragment() {
                     shareViewModel.goToAdoption()
                 },
                 onForgotPassword = {
-                    viewModel.sendEvent(LoginEvent.ClearErrors)
+                    viewModel.sendEvent(LoginEvent.ClearState)
                     shareViewModel.navigateTo(ForgotPasswordFragment())
                 },
             )
