@@ -51,10 +51,4 @@ class AppPreferencesSerializer(context: Context) {
             }
         }
     }
-    //usaremos para deslogiarnos y limpiar el token de acceso
-    suspend fun clearAccessToken() {
-        dataStore.edit { preferences ->
-            preferences.remove(ACCESS_TOKEN_KEY)
-        }
-    }
 }

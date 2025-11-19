@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val appPreferencesRepository: AppPreferencesRepository
+    appPreferencesRepository: AppPreferencesRepository
 ) : ViewModel() {
 
     private val blocs: List<LoginBaseBloc> = LoginBlocs.getLoginBlocs(appPreferencesRepository)
