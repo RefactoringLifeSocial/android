@@ -21,7 +21,6 @@ import kotlinx.coroutines.launch
 fun LoginScreen(
     loginViewModel: LoginViewModel,
     onForgotPassword: () -> Unit,
-    onLoginForGoogle: () -> Unit,
     success: () -> Unit
 ) {
     val context = LocalContext.current
@@ -51,13 +50,16 @@ fun LoginScreen(
 
         },
         onLoginForGoogle = {
-            onLoginForGoogle()
+            launcher.launch(googleAuthUiClient.signInIntent())
 
         },
         onTermsClick = {
 
         },
-        state = state
+        state = state,
+        onClearState = {
+            loginViewModel.sendEvent(LoginEvent.ClearState)
+        }
     )
     if (state.success) {
         success()
@@ -67,5 +69,5 @@ fun LoginScreen(
 @Composable
 @Preview(showBackground = true)
 fun PreviewLogin() {
-    LoginScreen(success = {}, loginViewModel = viewModel(), onForgotPassword = {}, onLoginForGoogle = {})
+    LoginScreen(success = {}, loginViewModel = viewModel(), onForgotPassword = {})
 }

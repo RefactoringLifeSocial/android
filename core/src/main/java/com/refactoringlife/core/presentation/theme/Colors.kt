@@ -4,3 +4,4 @@ import androidx.compose.ui.graphics.Color
 
 val actionPurple = Color(0xFF7353BA)
 val blueDark = Color(0xFF34495E)
+val HuellaPurple = Color(0xFF8C61A5)

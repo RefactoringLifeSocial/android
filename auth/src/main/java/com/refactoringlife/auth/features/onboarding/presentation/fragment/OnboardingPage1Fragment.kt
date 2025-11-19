@@ -11,10 +11,14 @@ import androidx.fragment.app.activityViewModels
 import com.refactoringlife.auth.core.share.ShareViewModel
 import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment
 import com.refactoringlife.auth.features.onboarding.presentation.content.ContentOnboardingPage1
+import com.refactoringlife.auth.features.onboarding.presentation.viewmodel.OnboardingViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OnboardingPage1Fragment : Fragment() {
 
     val shareViewModel by activityViewModels<ShareViewModel>()
+    private val onboardingViewModel by activityViewModels<OnboardingViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,12 +35,14 @@ class OnboardingPage1Fragment : Fragment() {
                     shareViewModel.navigateTo(OnboardingPage2Fragment())
                 },
                 onAlreadyHaveAccountClick = {
+                    onboardingViewModel.completeOnboarding()
                     shareViewModel.navigateTo(LoginFragment.createInstance())
                 }
             )
         }
         return composeView
     }
+
     companion object {
         fun createInstance(): OnboardingPage1Fragment = OnboardingPage1Fragment()
     }

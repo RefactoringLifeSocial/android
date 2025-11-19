@@ -34,6 +34,7 @@ import com.refactoringlife.auth.features.login.presentation.composables.TitleLog
 import com.refactoringlife.auth.features.login.presentation.composables.UnderlineTextField
 import com.refactoringlife.auth.features.login.presentation.theme.HuellaBackgraund
 import com.refactoringlife.auth.features.login.presentation.theme.HuellaPurple
+import com.refactoringlife.core.common.ui.composables.Loading
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,6 +44,7 @@ fun LoginView(
     onLoginForGoogle: () -> Unit,
     onTermsClick: () -> Unit,
     state: LoginState,
+    onClearState: () -> Unit = {}
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -74,7 +76,11 @@ fun LoginView(
             UnderlineTextField(
                 label = stringResource(R.string.email),
                 value = email,
-                onValueChange = { email = it },
+                onValueChange = { email = it
+                    if (state.hasEmailError) {
+                        onClearState()
+                    }
+                },
                 isError = state.hasEmailError,
                 isPassword = false,
                 underlineColor = HuellaPurple,
@@ -84,7 +90,11 @@ fun LoginView(
             UnderlineTextField(
                 label = stringResource(R.string.password),
                 value = password,
-                onValueChange = { password = it },
+                onValueChange = { password = it
+                    if (state.hasPasswordError || state.error) {
+                        onClearState()
+                    }
+                },
                 isError = state.hasPasswordError || state.error,
                 isPassword = true,
                 showErrorIcon = state.hasPasswordError || state.error,
@@ -129,6 +139,9 @@ fun LoginView(
             )
 
             Spacer(modifier = Modifier.height(30.dp))
+        }
+        if (state.loading) {
+            Loading()
         }
     }
 }

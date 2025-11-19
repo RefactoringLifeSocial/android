@@ -2,6 +2,10 @@ package com.refactoringlife.auth.features
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.google.firebase.auth.FirebaseAuth
 import com.refactoringlife.auth.R
 import com.refactoringlife.auth.core.share.ShareStatus
 import com.refactoringlife.auth.core.share.ShareViewModel
@@ -10,17 +14,48 @@ import com.refactoringlife.auth.features.onboarding.presentation.fragment.Onboar
 import com.refactoringlife.core.common.activities.BaseActivity
 import com.refactoringlife.core.common.utils.ADOPTION_DEEPLINK
 import com.refactoringlife.core.common.utils.navigateToDeeplink
+import com.refactoringlife.core.data.datastore.AppPreferencesRepository
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class AuthActivity : BaseActivity(R.id.fragment_container) {
 
-    val shareViewModel by viewModels <ShareViewModel> ()
+    val shareViewModel by viewModels<ShareViewModel>()
+
+    @Inject
+    lateinit var appPreferencesRepository: AppPreferencesRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
-        navigateToRoot(OnboardingPage1Fragment.createInstance())
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                checkInitialNavigation()
+            }
+        }
         observer()
+    }
+
+    private suspend fun checkInitialNavigation() {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val accessToken = appPreferencesRepository.getAccessToken()
+
+        if (currentUser != null || !accessToken.isNullOrEmpty()) {
+            navigateToDeeplink(ADOPTION_DEEPLINK)
+            finish()
+            return
+        }
+
+        val onboardingCompleted = appPreferencesRepository.getOnboardingCompleted()
+
+        if (onboardingCompleted) {
+            navigateToRoot(HomeFragment.createInstance("id"))
+        } else {
+            navigateToRoot(OnboardingPage1Fragment.createInstance())
+        }
     }
 
     fun observer(){
@@ -36,7 +71,6 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
 
                 is ShareStatus.NavigateToRoot -> {
                     navigateToRoot(HomeFragment.createInstance("id"))
-
                 }
                 is ShareStatus.GoToAdoption -> {
                     navigateToDeeplink(deeplink = ADOPTION_DEEPLINK)

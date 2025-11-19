@@ -11,9 +11,14 @@ import androidx.fragment.app.activityViewModels
 import com.refactoringlife.auth.core.share.ShareViewModel
 import com.refactoringlife.auth.features.home.presentation.fragment.HomeFragment
 import com.refactoringlife.auth.features.onboarding.presentation.content.ContentOnboardingPage3
+import com.refactoringlife.auth.features.onboarding.presentation.viewmodel.OnboardingViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OnboardingPage3Fragment : Fragment() {
+
     val shareViewModel by activityViewModels<ShareViewModel>()
+    private val onboardingViewModel by activityViewModels<OnboardingViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,10 +35,14 @@ class OnboardingPage3Fragment : Fragment() {
                     shareViewModel.navigateTo(OnboardingPage4Fragment())
                 },
                 onSkipClick = {
+                    onboardingViewModel.completeOnboarding()
                     shareViewModel.navigateTo(HomeFragment.createInstance("id"))
                 }
             )
         }
         return composeView
+    }
+    companion object {
+        fun createInstance(): OnboardingPage3Fragment = OnboardingPage3Fragment()
     }
 }
