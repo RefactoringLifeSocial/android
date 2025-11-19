@@ -14,7 +14,9 @@ import com.refactoringlife.auth.features.forgotpassword.presentation.fragment.Fo
 import com.refactoringlife.auth.features.login.domain.blocs.LoginEvent
 import com.refactoringlife.auth.features.login.presentation.screen.LoginScreen
 import com.refactoringlife.auth.features.login.presentation.viewmodel.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
     val shareViewModel by activityViewModels<ShareViewModel>()
     private val viewModel: LoginViewModel by viewModels()

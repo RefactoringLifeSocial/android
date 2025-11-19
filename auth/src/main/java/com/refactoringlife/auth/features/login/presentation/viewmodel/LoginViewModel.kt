@@ -6,15 +6,21 @@ import com.refactoringlife.auth.features.login.domain.blocs.LoginBaseBloc
 import com.refactoringlife.auth.features.login.domain.blocs.LoginEvent
 import com.refactoringlife.auth.features.login.domain.state.LoginState
 import com.refactoringlife.auth.features.login.domain.blocs.LoginBlocs
+import com.refactoringlife.core.data.datastore.AppPreferencesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class LoginViewModel(
-    private val blocs: List<LoginBaseBloc> = LoginBlocs.getLoginBlocs()
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val appPreferencesRepository: AppPreferencesRepository
 ) : ViewModel() {
+
+    private val blocs: List<LoginBaseBloc> = LoginBlocs.getLoginBlocs(appPreferencesRepository)
 
     private val _state = MutableStateFlow(LoginState())
     val state: StateFlow<LoginState> = _state

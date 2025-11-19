@@ -42,4 +42,7 @@ class OnboardingPage3Fragment : Fragment() {
         }
         return composeView
     }
+    companion object {
+        fun createInstance(): OnboardingPage3Fragment = OnboardingPage3Fragment()
+    }
 }

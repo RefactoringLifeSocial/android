@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -12,16 +13,18 @@ import kotlinx.coroutines.flow.map
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "app_preferences")
 
-class AppPreferencesSerializer(private val context: Context) {
+class AppPreferencesSerializer(context: Context) {
     private val dataStore = context.dataStore
 
     companion object {
         private val ONBOARDING_COMPLETED_KEY = booleanPreferencesKey("onboarding_completed")
+        private val ACCESS_TOKEN_KEY = stringPreferencesKey("access_token")
     }
 
     val appPreferencesFlow: Flow<AppPreferences> = dataStore.data.map { preferences ->
         AppPreferences(
-            onboardingCompleted = preferences[ONBOARDING_COMPLETED_KEY] ?: false
+            onboardingCompleted = preferences[ONBOARDING_COMPLETED_KEY] ?: false,
+            accessToken = preferences[ACCESS_TOKEN_KEY]
         )
     }
 
@@ -32,6 +35,26 @@ class AppPreferencesSerializer(private val context: Context) {
     suspend fun setOnboardingCompleted(completed: Boolean) {
         dataStore.edit { preferences ->
             preferences[ONBOARDING_COMPLETED_KEY] = completed
+        }
+    }
+
+    suspend fun getAccessToken(): String? {
+        return dataStore.data.first()[ACCESS_TOKEN_KEY]
+    }
+
+    suspend fun setAccessToken(token: String?) {
+        dataStore.edit { preferences ->
+            if (token != null) {
+                preferences[ACCESS_TOKEN_KEY] = token
+            } else {
+                preferences.remove(ACCESS_TOKEN_KEY)
+            }
+        }
+    }
+    //usaremos para deslogiarnos y limpiar el token de acceso
+    suspend fun clearAccessToken() {
+        dataStore.edit { preferences ->
+            preferences.remove(ACCESS_TOKEN_KEY)
         }
     }
 }

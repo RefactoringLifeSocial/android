@@ -5,11 +5,13 @@ import com.refactoringlife.auth.features.login.domain.state.LoginState
 import com.refactoringlife.auth.features.login.domain.usecases.UserLoginUserCase
 import com.refactoringlife.auth.features.login.utils.LoginFormValidator
 import com.refactoringlife.core.common.result.AsyncResult
+import com.refactoringlife.core.data.datastore.AppPreferencesRepository
 
 class HandleLoginBloc(
     private val userLoginUserCase: UserLoginUserCase = UserLoginUserCase(),
-    private val formValidator: LoginFormValidator = LoginFormValidator()
-): LoginBaseBloc {
+    private val formValidator: LoginFormValidator = LoginFormValidator(),
+    private val appPreferencesRepository: AppPreferencesRepository
+) : LoginBaseBloc {
 
     override fun canHandle(event: LoginEvent): Boolean = event is LoginEvent.Login
 
@@ -41,12 +43,21 @@ class HandleLoginBloc(
             )
         }
 
-        val result = userLoginUserCase(userLoginRequest = UserLoginRequest(email = event.email, password = event.password))
+        val result = userLoginUserCase(
+            userLoginRequest = UserLoginRequest(
+                email = event.email,
+                password = event.password
+            )
+        )
         when(result){
             is AsyncResult.Failure -> {
                 update{it.copy(error = true, errorMessage = result.error.message ?: "Error en el login", loading = false)}
             }
             is AsyncResult.Success -> {
+                result.value?.accessToken?.let { token ->
+                    appPreferencesRepository.setAccessToken(token)
+                }
+
                 update{it.copy(error = false, success = true, loading = false)}
             }
         }

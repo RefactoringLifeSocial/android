@@ -41,7 +41,9 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
 
     private suspend fun checkInitialNavigation() {
         val currentUser = FirebaseAuth.getInstance().currentUser
-        if (currentUser != null) {
+        val accessToken = appPreferencesRepository.getAccessToken()
+
+        if (currentUser != null || !accessToken.isNullOrEmpty()) {
             navigateToDeeplink(ADOPTION_DEEPLINK)
             finish()
             return
