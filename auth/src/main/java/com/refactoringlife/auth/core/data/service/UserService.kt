@@ -19,4 +19,19 @@ interface UserService {
     suspend fun userLogin(
         @Body userLoginRequest: UserLoginRequest
     ): Response<UserLoginResponse>
+
+    @POST("auth/otp_send")
+    suspend fun userSendEmailRecover(
+        @Body userCode: UserOtpSendRequest
+    ): Response<UserOtpSendResponse>
+
+    @POST("auth/verify_code")
+    suspend fun userSendCodeRecover(
+        @Body userVerifyCode: UserVerifyCodeRequest
+    ): Response<UserVerifyCodeResponse>
+
+    @POST("auth/reset_password")
+    suspend fun userResetPassword(
+        @Body userNewPassword: UserResetPasswordRequest
+    ): Response<UserResetPasswordResponse>
 }
