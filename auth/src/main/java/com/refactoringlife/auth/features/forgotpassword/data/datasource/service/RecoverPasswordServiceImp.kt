@@ -1,19 +1,17 @@
-package com.refactoringlife.auth.features.register.data.datasource.service
+package com.refactoringlife.auth.features.forgotpassword.data.datasource.service
 
 import com.refactoringlife.auth.core.data.serviceProvider
 import com.refactoringlife.auth.features.forgotpassword.data.dto.request.UserSendEmailRequest
+import com.refactoringlife.auth.features.forgotpassword.data.dto.request.UserVerifyCodeRequest
 import com.refactoringlife.auth.features.forgotpassword.data.dto.response.UserSendEmailResponse
-import com.refactoringlife.auth.features.register.data.dto.request.UserRegisterRequest
-import com.refactoringlife.auth.features.register.data.dto.responses.UserRegisterResponse
+import com.refactoringlife.auth.features.forgotpassword.data.dto.response.UserVerifyCodeResponse
 import com.refactoringlife.core.common.result.AsyncResult
 
-class UserServiceImp {
-    suspend fun userRegister(
-        userRegisterRequest: UserRegisterRequest
-    ): AsyncResult<UserRegisterResponse?, Exception> {
+class RecoverPasswordServiceImp {
+    suspend fun sendEmail(userOtpSendRequest: UserSendEmailRequest): AsyncResult<UserSendEmailResponse?, Exception> {
         return try {
-            val result = serviceProvider.userRegister(userRegisterRequest)
-            if (result.isSuccessful) {
+            val result = serviceProvider.userSendEmailRecover(userOtpSendRequest)
+            if(result.isSuccessful) {
                 result.body()?.let { body ->
                     AsyncResult.Success(body)
                 } ?: run {
@@ -27,11 +25,9 @@ class UserServiceImp {
         }
     }
 
-    suspend fun userSendEmail(
-        userSendEmailRequest: UserSendEmailRequest
-    ): AsyncResult<UserSendEmailResponse?, Exception> {
+    suspend fun sendOtp(userVerifyCodeRequest: UserVerifyCodeRequest): AsyncResult<UserVerifyCodeResponse?, Exception> {
         return try {
-            val result = serviceProvider.userSendEmailRecover(userSendEmailRequest)
+            val result = serviceProvider.userSendCodeRecover(userVerifyCodeRequest)
             if (result.isSuccessful) {
                 result.body()?.let { body ->
                     AsyncResult.Success(body)
