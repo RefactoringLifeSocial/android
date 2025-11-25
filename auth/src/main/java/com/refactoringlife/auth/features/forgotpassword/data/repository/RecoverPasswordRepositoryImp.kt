@@ -12,5 +12,4 @@ class RecoverPasswordRepositoryImp(
         val result = serviceImp.userSendEmail(userSendEmailRequest)
         return result
     }
-
 }
