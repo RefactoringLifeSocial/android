@@ -4,5 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class UserSendEmailResponse (
     @SerializedName("message")
-    val message: String?
+    val message: String?,
+
+    @SerializedName("token")
+    val token: String? = null,
+    
+    @SerializedName("resetUrl")
+    val resetUrl: String? = null
 )

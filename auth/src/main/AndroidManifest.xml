@@ -18,7 +18,17 @@
                 <data
                     android:scheme="huella"
                     android:host="refactoringlife.com"
-                    android:path="/auth" />
+                    android:pathPrefix="/auth" />
+            </intent-filter>
+
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="refactoringlife.com"
+                    android:pathPrefix="/auth/reset-password" />
             </intent-filter>
 
         </activity>

@@ -5,6 +5,8 @@ import com.refactoringlife.auth.features.forgotpassword.domain.model.UserSendEma
 
 fun UserSendEmailResponse.toUserSendEmailModel(): UserSendEmailModel {
     return UserSendEmailModel(
-        message = this.message
+        message = this.message,
+        token = this.token,
+        resetUrl = this.resetUrl
     )
 }
