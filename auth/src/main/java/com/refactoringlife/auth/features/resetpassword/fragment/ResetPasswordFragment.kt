@@ -38,7 +38,6 @@ class ResetPasswordFragment : Fragment() {
     companion object {
         private const val ARG_TOKEN = "arg_token"
 
-        // PASO 3: createInstance ahora recibe el token
         fun createInstance(token: String): ResetPasswordFragment {
             val fragment = ResetPasswordFragment()
             fragment.arguments = Bundle().apply {

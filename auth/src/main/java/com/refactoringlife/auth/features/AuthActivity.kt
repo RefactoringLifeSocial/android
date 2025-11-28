@@ -1,7 +1,6 @@
 package com.refactoringlife.auth.features
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
@@ -16,6 +15,7 @@ import com.refactoringlife.auth.features.onboarding.presentation.fragment.Onboar
 import com.refactoringlife.auth.features.resetpassword.fragment.ResetPasswordFragment
 import com.refactoringlife.core.common.activities.BaseActivity
 import com.refactoringlife.core.common.utils.ADOPTION_DEEPLINK
+import com.refactoringlife.core.common.utils.DeepLinkRouter
 import com.refactoringlife.core.common.utils.navigateToDeeplink
 import com.refactoringlife.core.data.datastore.AppPreferencesRepository
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,10 +34,8 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
-        // Primero verificamos si venimos de un deeplink de reset password
         val handledDeepLink = handleDeepLinkIfNeeded(intent)
 
-        // Solo ejecutamos la navegación normal si NO venimos de un deeplink de reset
         if (!handledDeepLink) {
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -48,40 +46,27 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
         observer()
     }
 
-    // AGREGAR ESTE MÉTODO (importante para singleTop)
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        setIntent(intent) // Actualizar el intent actual
+        setIntent(intent)
         handleDeepLinkIfNeeded(intent)
     }
 
-    // Manejar deeplinks cuando la Activity ya está abierta
     override fun onResume() {
         super.onResume()
-        // Verificamos si hay un nuevo intent con deeplink
         handleDeepLinkIfNeeded(intent)
     }
 
-    // Función que detecta y maneja el deeplink de reset password
     private fun handleDeepLinkIfNeeded(intent: Intent?): Boolean {
-        val data: Uri = intent?.data ?: return false
+        val uri = intent?.data ?: return false
 
-        // Verificamos que sea el path de reset password
-        val path = data.path
-        val token = data.getQueryParameter("token")
-
-        // CAMBIO: Acepta tanto huella:// como https:// para reset-password
-        val isResetPasswordPath = path == "/auth/reset-password" && !token.isNullOrEmpty()
-        val isCustomScheme = data.scheme == "huella"
-        val isHttpsScheme = data.scheme == "https"
-
-        return if (isResetPasswordPath && (isCustomScheme || isHttpsScheme)) {
-            // Navegamos directamente a la pantalla de "Nueva contraseña" con el token
-            val fragment = ResetPasswordFragment.createInstance(token)
-            navigateToRoot(fragment)
-            true
-        } else {
-            false
+        return when (val result = DeepLinkRouter.parseDeepLink(uri)) {
+            is DeepLinkRouter.DeepLinkResult.ResetPassword -> {
+                val fragment = ResetPasswordFragment.createInstance(result.token)
+                navigateToRoot(fragment)
+                true
+            }
+            is DeepLinkRouter.DeepLinkResult.Unknown -> false
         }
     }
 
