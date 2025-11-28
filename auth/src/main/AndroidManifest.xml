@@ -27,7 +27,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
                     android:scheme="https"
-                    android:host="refactoringlife.com"
+                    android:host="delightful-pixie-f83dc1.netlify.app"
                     android:pathPrefix="/auth/reset-password" />
             </intent-filter>
 

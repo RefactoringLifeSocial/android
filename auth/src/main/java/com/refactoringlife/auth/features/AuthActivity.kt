@@ -48,6 +48,13 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
         observer()
     }
 
+    // AGREGAR ESTE MÉTODO (importante para singleTop)
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent) // Actualizar el intent actual
+        handleDeepLinkIfNeeded(intent)
+    }
+
     // Manejar deeplinks cuando la Activity ya está abierta
     override fun onResume() {
         super.onResume()
