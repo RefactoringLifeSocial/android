@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -16,19 +17,20 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="huella"
                     android:host="refactoringlife.com"
-                    android:pathPrefix="/auth" />
+                    android:pathPrefix="/auth"
+                    android:scheme="huella" />
             </intent-filter>
 
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
-                    android:scheme="https"
-                    android:host="delightful-pixie-f83dc1.netlify.app"
-                    android:pathPrefix="/auth/reset-password" />
+                    android:host="refactoringlife.com"
+                    android:pathPrefix="/auth/reset-password"
+                    android:scheme="https" />
             </intent-filter>
 
         </activity>
