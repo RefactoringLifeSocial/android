@@ -20,13 +20,15 @@ class ResetPasswordFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val token = arguments?.getString(ARG_TOKEN).orEmpty()
         val composeView = ComposeView(requireContext())
         composeView.setViewCompositionStrategy(
             ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
         )
         composeView.setContent {
             ResetPasswordScreen(
-                viewModel = viewModel
+                viewModel = viewModel,
+                token = token
             )
         }
 
@@ -34,6 +36,14 @@ class ResetPasswordFragment : Fragment() {
     }
 
     companion object {
-        fun createInstance(): ResetPasswordFragment = ResetPasswordFragment()
+        private const val ARG_TOKEN = "arg_token"
+
+        fun createInstance(token: String): ResetPasswordFragment {
+            val fragment = ResetPasswordFragment()
+            fragment.arguments = Bundle().apply {
+                putString(ARG_TOKEN, token)
+            }
+            return fragment
+        }
     }
 }

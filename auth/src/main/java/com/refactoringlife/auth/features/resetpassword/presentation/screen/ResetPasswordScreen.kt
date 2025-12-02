@@ -12,7 +12,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun ResetPasswordScreen(
-    viewModel: ResetPasswordViewModel
+    viewModel: ResetPasswordViewModel,
+    token: String
 ) {
     val scope = rememberCoroutineScope()
     val state by viewModel.uiState.collectAsState()
@@ -22,7 +23,8 @@ fun ResetPasswordScreen(
             viewModel.sendEvent(
                 event = ResetPasswordEvent.ResetPassword(
                     password = state.password,
-                    confirmPassword = state.confirmPassword
+                    confirmPassword = state.confirmPassword,
+                    token = token
                 )
             )
         },
