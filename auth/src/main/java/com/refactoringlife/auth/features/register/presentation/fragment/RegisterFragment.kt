@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.refactoringlife.auth.core.share.ShareViewModel
+import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment
 import com.refactoringlife.auth.features.register.presentation.screen.RegisterScreen
 import com.refactoringlife.auth.features.register.presentation.viewmodel.RegisterViewModel
 import kotlin.getValue
@@ -33,9 +34,10 @@ class RegisterFragment : Fragment() {
                 onBack = {
                     shareViewModel.navigateToRoot()
                 },
-                goToAdoption = {
-                    shareViewModel.goToAdoption()
+                success = {
+                    shareViewModel.navigateTo(LoginFragment())
                 }
+
             )
         }
         return composeView

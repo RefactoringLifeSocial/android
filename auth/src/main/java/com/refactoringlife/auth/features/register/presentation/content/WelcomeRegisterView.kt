@@ -22,7 +22,6 @@ import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.register.presentation.composables.WelcomeRegisterActionButton
 import com.refactoringlife.auth.utils.theme.BackgroudHuella
 
-
 @Composable
 fun WelcomeRegisterView(
     onUserRegisterClick: () -> Unit ,

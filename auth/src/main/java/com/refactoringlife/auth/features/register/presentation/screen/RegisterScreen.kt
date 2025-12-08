@@ -11,7 +11,8 @@ import com.refactoringlife.auth.features.register.presentation.viewmodel.Registe
 fun RegisterScreen(
     registerViewModel: RegisterViewModel,
     onBack: () -> Unit,
-    goToAdoption: () -> Unit
+    success: () -> Unit
+
 ) {
     val state = registerViewModel.state.collectAsState().value
 
@@ -35,7 +36,7 @@ fun RegisterScreen(
     )
     LaunchedEffect(state.success) {
         if (state.success) {
-            goToAdoption()
+            success()
         }
     }
 }
