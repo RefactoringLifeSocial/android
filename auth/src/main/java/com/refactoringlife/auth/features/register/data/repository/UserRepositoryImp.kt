@@ -17,7 +17,7 @@ class UserRepositoryImp(
         password: String
     ): AsyncResult<UserRegisterResponse?, Exception> {
         val result = service.userRegister(
-            UserRegisterRequest(email.orEmpty(), password)
+            UserRegisterRequest(email.orEmpty(), password, "", "", "", "", "")
         )
 
         result.getValueOrNull()?.let {
