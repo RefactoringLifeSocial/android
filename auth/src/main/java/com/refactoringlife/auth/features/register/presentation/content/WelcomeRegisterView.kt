@@ -38,8 +38,10 @@ import com.refactoringlife.auth.utils.theme.GrisHuellas
 
 
 @Composable
-@Preview(showBackground = true)
-fun WelcomeRegisterView() {
+fun WelcomeRegisterView(
+    onUserRegisterClick: () -> Unit ,
+    onFoundationRegisterClick: () -> Unit
+) {
     val scrollState = rememberScrollState()
 
     Box(
@@ -67,7 +69,10 @@ fun WelcomeRegisterView() {
             Spacer(modifier = Modifier.height(30.dp))
             WelcomeRegisterDescription()
             Spacer(modifier = Modifier.height(30.dp))
-            WelcomeRegisterActionButton()
+            WelcomeRegisterActionButton(
+                onUserRegisterClick = onUserRegisterClick,
+                onFoundationRegisterClick = onFoundationRegisterClick
+            )
         }
         WelcomeRegisterDescriptionOfButtons(
             modifier = Modifier

@@ -12,6 +12,7 @@ import com.refactoringlife.auth.core.share.ShareViewModel
 import com.refactoringlife.auth.features.home.presentation.content.HomeContent
 import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment
 import com.refactoringlife.auth.features.register.presentation.fragment.RegisterFragment
+import com.refactoringlife.auth.features.register.presentation.fragment.WelcomeRegisterFragment
 
 class HomeFragment : Fragment() {
 
@@ -35,7 +36,7 @@ class HomeFragment : Fragment() {
 
             HomeContent(
                 onRegisterClick = {
-                    shareViewModel.navigateTo(RegisterFragment())
+                    shareViewModel.navigateTo(WelcomeRegisterFragment())
                 },
                 onLoginClick = {
                     shareViewModel.navigateTo(LoginFragment())

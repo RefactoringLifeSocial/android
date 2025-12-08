@@ -35,7 +35,10 @@ import com.refactoringlife.auth.R
 
 
 @Composable
-fun WelcomeRegisterActionButton() {
+fun WelcomeRegisterActionButton(
+    onUserRegisterClick: () -> Unit ,
+    onFoundationRegisterClick: () -> Unit
+) {
     Row(modifier = Modifier
         .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween)
@@ -46,7 +49,7 @@ fun WelcomeRegisterActionButton() {
             modifier = Modifier
                 .height(167.dp)
                 .width(153.dp)
-                .clickable { }
+                .clickable { onUserRegisterClick() }
         )
         Image(
             painter = painterResource(id = R.drawable.button_fundation_huella),
@@ -54,7 +57,7 @@ fun WelcomeRegisterActionButton() {
             modifier = Modifier
                 .height(167.dp)
                 .width(153.dp)
-                .clickable { }
+                .clickable { onFoundationRegisterClick() }
         )
     }
 
@@ -62,12 +65,7 @@ fun WelcomeRegisterActionButton() {
 
 @Composable
 fun RegisterActionButton(){
-
+ //crear un solo boton con icono y texto aqui
 }
 
-@Composable
-@Preview(showBackground = true)
-fun WelcomeRegisterActionButtonPreview()
-{
-    WelcomeRegisterActionButton()
-}
+
