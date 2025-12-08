@@ -5,6 +5,13 @@ import com.refactoringlife.core.common.result.AsyncResult
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
-    suspend fun userRegister(email: String?, password: String): AsyncResult<UserRegisterResponse?, Exception>
+    suspend fun userRegister(
+        name: String,
+        country: String,
+        address: String,
+        phone: String,
+        email: String,
+        password: String
+    ): AsyncResult<UserRegisterResponse?, Exception>
     fun listenerUserResponse(): Flow<UserRegisterResponse?>
 }

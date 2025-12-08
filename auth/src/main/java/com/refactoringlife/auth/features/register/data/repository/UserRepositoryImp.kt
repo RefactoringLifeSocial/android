@@ -13,11 +13,23 @@ class UserRepositoryImp(
 ) : UserRepository {
 
     override suspend fun userRegister(
-        email: String?,
+        name: String,
+        country: String,
+        address: String,
+        phone: String,
+        email: String,
         password: String
     ): AsyncResult<UserRegisterResponse?, Exception> {
         val result = service.userRegister(
-            UserRegisterRequest(email.orEmpty(), password, "", "", "", "", "")
+            UserRegisterRequest(
+                image = "",
+                name = name,
+                country = country,
+                address = address,
+                phone = phone,
+                email = email,
+                password = password
+            )
         )
 
         result.getValueOrNull()?.let {

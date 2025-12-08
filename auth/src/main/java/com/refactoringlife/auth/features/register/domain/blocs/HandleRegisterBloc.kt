@@ -1,12 +1,12 @@
 package com.refactoringlife.auth.features.register.domain.blocs
 
 import com.refactoringlife.auth.features.register.domain.usecases.RegisterResponseUseCase
-import com.refactoringlife.auth.features.register.presentation.util.FormValidator
+import com.refactoringlife.auth.features.register.presentation.util.RegisterFormValidator
 import com.refactoringlife.core.common.result.AsyncResult
 
 class HandleRegisterBloc(
     val registerResponseUseCase: RegisterResponseUseCase = RegisterResponseUseCase(),
-    private val formValidator: FormValidator = FormValidator()
+    private val formValidator: RegisterFormValidator = RegisterFormValidator()
 ) :
     RegisterBaseBloc {
 
@@ -33,7 +33,14 @@ class HandleRegisterBloc(
 
         if (!validationResult.isFormValid) return
 
-        val result = registerResponseUseCase(event.email, event.password)
+        val result = registerResponseUseCase(
+            name = event.name,
+            country = event.country,
+            address = event.address,
+            phone = event.phone,
+            email = event.email,
+            password = event.password
+        )
         when (result) {
 
             is AsyncResult.Failure -> {
@@ -44,7 +51,7 @@ class HandleRegisterBloc(
 
             is AsyncResult.Success -> {
                 update {
-                    it.copy(loading = false, error = null, data = result.value)
+                    it.copy(loading = false, error = null, data = result.value, success = true)
                 }
             }
         }

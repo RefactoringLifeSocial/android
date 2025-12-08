@@ -7,10 +7,16 @@ import com.refactoringlife.core.common.result.AsyncResult
 
 class RegisterResponseUseCase(val repositoryImp: UserRepositoryImp = UserRepositoryImp()) {
     suspend operator fun invoke(
+        name: String,
+        country: String,
+        address: String,
+        phone: String,
         email: String,
         password: String
     ): AsyncResult<UserRegisterModel?, Exception> {
-        return when (val result = repositoryImp.userRegister(email, password)) {
+        return when (val result = repositoryImp.userRegister(
+            name, country, address, phone, email, password
+        )) {
             is AsyncResult.Failure -> {
                 AsyncResult.Failure(error = result.error)
             }

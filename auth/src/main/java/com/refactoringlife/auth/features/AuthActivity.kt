@@ -36,7 +36,7 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
 
         val handledDeepLink = handleDeepLinkIfNeeded(intent)
 
-        if (!handledDeepLink) {
+        if (!handledDeepLink && savedInstanceState == null) {
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
                     checkInitialNavigation()

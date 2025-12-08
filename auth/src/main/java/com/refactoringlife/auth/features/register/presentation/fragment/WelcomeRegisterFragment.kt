@@ -10,10 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.refactoringlife.auth.core.share.ShareViewModel
-import com.refactoringlife.auth.features.register.presentation.screen.RegisterScreen
 import com.refactoringlife.auth.features.register.presentation.screen.WelcomeRegisterScreen
 import com.refactoringlife.auth.features.register.presentation.viewmodel.RegisterViewModel
-import kotlin.getValue
 
 class WelcomeRegisterFragment : Fragment() {
 
@@ -31,15 +29,13 @@ class WelcomeRegisterFragment : Fragment() {
         composeView.setContent {
             WelcomeRegisterScreen(
                 registerViewModel = registerViewModel,
-
                 goToFoundationRegister = {
-                    //falta navegar al registro de fundacion
+
                 },
                 goToUserRegister = {
                     shareViewModel.navigateTo(RegisterFragment())
                 },
             )
-
         }
         return composeView
     }
@@ -48,14 +44,3 @@ class WelcomeRegisterFragment : Fragment() {
         fun createInstance(): WelcomeRegisterFragment = WelcomeRegisterFragment()
     }
 }
-
-
-//RegisterScreen(
-//registerViewModel = registerViewModel,
-//onBack = {
-//    shareViewModel.navigateToRoot()
-//},
-//goToAdoption = {
-//    shareViewModel.goToAdoption()
-//}
-//)

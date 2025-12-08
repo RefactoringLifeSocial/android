@@ -42,6 +42,8 @@
     <!-- welcome register -->
     <string name="mesage_welcome_register">¡Hola Bienvenido!</string>
     <string name="mesage_welcome_register_description">Elige una opcion para tu registro \nen Huella.</string>
+    <string name="description_button_user">*Sé un "Usuario" si deseas reportar, adoptar, dar hogar \ntemporal o ayudar económicamente a una mascota que \nlo necesita.</string>
+    <string name="description_button_foundation">*Sé un "Fundador" si deseas tener mayor visibilidad para \ntu fundación y llegar a más usuarios dentro de Huella.</string>
 
     <!-- Strings de Pre login -->
     <string name="refactoring_life">Refactoring\nLife</string>

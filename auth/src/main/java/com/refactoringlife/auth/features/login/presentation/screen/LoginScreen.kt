@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -61,8 +62,10 @@ fun LoginScreen(
             loginViewModel.sendEvent(LoginEvent.ClearState)
         }
     )
-    if (state.success) {
-        success()
+    LaunchedEffect(state.success) {
+        if (state.success) {
+            success()
+        }
     }
 }
 

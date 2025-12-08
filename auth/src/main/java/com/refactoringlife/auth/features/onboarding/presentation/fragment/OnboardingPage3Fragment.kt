@@ -32,7 +32,7 @@ class OnboardingPage3Fragment : Fragment() {
         composeView.setContent {
             ContentOnboardingPage3(
                 onNextClick = {
-                    shareViewModel.navigateTo(OnboardingPage4Fragment())
+                    shareViewModel.navigateTo(OnboardingPage4Fragment.createInstance())
                 },
                 onSkipClick = {
                     onboardingViewModel.completeOnboarding()
