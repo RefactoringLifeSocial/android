@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class UserRegisterRequest(
     @SerializedName("image")
-    val image: String?,
+    val image: String? = null,
     @SerializedName("name")
     val name: String,
     @SerializedName("country")

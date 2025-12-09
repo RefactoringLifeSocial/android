@@ -4,8 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import com.refactoringlife.auth.features.register.domain.blocs.RegisterEvent
+import com.refactoringlife.auth.features.register.domain.state.RegisterState
 import com.refactoringlife.auth.features.register.presentation.content.RegisterView
 import com.refactoringlife.auth.features.register.presentation.viewmodel.RegisterViewModel
+import com.refactoringlife.core.common.ui.composables.Loading
 
 @Composable
 fun RegisterScreen(
@@ -34,8 +36,12 @@ fun RegisterScreen(
         state = state,
         viewModel = registerViewModel
     )
+    if (state.loading){
+        Loading()
+    }
     LaunchedEffect(state.success) {
         if (state.success) {
+            registerViewModel.updateState { RegisterState() }
             success()
         }
     }
