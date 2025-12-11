@@ -8,6 +8,7 @@ sealed class RegisterEvent {
         val phone: String,
         val email: String,
         val password: String,
-        val confirmPassword: String
+        val confirmPassword: String,
+        val image: String
     ) : RegisterEvent()
 }

@@ -1,6 +1,6 @@
 package com.refactoringlife.auth.features.register.domain.blocs
 
-import com.refactoringlife.auth.features.register.domain.model.UserRegisterParams
+import com.refactoringlife.auth.features.register.data.dto.request.UserRegisterRequest
 import com.refactoringlife.auth.features.register.domain.usecases.RegisterResponseUseCase
 import com.refactoringlife.auth.features.register.presentation.util.RegisterFormValidator
 import com.refactoringlife.core.common.result.AsyncResult
@@ -34,18 +34,19 @@ class HandleRegisterBloc(
 
         if (!validationResult.isFormValid) return
 
-        val params = UserRegisterParams(
+        val request = UserRegisterRequest(
             name = event.name,
             country = event.country,
             address = event.address,
             phone = event.phone,
             email = event.email,
-            password = event.password
+            password = event.password,
+            image = event.image
         )
 
         update { it.copy(loading = true, error = null) }
 
-        when (val result = registerResponseUseCase(params)) {
+        when (val result = registerResponseUseCase(userRegisterRequest = request)) {
 
             is AsyncResult.Failure -> {
                 update {

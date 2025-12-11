@@ -28,7 +28,8 @@ fun RegisterScreen(
                     name = state.name,
                     country = state.country,
                     address = state.address,
-                    phone = state.phone
+                    phone = state.phone,
+                    image = state.image
                 )
             )
         },
