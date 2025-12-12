@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="logo">Logo</string>
-    <string name="huella_text">Huella text</string>
-    <string name="primera_vez_aqu_elige_tu_primera_acci_n_para_dejar_huella">¿Primera vez aquí?\nElige tu primera acción\n para dejar Huella</string>
-    <string name="ver_galer_a_de_mascotas">Ver galería de mascotas</string>
-    <string name="conocer_fundaciones">Conocer fundaciones</string>
-    <string name="reportar_una_mascota_perdida">Reportar una mascota perdida</string>
-    <string name="aceptar">Aceptar</string>
-    <string name="omitir">Omitir</string>
+    <!-- Adoption Onboarding Screen -->
+    <string name="adoption_onboarding_logo">Logo</string>
+    <string name="adoption_onboarding_logo_text">Huella text</string>
+
+    <string name="adoption_onboarding_title">¿Primera vez aquí?\nElige tu primera acción\npara dejar Huella</string>
+
+    <string name="adoption_onboarding_option_gallery">Ver galería de mascotas</string>
+    <string name="adoption_onboarding_option_foundations">Conocer fundaciones</string>
+    <string name="adoption_onboarding_option_report">Reportar una mascota perdida</string>
+
+    <string name="adoption_onboarding_accept">Aceptar</string>
+    <string name="adoption_onboarding_skip">Omitir</string>
 </resources>

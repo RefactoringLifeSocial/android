@@ -20,7 +20,7 @@ import com.refactoringlife.adoption.R
 
 
 @Composable
-fun WelcomeScreen(
+fun AdoptionOnboardingScreen(
     onUserClick: () -> Unit,
     onFoundationClick: () -> Unit
 ) {

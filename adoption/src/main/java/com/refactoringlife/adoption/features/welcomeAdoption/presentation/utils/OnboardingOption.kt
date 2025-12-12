@@ -1,6 +1,6 @@
 package com.refactoringlife.adoption.features.welcomeAdoption.presentation.utils
 
-enum class WelcomeOption {
+enum class OnboardingOption {
     GALLERY,
     FOUNDATIONS,
     REPORT
