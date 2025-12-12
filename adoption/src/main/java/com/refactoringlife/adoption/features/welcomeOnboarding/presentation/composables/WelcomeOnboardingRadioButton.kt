@@ -1,4 +1,4 @@
-package com.refactoringlife.adoption.features.welcomeAdoption.presentation.composables
+package com.refactoringlife.adoption.features.welcomeOnboarding.presentation.composables
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
@@ -13,11 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.refactoringlife.adoption.features.welcomeAdoption.presentation.utils.OnboardingOption
 import com.refactoringlife.core.presentation.theme.HuellaPurple
 
 @Composable
-fun OnboardingRadioButton(
+fun WelcomeOnboardingRadioButton(
     text: String,
     selected: Boolean,
     onClick: () -> Unit

@@ -1,4 +1,4 @@
-package com.refactoringlife.adoption.features.welcomeAdoption.presentation.screen
+package com.refactoringlife.adoption.features.welcomeOnboarding.presentation.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,14 +27,14 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.adoption.R
-import com.refactoringlife.adoption.features.welcomeAdoption.presentation.composables.OnboardingRadioButton
-import com.refactoringlife.adoption.features.welcomeAdoption.presentation.utils.OnboardingOption
+import com.refactoringlife.adoption.features.welcomeOnboarding.presentation.composables.WelcomeOnboardingRadioButton
+import com.refactoringlife.adoption.features.welcomeOnboarding.presentation.utils.WelcomeOnboardingOption
 import com.refactoringlife.core.presentation.theme.HuellaPurple
 
 @Composable
-fun AdoptionOnboardingScreen(
-    selectedOption: OnboardingOption = OnboardingOption.FOUNDATIONS,
-    onOptionSelected: (OnboardingOption) -> Unit = {},
+fun WelcomeOnboardingScreen(
+    selectedOption: WelcomeOnboardingOption = WelcomeOnboardingOption.FOUNDATIONS,
+    onOptionSelected: (WelcomeOnboardingOption) -> Unit = {},
     onAccept: () -> Unit = {},
     onSkip: () -> Unit = {}
 ){
@@ -50,20 +50,20 @@ fun AdoptionOnboardingScreen(
 
         Image(
             painter = painterResource(id = R.drawable.huellaicon),
-            contentDescription = stringResource(R.string.adoption_onboarding_logo),
+            contentDescription = stringResource(R.string.welcome_logo),
             modifier = Modifier.size(120.dp)
         )
 
         Image(
             painter = painterResource(id = R.drawable.huellatext ),
-            contentDescription = stringResource(R.string.adoption_onboarding_logo_text),
+            contentDescription = stringResource(R.string.welcome_logo_text),
             modifier = Modifier.size(120.dp)
         )
 
         Spacer(modifier = Modifier.height(32.dp))
 
         Text(
-            text = stringResource(R.string.adoption_onboarding_title),
+            text = stringResource(R.string.welcome_title),
             color = Color.Black,
             fontSize = 24.sp,
             textAlign = TextAlign.Center,
@@ -73,22 +73,22 @@ fun AdoptionOnboardingScreen(
 
         Spacer(modifier = Modifier.height(40.dp))
 
-        OnboardingRadioButton(
-            text = stringResource(R.string.adoption_onboarding_option_gallery),
-            selected = selectedOption == OnboardingOption.GALLERY,
-            onClick = { onOptionSelected(OnboardingOption.GALLERY) }
+        WelcomeOnboardingRadioButton(
+            text = stringResource(R.string.welcome_option_gallery),
+            selected = selectedOption == WelcomeOnboardingOption.GALLERY,
+            onClick = { onOptionSelected(WelcomeOnboardingOption.GALLERY) }
         )
 
-        OnboardingRadioButton(
-            text = stringResource(R.string.adoption_onboarding_option_foundations),
-            selected = selectedOption == OnboardingOption.FOUNDATIONS,
-            onClick = { onOptionSelected(OnboardingOption.FOUNDATIONS) }
+        WelcomeOnboardingRadioButton(
+            text = stringResource(R.string.welcome_option_foundations),
+            selected = selectedOption == WelcomeOnboardingOption.FOUNDATIONS,
+            onClick = { onOptionSelected(WelcomeOnboardingOption.FOUNDATIONS) }
         )
 
-        OnboardingRadioButton(
-            text = stringResource(R.string.adoption_onboarding_option_report),
-            selected = selectedOption == OnboardingOption.REPORT,
-            onClick = { onOptionSelected(OnboardingOption.REPORT) }
+        WelcomeOnboardingRadioButton(
+            text = stringResource(R.string.welcome_option_report),
+            selected = selectedOption == WelcomeOnboardingOption.REPORT,
+            onClick = { onOptionSelected(WelcomeOnboardingOption.REPORT) }
         )
 
         Spacer(modifier = Modifier.height(40.dp))
@@ -108,13 +108,13 @@ fun AdoptionOnboardingScreen(
                 containerColor = HuellaPurple
             )
         ) {
-            Text(stringResource(R.string.adoption_onboarding_accept))
+            Text(stringResource(R.string.welcome_accept))
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = stringResource(R.string.adoption_onboarding_skip),
+            text = stringResource(R.string.welcome_skip),
             color = HuellaPurple,
             textDecoration = TextDecoration.Underline,
             modifier = Modifier
