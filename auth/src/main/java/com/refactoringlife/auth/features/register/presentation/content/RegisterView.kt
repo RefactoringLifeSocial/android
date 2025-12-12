@@ -157,7 +157,7 @@ fun RegisterView(
                 textFontSize = 16.5.sp,
                 textFontWeight = FontWeight.SemiBold
             )
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(50.dp))
         }
     )
 }

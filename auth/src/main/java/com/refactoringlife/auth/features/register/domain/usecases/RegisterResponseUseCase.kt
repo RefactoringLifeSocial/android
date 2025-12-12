@@ -1,16 +1,15 @@
 package com.refactoringlife.auth.features.register.domain.usecases
 
+import com.refactoringlife.auth.features.register.data.dto.request.UserRegisterRequest
 import com.refactoringlife.auth.features.register.data.repository.UserRepositoryImp
 import com.refactoringlife.auth.features.register.domain.mappers.toUserRegisterModel
 import com.refactoringlife.auth.features.register.domain.model.UserRegisterModel
 import com.refactoringlife.core.common.result.AsyncResult
 
 class RegisterResponseUseCase(val repositoryImp: UserRepositoryImp = UserRepositoryImp()) {
-    suspend operator fun invoke(
-        email: String,
-        password: String
-    ): AsyncResult<UserRegisterModel?, Exception> {
-        return when (val result = repositoryImp.userRegister(email, password)) {
+    suspend operator fun invoke(userRegisterRequest: UserRegisterRequest): AsyncResult<UserRegisterModel?, Exception> {
+        return when (val result =
+            repositoryImp.userRegister(userRegisterRequest = userRegisterRequest)) {
             is AsyncResult.Failure -> {
                 AsyncResult.Failure(error = result.error)
             }

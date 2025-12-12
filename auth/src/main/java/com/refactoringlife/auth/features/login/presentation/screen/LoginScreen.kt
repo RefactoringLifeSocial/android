@@ -4,13 +4,12 @@ import android.app.Activity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.refactoringlife.auth.features.login.domain.blocs.LoginEvent
 import com.refactoringlife.auth.features.login.presentation.content.LoginView
 import com.refactoringlife.auth.features.login.presentation.viewmodel.LoginViewModel
@@ -61,13 +60,9 @@ fun LoginScreen(
             loginViewModel.sendEvent(LoginEvent.ClearState)
         }
     )
-    if (state.success) {
-        success()
+    LaunchedEffect(state.success) {
+        if (state.success) {
+            success()
+        }
     }
-}
-
-@Composable
-@Preview(showBackground = true)
-fun PreviewLogin() {
-    LoginScreen(success = {}, loginViewModel = viewModel(), onForgotPassword = {})
 }

@@ -12,13 +12,8 @@ class UserRepositoryImp(
     private val service: UserServiceImp = UserServiceImp()
 ) : UserRepository {
 
-    override suspend fun userRegister(
-        email: String?,
-        password: String
-    ): AsyncResult<UserRegisterResponse?, Exception> {
-        val result = service.userRegister(
-            UserRegisterRequest(email.orEmpty(), password)
-        )
+    override suspend fun userRegister(userRegisterRequest: UserRegisterRequest): AsyncResult<UserRegisterResponse?, Exception> {
+        val result = service.userRegister(userRegisterRequest = userRegisterRequest)
 
         result.getValueOrNull()?.let {
             LocalDataUser.saveLocalData(it)

@@ -10,12 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.refactoringlife.auth.core.share.ShareViewModel
-import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment
-import com.refactoringlife.auth.features.register.presentation.screen.RegisterScreen
+import com.refactoringlife.auth.features.register.presentation.screen.WelcomeRegisterScreen
 import com.refactoringlife.auth.features.register.presentation.viewmodel.RegisterViewModel
-import kotlin.getValue
 
-class RegisterFragment : Fragment() {
+class WelcomeRegisterFragment : Fragment() {
 
     val shareViewModel by activityViewModels <ShareViewModel> ()
     private val registerViewModel: RegisterViewModel by viewModels()
@@ -29,21 +27,20 @@ class RegisterFragment : Fragment() {
         )
 
         composeView.setContent {
-            RegisterScreen(
+            WelcomeRegisterScreen(
                 registerViewModel = registerViewModel,
-                onBack = {
-                    shareViewModel.navigateToRoot()
-                },
-                success = {
-                    shareViewModel.navigateTo(LoginFragment.createInstance())
-                }
+                goToFoundationRegister = {
 
+                },
+                goToUserRegister = {
+                    shareViewModel.navigateTo(RegisterFragment())
+                },
             )
         }
         return composeView
     }
 
     companion object {
-        fun createInstance(): RegisterFragment = RegisterFragment()
+        fun createInstance(): WelcomeRegisterFragment = WelcomeRegisterFragment()
     }
 }

@@ -1,12 +1,13 @@
 package com.refactoringlife.auth.features.register.domain.blocs
 
+import com.refactoringlife.auth.features.register.data.dto.request.UserRegisterRequest
 import com.refactoringlife.auth.features.register.domain.usecases.RegisterResponseUseCase
-import com.refactoringlife.auth.features.register.presentation.util.FormValidator
+import com.refactoringlife.auth.features.register.presentation.util.RegisterFormValidator
 import com.refactoringlife.core.common.result.AsyncResult
 
 class HandleRegisterBloc(
     val registerResponseUseCase: RegisterResponseUseCase = RegisterResponseUseCase(),
-    private val formValidator: FormValidator = FormValidator()
+    private val formValidator: RegisterFormValidator = RegisterFormValidator()
 ) :
     RegisterBaseBloc {
 
@@ -16,7 +17,6 @@ class HandleRegisterBloc(
         event: RegisterEvent,
         update: RegisterStateUpdate
     ) {
-
         if (event !is RegisterEvent.UserRegister) return
 
         val validationResult = formValidator.validateForm(event)
@@ -27,14 +27,26 @@ class HandleRegisterBloc(
                 hasPasswordError = validationResult.hasPasswordError,
                 hasPasswordMatchError = validationResult.hasPasswordMatchError,
                 isFormValid = validationResult.isFormValid,
-                error = null
+                error = null,
+                loading = false
             )
         }
 
         if (!validationResult.isFormValid) return
 
-        val result = registerResponseUseCase(event.email, event.password)
-        when (result) {
+        val request = UserRegisterRequest(
+            name = event.name,
+            country = event.country,
+            address = event.address,
+            phone = event.phone,
+            email = event.email,
+            password = event.password,
+            image = event.image
+        )
+
+        update { it.copy(loading = true, error = null) }
+
+        when (val result = registerResponseUseCase(userRegisterRequest = request)) {
 
             is AsyncResult.Failure -> {
                 update {
@@ -44,7 +56,7 @@ class HandleRegisterBloc(
 
             is AsyncResult.Success -> {
                 update {
-                    it.copy(loading = false, error = null, data = result.value)
+                    it.copy(loading = false, error = null, data = result.value, success = true)
                 }
             }
         }

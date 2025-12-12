@@ -32,7 +32,7 @@ class OnboardingPage1Fragment : Fragment() {
         composeView.setContent {
             ContentOnboardingPage1(
                 onNextClick = {
-                    shareViewModel.navigateTo(OnboardingPage2Fragment())
+                    shareViewModel.navigateTo(OnboardingPage2Fragment.createInstance())
                 },
                 onAlreadyHaveAccountClick = {
                     onboardingViewModel.completeOnboarding()

@@ -39,6 +39,12 @@
     <string name="register_requirement">300 px x 300px minimo</string>
     <string name="register_type_image">JPG, GIF, o PNG. Peso máximo de archivo 4 MB</string>
     <string name="register_communication_message">Si tienes problemas comunicate con nosotros</string>
+    <!-- welcome register -->
+    <string name="mesage_welcome_register">¡Hola Bienvenido!</string>
+    <string name="mesage_welcome_register_description">Elige una opcion para tu registro \nen Huella.</string>
+    <string name="description_button_user">*Sé un "Usuario" si deseas reportar, adoptar, dar hogar \ntemporal o ayudar económicamente a una mascota que \nlo necesita.</string>
+    <string name="description_button_foundation">*Sé un "Fundador" si deseas tener mayor visibilidad para \ntu fundación y llegar a más usuarios dentro de Huella.</string>
+
     <!-- Strings de Pre login -->
     <string name="refactoring_life">Refactoring\nLife</string>
     <string name="sign_in_text">Iniciar sesión</string>

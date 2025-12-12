@@ -11,11 +11,13 @@ data class RegisterState(
     val hasPasswordError: Boolean = false,
     val hasPasswordMatchError: Boolean = false,
     val isFormValid: Boolean = false,
+    val success: Boolean = false,
     val name : String = "",
     val country : String = "",
     val address : String = "",
     val phone : String = "",
     val email : String = "",
     val password : String = "",
-    val confirmPassword : String = ""
+    val confirmPassword : String = "",
+    val image : String = ""
 )
