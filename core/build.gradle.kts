@@ -74,7 +74,7 @@ dependencies {
     api(libs.androidx.datastore.preferences)
     api(libs.mockito.kotlin)
     api(libs.mockito.core)
-
+    api (libs.coil.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
