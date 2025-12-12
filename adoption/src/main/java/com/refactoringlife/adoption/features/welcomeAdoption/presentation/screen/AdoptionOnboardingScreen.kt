@@ -27,12 +27,12 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.adoption.R
-import com.refactoringlife.adoption.features.welcomeAdoption.presentation.composables.WelcomeRadioButton
+import com.refactoringlife.adoption.features.welcomeAdoption.presentation.composables.OnboardingRadioButton
 import com.refactoringlife.adoption.features.welcomeAdoption.presentation.utils.OnboardingOption
 import com.refactoringlife.core.presentation.theme.HuellaPurple
 
 @Composable
-fun WelcomeAdoptionScreen(
+fun AdoptionOnboardingScreen(
     selectedOption: OnboardingOption = OnboardingOption.FOUNDATIONS,
     onOptionSelected: (OnboardingOption) -> Unit = {},
     onAccept: () -> Unit = {},
@@ -73,19 +73,19 @@ fun WelcomeAdoptionScreen(
 
         Spacer(modifier = Modifier.height(40.dp))
 
-        WelcomeRadioButton(
+        OnboardingRadioButton(
             text = stringResource(R.string.adoption_onboarding_option_gallery),
             selected = selectedOption == OnboardingOption.GALLERY,
             onClick = { onOptionSelected(OnboardingOption.GALLERY) }
         )
 
-        WelcomeRadioButton(
+        OnboardingRadioButton(
             text = stringResource(R.string.adoption_onboarding_option_foundations),
             selected = selectedOption == OnboardingOption.FOUNDATIONS,
             onClick = { onOptionSelected(OnboardingOption.FOUNDATIONS) }
         )
 
-        WelcomeRadioButton(
+        OnboardingRadioButton(
             text = stringResource(R.string.adoption_onboarding_option_report),
             selected = selectedOption == OnboardingOption.REPORT,
             onClick = { onOptionSelected(OnboardingOption.REPORT) }

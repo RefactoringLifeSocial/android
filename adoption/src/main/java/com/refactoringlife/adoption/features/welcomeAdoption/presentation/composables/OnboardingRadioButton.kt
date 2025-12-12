@@ -13,10 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.refactoringlife.adoption.features.welcomeAdoption.presentation.utils.OnboardingOption
 import com.refactoringlife.core.presentation.theme.HuellaPurple
 
 @Composable
-fun WelcomeRadioButton(
+fun OnboardingRadioButton(
     text: String,
     selected: Boolean,
     onClick: () -> Unit

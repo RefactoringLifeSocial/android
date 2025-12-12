@@ -3,7 +3,7 @@ package com.refactoringlife.adoption.features
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.refactoringlife.adoption.features.welcomeAdoption.presentation.screen.WelcomeAdoptionScreen
+import com.refactoringlife.adoption.features.welcomeAdoption.presentation.screen.AdoptionOnboardingScreen
 import com.refactoringlife.adoption.features.welcomeAdoption.presentation.utils.OnboardingOption
 
 class AdoptionActivity : ComponentActivity() {
@@ -11,7 +11,7 @@ class AdoptionActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            WelcomeAdoptionScreen(
+            AdoptionOnboardingScreen(
                 selectedOption = OnboardingOption.GALLERY,
                 onOptionSelected = {},
                 onAccept = {},
