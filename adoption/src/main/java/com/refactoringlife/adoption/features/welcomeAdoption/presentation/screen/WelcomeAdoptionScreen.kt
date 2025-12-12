@@ -45,18 +45,23 @@ fun WelcomeAdoptionScreen(
             .padding(horizontal = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
         Spacer(modifier = Modifier.height(40.dp))
+
         Image(
             painter = painterResource(id = R.drawable.huellaicon),
             contentDescription = stringResource(R.string.logo),
             modifier = Modifier.size(120.dp)
         )
+
         Image(
             painter = painterResource(id = R.drawable.huellatext ),
             contentDescription = stringResource(R.string.huella_text),
             modifier = Modifier.size(120.dp)
         )
+
         Spacer(modifier = Modifier.height(32.dp))
+
         Text(
             text = stringResource(R.string.primera_vez_aqu_elige_tu_primera_acci_n_para_dejar_huella),
             color = Color.Black,
@@ -65,23 +70,29 @@ fun WelcomeAdoptionScreen(
             fontWeight = FontWeight.Normal,
             lineHeight = 26.sp
         )
+
         Spacer(modifier = Modifier.height(40.dp))
+
         WelcomeRadioButton(
             text = stringResource(R.string.ver_galer_a_de_mascotas),
             selected = selectedOption == WelcomeOption.GALLERY,
             onClick = { onOptionSelected(WelcomeOption.GALLERY) }
         )
+
         WelcomeRadioButton(
             text = stringResource(R.string.conocer_fundaciones),
             selected = selectedOption == WelcomeOption.FOUNDATIONS,
             onClick = { onOptionSelected(WelcomeOption.FOUNDATIONS) }
         )
+
         WelcomeRadioButton(
             text = stringResource(R.string.reportar_una_mascota_perdida),
             selected = selectedOption == WelcomeOption.REPORT,
             onClick = { onOptionSelected(WelcomeOption.REPORT) }
         )
+
         Spacer(modifier = Modifier.height(40.dp))
+
         Button(
             onClick = onAccept,
             shape = RoundedCornerShape(50),
@@ -99,7 +110,9 @@ fun WelcomeAdoptionScreen(
         ) {
             Text(stringResource(R.string.aceptar))
         }
+
         Spacer(modifier = Modifier.height(16.dp))
+
         Text(
             text = stringResource(R.string.omitir),
             color = HuellaPurple,
@@ -110,6 +123,5 @@ fun WelcomeAdoptionScreen(
             fontSize = 16.sp,
             fontWeight = FontWeight.Medium
         )
-
     }
 }
