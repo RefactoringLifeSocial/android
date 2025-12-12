@@ -1,5 +1,6 @@
 package com.refactoringlife.auth
 
+import com.refactoringlife.auth.features.register.data.dto.request.UserRegisterRequest
 import com.refactoringlife.auth.features.register.data.dto.responses.UserRegisterResponse
 import com.refactoringlife.auth.features.register.domain.model.UserRegisterParams
 import com.refactoringlife.auth.features.register.domain.usecases.RegisterResponseUseCase
@@ -15,13 +16,14 @@ import org.junit.Assert.fail
 
 class RegisterResponseUseCaseTest {
 
-    private val dummyParams = UserRegisterParams(
+    private val dummyParams = UserRegisterRequest(
         name = "Test Name",
         country = "Test Country",
         address = "Test Address",
         phone = "123456789",
         email = "test@email.com",
-        password = "password123"
+        password = "password123",
+        image = ""
     )
 
     @Test
