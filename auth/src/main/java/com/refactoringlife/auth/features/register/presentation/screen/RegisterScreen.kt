@@ -29,7 +29,7 @@ fun RegisterScreen(
                     country = state.country,
                     address = state.address,
                     phone = state.phone,
-                    image = state.image
+                    image = ""
                 )
             )
         },
@@ -37,7 +37,7 @@ fun RegisterScreen(
         state = state,
         viewModel = registerViewModel
     )
-    if (state.loading){
+    if (state.loading) {
         Loading()
     }
     LaunchedEffect(state.success) {

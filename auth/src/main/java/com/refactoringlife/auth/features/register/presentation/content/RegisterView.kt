@@ -127,7 +127,7 @@ fun RegisterView(
                 value = state.confirmPassword,
                 onValueChange = { newValue ->
                     scope.launch {
-                        viewModel.updateState(reducer = { state.copy(confirmPassword =  newValue) })
+                        viewModel.updateState(reducer = { state.copy(confirmPassword = newValue) })
                     }
                 },
                 placeholderText = stringResource(id = R.string.register_password),
@@ -158,6 +158,8 @@ fun RegisterView(
                 textFontWeight = FontWeight.SemiBold
             )
             Spacer(modifier = Modifier.height(50.dp))
-        }
+        },
+        state = state,
+        viewModel = viewModel
     )
 }

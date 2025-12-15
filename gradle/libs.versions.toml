@@ -34,7 +34,7 @@ retrofit = "2.9.0"
 playServicesAuth = "21.1.0"
 
 # Image Loading
-coilCompose = "2.5.0"
+coilCompose = "2.7.0"
 lottieCompose = "6.6.10"
 
 # Coroutines
