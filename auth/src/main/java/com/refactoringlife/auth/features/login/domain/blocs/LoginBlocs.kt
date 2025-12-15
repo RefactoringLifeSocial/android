@@ -1,5 +1,6 @@
 package com.refactoringlife.auth.features.login.domain.blocs
 
+import com.refactoringlife.auth.features.login.domain.usecases.SaveAccessTokenUseCase
 import com.refactoringlife.core.data.datastore.AppPreferencesRepository
 
 class LoginBlocs {
@@ -7,7 +8,11 @@ class LoginBlocs {
         fun getLoginBlocs(
             appPreferencesRepository: AppPreferencesRepository
         ) = listOf(
-            HandleLoginBloc(appPreferencesRepository = appPreferencesRepository),
+            HandleLoginBloc(
+                saveAccessTokenUseCase = SaveAccessTokenUseCase(
+                    appPreferencesRepository = appPreferencesRepository
+                )
+            ),
             HandleLoginGoogleBloc(),
             HandleClearStateBloc()
         )

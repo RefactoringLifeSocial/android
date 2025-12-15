@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.login.presentation.theme.HuellaBackgraund
+import com.refactoringlife.core.common.utils.Constants.EMPTY
 
 @Composable
 fun OnboardingContentWithBackground(
@@ -32,7 +33,7 @@ fun OnboardingContentWithBackground(
     ) {
         Image(
             painter = painterResource(id = R.drawable.rectangle_192),
-            contentDescription = "Fondo de onda",
+            contentDescription = EMPTY,
             contentScale = ContentScale.FillWidth,
             modifier = Modifier
                 .fillMaxWidth()

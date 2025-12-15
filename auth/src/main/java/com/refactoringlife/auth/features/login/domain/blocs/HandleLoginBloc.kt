@@ -2,15 +2,15 @@ package com.refactoringlife.auth.features.login.domain.blocs
 
 import com.refactoringlife.auth.features.login.data.dto.request.UserLoginRequest
 import com.refactoringlife.auth.features.login.domain.state.LoginState
+import com.refactoringlife.auth.features.login.domain.usecases.SaveAccessTokenUseCase
 import com.refactoringlife.auth.features.login.domain.usecases.UserLoginUserCase
 import com.refactoringlife.auth.features.login.utils.LoginFormValidator
 import com.refactoringlife.core.common.result.AsyncResult
-import com.refactoringlife.core.data.datastore.AppPreferencesRepository
 
 class HandleLoginBloc(
     private val userLoginUserCase: UserLoginUserCase = UserLoginUserCase(),
     private val formValidator: LoginFormValidator = LoginFormValidator(),
-    private val appPreferencesRepository: AppPreferencesRepository
+    private val saveAccessTokenUseCase: SaveAccessTokenUseCase
 ) : LoginBaseBloc {
 
     override fun canHandle(event: LoginEvent): Boolean = event is LoginEvent.Login
@@ -55,7 +55,16 @@ class HandleLoginBloc(
             }
             is AsyncResult.Success -> {
                 result.value?.accessToken?.let { token ->
-                    appPreferencesRepository.setAccessToken(token)
+                    val saveTokenResult = saveAccessTokenUseCase(token)
+                    when (saveTokenResult) {
+                        is AsyncResult.Failure -> {
+                            update{it.copy(error = true, errorMessage = saveTokenResult.error.message ?: "Error al guardar el token", loading = false)}
+                            return
+                        }
+                        is AsyncResult.Success -> {
+                            // Token guardado exitosamente
+                        }
+                    }
                 }
 
                 update{it.copy(error = false, success = true, loading = false)}

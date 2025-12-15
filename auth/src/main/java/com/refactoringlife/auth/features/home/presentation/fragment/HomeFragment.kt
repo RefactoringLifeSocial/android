@@ -12,11 +12,13 @@ import com.refactoringlife.auth.core.share.ShareViewModel
 import com.refactoringlife.auth.features.home.presentation.content.HomeContent
 import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment
 import com.refactoringlife.auth.features.register.presentation.fragment.WelcomeRegisterFragment
+import com.refactoringlife.core.common.utils.Constants.EMPTY
+import com.refactoringlife.core.common.utils.Constants.ID
 
 class HomeFragment : Fragment() {
 
     val shareViewModel by activityViewModels<ShareViewModel>()
-    private var id = ""
+    private var id = EMPTY
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +30,7 @@ class HomeFragment : Fragment() {
             ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
         )
         arguments?.let {
-            id = it.getString("id").toString()
+            id = it.getString(ID).toString()
         }
 
         composeView.setContent {
@@ -49,7 +51,7 @@ class HomeFragment : Fragment() {
         fun createInstance(id: String): HomeFragment {
             return HomeFragment().apply {
                 arguments = Bundle().apply {
-                    putString("id", id)
+                    putString(ID, id)
                 }
             }
         }

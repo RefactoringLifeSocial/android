@@ -6,7 +6,7 @@
 
     <application>
         <activity
-            android:name=".features.AuthActivity"
+            android:name=".features.activity.presenter.AuthActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:launchMode="singleTop">
