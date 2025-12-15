@@ -12,7 +12,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun ForgotPasswordScreen(
-    viewModel: ForgotPasswordViewModel
+    viewModel: ForgotPasswordViewModel,
+    goToLogin: () -> Unit
 ) {
     val state by viewModel.uiState.collectAsState()
     val scope = rememberCoroutineScope()
@@ -29,6 +30,7 @@ fun ForgotPasswordScreen(
                 scope.launch {
                     viewModel.updateState(reducer = { state.copy(showModal = false) })
                 }
+                goToLogin()
             }
         )
     }

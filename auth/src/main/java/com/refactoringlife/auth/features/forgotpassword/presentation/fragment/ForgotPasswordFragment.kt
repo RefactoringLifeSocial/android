@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.refactoringlife.auth.core.share.ShareViewModel
 import com.refactoringlife.auth.features.forgotpassword.presentation.screen.ForgotPasswordScreen
 import com.refactoringlife.auth.features.forgotpassword.presentation.viewmodel.ForgotPasswordViewModel
+import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment
 
 class ForgotPasswordFragment : Fragment() {
 
@@ -29,11 +30,13 @@ class ForgotPasswordFragment : Fragment() {
         )
         composeView.setContent {
             ForgotPasswordScreen(
-                viewModel = viewModel
+                viewModel = viewModel,
+                goToLogin = { shareViewModel.navigateTo(LoginFragment()) }
             )
         }
         return composeView
     }
+
     companion object {
         fun createInstance(): ForgotPasswordFragment = ForgotPasswordFragment()
     }
