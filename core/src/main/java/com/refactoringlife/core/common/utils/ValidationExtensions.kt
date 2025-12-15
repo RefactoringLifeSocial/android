@@ -15,3 +15,7 @@ fun String?.isValidPassword(): Boolean {
 fun String?.isPasswordMatch(confirmPassword: String?): Boolean {
     return this == confirmPassword && !this.isNullOrBlank()
 }
+fun String.isAllowedInput(): Boolean {
+    val regex = Regex("[-a-zA-Z0-9\\s.,!?;:\"'()&@$#%*+]*")
+    return this.matches(regex)
+}

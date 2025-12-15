@@ -19,6 +19,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.refactoringlife.auth.features.register.presentation.util.Constants
+import com.refactoringlife.core.common.utils.isAllowedInput
 
 @Composable
 fun TextFieldCustom(
@@ -34,7 +35,11 @@ fun TextFieldCustom(
     ) {
     OutlinedTextField(
         value = value,
-        onValueChange = onValueChange,
+        onValueChange = {
+            if (it.isAllowedInput()){
+                onValueChange(it)
+            }
+        },
         singleLine = true,
         visualTransformation = if (isPassword && !showPassword) {
             PasswordVisualTransformation()
