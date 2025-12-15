@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.refactoringlife.auth.core.share.ShareViewModel
 import com.refactoringlife.auth.features.home.presentation.fragment.HomeFragment
+import com.refactoringlife.auth.features.onboarding.domain.blocs.OnboardingEvent
 import com.refactoringlife.auth.features.onboarding.presentation.content.ContentOnboardingPage4
 import com.refactoringlife.auth.features.onboarding.presentation.viewmodel.OnboardingViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,7 +32,7 @@ class OnboardingPage4Fragment : Fragment() {
         composeView.setContent {
             ContentOnboardingPage4(
                 onStartClick = {
-                    onboardingViewModel.completeOnboarding()
+                    onboardingViewModel.sendEvent(OnboardingEvent.CompleteOnboarding)
                     shareViewModel.navigateTo(HomeFragment.createInstance("id"))
                 }
             )

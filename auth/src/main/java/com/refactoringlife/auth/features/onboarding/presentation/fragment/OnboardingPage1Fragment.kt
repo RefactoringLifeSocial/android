@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.refactoringlife.auth.core.share.ShareViewModel
 import com.refactoringlife.auth.features.login.presentation.fragment.LoginFragment
+import com.refactoringlife.auth.features.onboarding.domain.blocs.OnboardingEvent
 import com.refactoringlife.auth.features.onboarding.presentation.content.ContentOnboardingPage1
 import com.refactoringlife.auth.features.onboarding.presentation.viewmodel.OnboardingViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,7 +36,7 @@ class OnboardingPage1Fragment : Fragment() {
                     shareViewModel.navigateTo(OnboardingPage2Fragment.createInstance())
                 },
                 onAlreadyHaveAccountClick = {
-                    onboardingViewModel.completeOnboarding()
+                    onboardingViewModel.sendEvent(OnboardingEvent.CompleteOnboarding)
                     shareViewModel.navigateTo(LoginFragment.createInstance())
                 }
             )
