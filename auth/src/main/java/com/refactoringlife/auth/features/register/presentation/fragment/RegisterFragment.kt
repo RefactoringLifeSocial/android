@@ -35,7 +35,7 @@ class RegisterFragment : Fragment() {
                     shareViewModel.navigateToRoot()
                 },
                 success = {
-                    shareViewModel.navigateTo(LoginFragment.createInstance())
+                    shareViewModel.goToAdoption()
                 }
 
             )
