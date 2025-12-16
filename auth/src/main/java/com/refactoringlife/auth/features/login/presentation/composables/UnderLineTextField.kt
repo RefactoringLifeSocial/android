@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.login.presentation.theme.GrayLight
 import com.refactoringlife.auth.features.login.presentation.theme.HuellaErrorRed
+import com.refactoringlife.core.common.utils.isAllowedInput
 
 @Composable
 fun UnderlineTextField(
@@ -53,7 +54,11 @@ fun UnderlineTextField(
         Box {
             BasicTextField(
                 value = value,
-                onValueChange = onValueChange,
+                onValueChange = {
+                    if (it.isAllowedInput()){
+                        onValueChange(it)
+                    }
+                },
                 singleLine = true,
                 visualTransformation = visualTransformation,
                 textStyle = androidx.compose.ui.text.TextStyle(
