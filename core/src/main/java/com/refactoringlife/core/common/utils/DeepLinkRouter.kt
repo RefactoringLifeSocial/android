@@ -11,16 +11,15 @@ object DeepLinkRouter {
 
     fun parseDeepLink(uri: Uri?): DeepLinkResult {
         if (uri == null) return DeepLinkResult.Unknown
+        val path = uri.path ?: ""
+        val scheme = uri.scheme ?: ""
 
-        val path = uri.path
-        val scheme = uri.scheme
-
-        if (path == DeepLinkPaths.RESET_PASSWORD_PATH) {
+        if (path.startsWith(DeepLinkPaths.RESET_PASSWORD_PATH)) {
             val token = uri.getQueryParameter("token")
-            if (!token.isNullOrEmpty() &&
-                (scheme == DeepLinkPaths.RESET_PASSWORD_SCHEME_CUSTOM ||
-                        scheme == DeepLinkPaths.RESET_PASSWORD_SCHEME_HTTPS)
-            ) {
+            val isCorrectScheme = scheme.equals("https", ignoreCase = true) ||
+                    scheme.equals("huella", ignoreCase = true)
+
+            if (!token.isNullOrEmpty() && isCorrectScheme) {
                 return DeepLinkResult.ResetPassword(token)
             }
         }
