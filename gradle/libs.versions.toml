@@ -1,6 +1,6 @@
 [versions]
 # Core Android
-agp = "8.8.0"
+agp = "8.9.1"
 coreSplashscreen = "1.0.1"
 fragmentKtx = "1.8.9"
 kotlin = "2.0.0"
@@ -10,11 +10,14 @@ material = "1.12.0"
 
 # Compose
 composeBom = "2024.04.01"
-activityCompose = "1.10.1"
+activityCompose = "1.12.0"
 icons-extended = "1.7.8"
 
 # Navigation
 navigation = "2.7.0"
+nav3Core = "1.0.0"
+kotlinxSerializationCore = "1.8.1"
+kotlinSerialization = "2.0.0"
 
 # Hilt
 hilt = "2.51.1"
@@ -81,6 +84,11 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
 
+
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core"}
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core"}
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore"}
+
 # Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
@@ -130,3 +138,4 @@ hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
+jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}

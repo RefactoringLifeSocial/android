@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.refactoringlife.socialpets"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.refactoringlife.socialpets"

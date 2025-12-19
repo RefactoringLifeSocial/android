@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.refactoringlife.adoption.features.welcome.presentation.screen.WelcomeOnboardingScreen
+import com.refactoringlife.adoption.navigation.NavigationWrapper
 import com.refactoringlife.adoption.utils.WelcomeOptions
 
 class AdoptionActivity : ComponentActivity() {
@@ -11,12 +12,13 @@ class AdoptionActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            WelcomeOnboardingScreen(
-                selectedOption = WelcomeOptions.GALLERY,
-                onOptionSelected = {},
-                onAccept = {},
-                onSkip = {}
-            )
+            NavigationWrapper()
+//            WelcomeOnboardingScreen(
+//                selectedOption = WelcomeOptions.GALLERY,
+//                onOptionSelected = {},
+//                onAccept = {},
+//                onSkip = {}
+//            )
         }
     }
 }
