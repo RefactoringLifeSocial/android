@@ -28,7 +28,6 @@ class WelcomeRegisterFragment : Fragment() {
 
         composeView.setContent {
             WelcomeRegisterScreen(
-                registerViewModel = registerViewModel,
                 goToFoundationRegister = {
 
                 },

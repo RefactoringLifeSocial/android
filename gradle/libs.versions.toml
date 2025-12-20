@@ -14,15 +14,12 @@ activityCompose = "1.12.0"
 icons-extended = "1.7.8"
 
 # Navigation
-navigation = "2.7.0"
 nav3Core = "1.0.0"
 kotlinxSerializationCore = "1.8.1"
 kotlinSerialization = "2.0.0"
 
 # Hilt
 hilt = "2.51.1"
-hiltNavigationCompose = "1.2.0"
-hiltNavigationFragment = "1.2.0"
 
 # Lifecycle
 lifecycleRuntimeKtx = "2.9.1"
@@ -80,11 +77,6 @@ androidx-material-icons-extended = { module = "androidx.compose.material:materia
 androidx-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 
 # Navigation
-androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
-androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
-androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
-
-
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core"}
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core"}
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore"}
@@ -92,8 +84,6 @@ kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 # Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
-androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
-androidx-hilt-navigation-fragment = { group = "androidx.hilt", name = "hilt-navigation-fragment", version.ref = "hiltNavigationFragment" }
 
 # Lifecycle
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
