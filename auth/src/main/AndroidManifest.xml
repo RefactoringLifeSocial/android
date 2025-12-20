@@ -37,6 +37,3 @@
         </activity>
     </application>
 </manifest>
-
-<!--    android:host="delightful-pixie-f83dc1.netlify.app"    <- url de prueba web ficticia-->
-<!--    android:host="refactoringlife.com"                    <- url del mock  -->

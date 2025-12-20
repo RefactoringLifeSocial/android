@@ -27,13 +27,11 @@ fun NavigationWrapper() {
             entry<Routes.WelcomeScreen> {
                 WelcomeOnboardingScreen(
                     selectedOption = WelcomeOptions.GALLERY,
-                    onOptionSelected = { /* ... */ },
+                    onOptionSelected = {  },
                     onAccept = {
-                        // Navegar a Screen2 cuando se presiona Accept
                         backStack.navigateTo(Routes.Screen2("from_welcome"))
                     },
                     onSkip = {
-                        // Navegar a Screen3 cuando se presiona Skip
                         backStack.navigateTo(Routes.Screen3)
                     }
                 )
@@ -57,24 +55,5 @@ fun NavigationWrapper() {
                 )
             }
         },
-        transitionSpec = {
-            slideInHorizontally(
-                initialOffsetX = { it },
-                animationSpec = tween(300)
-            ) togetherWith slideOutHorizontally(
-                targetOffsetX = { -it },
-                animationSpec = tween(300)
-            )
-        },
-        //este es para navegacion de salida
-        popTransitionSpec = {
-            slideInHorizontally(
-                initialOffsetX = { -it },
-                animationSpec = tween(300)
-            ) togetherWith slideOutHorizontally(
-                targetOffsetX = { it },
-                animationSpec = tween(300)
-            )
-        }
     )
 }
