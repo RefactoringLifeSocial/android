@@ -5,11 +5,12 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.gms.google.services)
+
 }
 
 android {
     namespace = "com.refactoringlife.core"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -75,8 +76,9 @@ dependencies {
     api(libs.mockito.kotlin)
     api(libs.mockito.core)
     api (libs.coil.compose)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
     api(libs.androidx.fragment.ktx)
+    api(libs.androidx.navigation3.runtime)
+    api(libs.androidx.navigation3.ui)
+    api(libs.kotlinx.serialization.core)
+
 }

@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.refactoringlife.socialpets"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.refactoringlife.socialpets"
@@ -66,14 +66,10 @@ dependencies {
     implementation (libs.retrofit)
     implementation (libs.gson)
     implementation(libs.hilt.android)
-    implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.compiler)
     implementation(libs.okhttp)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.core.splashscreen)
 }

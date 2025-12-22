@@ -2,6 +2,7 @@ package com.refactoringlife.auth.features.register.presentation.content
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,45 +25,54 @@ import com.refactoringlife.auth.utils.theme.BackgroudHuella
 
 @Composable
 fun WelcomeRegisterView(
-    onUserRegisterClick: () -> Unit ,
+    onUserRegisterClick: () -> Unit,
     onFoundationRegisterClick: () -> Unit
 ) {
     val scrollState = rememberScrollState()
-
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(BackgroudHuella)
             .verticalScroll(scrollState)
-            .navigationBarsPadding(),
-        contentAlignment = Alignment.Center
+            .background(BackgroudHuella),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+
     ) {
-        Image(
+        Box(
             modifier = Modifier
-                .fillMaxWidth(),
-            painter = painterResource(id = R.drawable.rectangle_192),
-            contentDescription = "Background",
-            contentScale = ContentScale.FillWidth,
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(30.dp)
-        )
-        {
-            TitleWelcomeRegister()
-            Spacer(modifier = Modifier.height(30.dp))
-            WelcomeRegisterDescription()
-            Spacer(modifier = Modifier.height(30.dp))
-            WelcomeRegisterActionButton(
-                onUserRegisterClick = onUserRegisterClick,
-                onFoundationRegisterClick = onFoundationRegisterClick
+                .fillMaxSize()
+                .background(BackgroudHuella)
+                .navigationBarsPadding(),
+            contentAlignment = Alignment.Center
+        ) {
+            Image(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                painter = painterResource(id = R.drawable.rectangle_192),
+                contentDescription = "Background",
+                contentScale = ContentScale.FillWidth,
             )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 30.dp)
+            )
+            {
+                TitleWelcomeRegister()
+                Spacer(modifier = Modifier.height(30.dp))
+                WelcomeRegisterDescription()
+                Spacer(modifier = Modifier.height(30.dp))
+                WelcomeRegisterActionButton(
+                    onUserRegisterClick = onUserRegisterClick,
+                    onFoundationRegisterClick = onFoundationRegisterClick
+                )
+            }
         }
+        Spacer(modifier = Modifier.height(30.dp))
         WelcomeRegisterDescriptionOfButtons(
             modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(start = 30.dp, end = 30.dp, bottom = 30.dp)
+                .padding(bottom = 30.dp)
         )
     }
 }

@@ -2,11 +2,13 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+
 }
 
 android {
     namespace = "com.refactoringlife.adoption"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24

@@ -31,14 +31,10 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
-        val handledDeepLink = handleDeepLinkIfNeeded(intent)
+        val handled = handleDeepLinkIfNeeded(intent)
 
-        if (!handledDeepLink && savedInstanceState == null) {
-            lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    authViewModel.sendEvent(AuthEvent.CheckInitialNavigation)
-                }
-            }
+        if (!handled && savedInstanceState == null) {
+            authViewModel.sendEvent(AuthEvent.CheckInitialNavigation)
         }
         observer()
         observeAuthState()
@@ -57,14 +53,13 @@ class AuthActivity : BaseActivity(R.id.fragment_container) {
 
     private fun handleDeepLinkIfNeeded(intent: Intent?): Boolean {
         val uri = intent?.data ?: return false
-
-        val deepLinkResult = DeepLinkRouter.parseDeepLink(uri)
-        val isValid = deepLinkResult is DeepLinkRouter.DeepLinkResult.ResetPassword
+        val result = DeepLinkRouter.parseDeepLink(uri)
+        val isValid = result is DeepLinkRouter.DeepLinkResult.ResetPassword
 
         if (isValid) {
             authViewModel.sendEvent(AuthEvent.HandleDeepLink(uri))
+            intent.data = null
         }
-
         return isValid
     }
 
