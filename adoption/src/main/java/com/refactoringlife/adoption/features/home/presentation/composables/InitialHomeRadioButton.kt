@@ -1,4 +1,4 @@
-package com.refactoringlife.adoption.features.welcome.presentation.composables
+package com.refactoringlife.adoption.features.home.presentation.composables
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import com.refactoringlife.core.presentation.theme.HuellaPurple
 
 @Composable
-fun WelcomeOnboardingRadioButton(
+fun InitialHomeRadioButton(
     text: String,
     selected: Boolean,
     onClick: () -> Unit

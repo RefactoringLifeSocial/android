@@ -1,6 +1,6 @@
 package com.refactoringlife.adoption.utils
 
-enum class WelcomeOptions {
+enum class InitialHomeOptions {
     GALLERY,
     FOUNDATIONS,
     REPORT

@@ -1,4 +1,4 @@
-package com.refactoringlife.adoption.features.welcome.presentation.screen
+package com.refactoringlife.adoption.features.home.presentation.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,6 +15,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -24,20 +26,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.adoption.R
-import com.refactoringlife.adoption.features.welcome.presentation.composables.WelcomeOnboardingRadioButton
-import com.refactoringlife.adoption.utils.WelcomeOptions
+import com.refactoringlife.adoption.features.home.domain.blocs.InitialHomeEvent
+import com.refactoringlife.adoption.features.home.presentation.composables.InitialHomeRadioButton
+import com.refactoringlife.adoption.features.home.presentation.viewmodel.InitialHomeViewModel
+import com.refactoringlife.adoption.utils.InitialHomeOptions
 import com.refactoringlife.core.presentation.theme.HuellaPurple
 
 @Composable
-fun WelcomeOnboardingScreen(
-    selectedOption: WelcomeOptions = WelcomeOptions.FOUNDATIONS,
-    onOptionSelected: (WelcomeOptions) -> Unit = {},
-    onAccept: () -> Unit = {},
-    onSkip: () -> Unit = {}
+fun InitialHomeSelectionScreen(
+    viewModel: InitialHomeViewModel
 ){
+    // Observamos el estado del ViewModel
+    val state by viewModel.state.collectAsState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -73,28 +78,36 @@ fun WelcomeOnboardingScreen(
 
         Spacer(modifier = Modifier.height(40.dp))
 
-        WelcomeOnboardingRadioButton(
+        InitialHomeRadioButton(
             text = stringResource(R.string.welcome_option_gallery),
-            selected = selectedOption == WelcomeOptions.GALLERY,
-            onClick = { onOptionSelected(WelcomeOptions.GALLERY) }
+            selected = state.selectedOption == InitialHomeOptions.GALLERY,
+            onClick = {
+                viewModel.sendEvent(InitialHomeEvent.SelectOption(InitialHomeOptions.GALLERY))
+            }
         )
 
-        WelcomeOnboardingRadioButton(
+        InitialHomeRadioButton(
             text = stringResource(R.string.welcome_option_foundations),
-            selected = selectedOption == WelcomeOptions.FOUNDATIONS,
-            onClick = { onOptionSelected(WelcomeOptions.FOUNDATIONS) }
+            selected = state.selectedOption == InitialHomeOptions.FOUNDATIONS,
+            onClick = {
+                viewModel.sendEvent(InitialHomeEvent.SelectOption(InitialHomeOptions.FOUNDATIONS))
+            }
         )
 
-        WelcomeOnboardingRadioButton(
+        InitialHomeRadioButton(
             text = stringResource(R.string.welcome_option_report),
-            selected = selectedOption == WelcomeOptions.REPORT,
-            onClick = { onOptionSelected(WelcomeOptions.REPORT) }
+            selected = state.selectedOption == InitialHomeOptions.REPORT,
+            onClick = {
+                viewModel.sendEvent(InitialHomeEvent.SelectOption(InitialHomeOptions.REPORT))
+            }
         )
 
         Spacer(modifier = Modifier.height(40.dp))
 
         Button(
-            onClick = onAccept,
+            onClick = {
+                viewModel.sendEvent(InitialHomeEvent.Accept)
+            },
             shape = RoundedCornerShape(50),
             modifier = Modifier
                 .fillMaxWidth()
@@ -118,7 +131,9 @@ fun WelcomeOnboardingScreen(
             color = HuellaPurple,
             textDecoration = TextDecoration.Underline,
             modifier = Modifier
-                .clickable { onSkip() }
+                .clickable {
+                    viewModel.sendEvent(InitialHomeEvent.Skip)
+                }
                 .padding(8.dp),
             fontSize = 16.sp,
             fontWeight = FontWeight.Medium
