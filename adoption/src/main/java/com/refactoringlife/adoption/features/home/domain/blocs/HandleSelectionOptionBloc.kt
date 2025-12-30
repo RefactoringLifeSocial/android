@@ -13,7 +13,8 @@ class HandleSelectOptionBloc : InitialHomeBaseBloc {
 
         update { current ->
             current.copy(
-                selectedOption = event.option
+                selectedOption = event.option,
+                navigationDestination = null
             )
         }
     }

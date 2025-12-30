@@ -5,7 +5,8 @@ class InitialHomeBlocs {
         fun getInitialHomeBlocs() = listOf(
             HandleSelectOptionBloc(),
             HandleAcceptBloc(),
-            HandleSkipBloc()
+            HandleSkipBloc(),
+            HandleClearNavigationBloc()
         )
     }
 }
