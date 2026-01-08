@@ -39,14 +39,13 @@ fun TextFieldCustom(
     OutlinedTextField(
         value = value,
         onValueChange = { newValue ->
-            if (onlyNumbers) {
-                if (newValue.all { it.isDigit() }) {
-                    onValueChange(newValue)
-                }
-            } else {
-                if (newValue.isAllowedInput()) {
-                    onValueChange(newValue)
-                }
+            val isValid = when {
+                onlyNumbers -> newValue.all { it.isDigit() }
+                else -> newValue.isAllowedInput()
+            }
+
+            if (isValid) {
+                onValueChange(newValue)
             }
         },
         singleLine = true,

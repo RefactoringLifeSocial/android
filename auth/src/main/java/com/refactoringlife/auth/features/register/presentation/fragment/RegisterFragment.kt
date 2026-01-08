@@ -37,7 +37,6 @@ class RegisterFragment : Fragment() {
                 success = {
                     shareViewModel.goToAdoption()
                 }
-
             )
         }
         return composeView

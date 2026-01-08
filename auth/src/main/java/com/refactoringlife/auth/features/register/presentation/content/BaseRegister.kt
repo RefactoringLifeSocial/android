@@ -65,8 +65,8 @@ fun BaseRegister(
             .fillMaxWidth()
             .fillMaxHeight()
             .background(Color.White)
-            .verticalScroll(scroll)
-            .imePadding(),
+            .imePadding()
+            .verticalScroll(scroll),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         BackIcon(
@@ -79,7 +79,6 @@ fun BaseRegister(
                 .padding(start = 16.dp, top = 16.dp)
         )
         Spacer(modifier = Modifier.height(30.dp))
-
         TextCustom(
             title = stringResource(id = R.string.register_title_),
             fontSize = 26.sp,
@@ -89,7 +88,6 @@ fun BaseRegister(
             modifier = Modifier
                 .fillMaxWidth()
         )
-
         Spacer(modifier = Modifier.height(16.dp))
         Surface(
             modifier = Modifier.size(120.dp),
@@ -109,7 +107,6 @@ fun BaseRegister(
                                 ActivityResultContracts.PickVisualMedia.ImageOnly)
                         )
                     }
-
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
