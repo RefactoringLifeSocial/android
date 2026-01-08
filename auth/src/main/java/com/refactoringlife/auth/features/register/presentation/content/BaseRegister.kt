@@ -9,12 +9,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -22,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -89,16 +91,23 @@ fun BaseRegister(
         Spacer(modifier = Modifier.height(16.dp))
         Surface(
             modifier = Modifier.size(120.dp),
-            shape = RoundedCornerShape(20.dp),
+            shape = CircleShape,
             color = Color.White
         ) {
             Image(
                 painter = painter,
-                contentDescription = "logo",
+                contentDescription = "profile image",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(110.dp)
-                    .clickable { pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) }
+                    .fillMaxSize()
+                    .clip(CircleShape)
+                    .clickable{
+                        pickMedia.launch(
+                            PickVisualMediaRequest(
+                                ActivityResultContracts.PickVisualMedia.ImageOnly)
+                        )
+                    }
+
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
