@@ -20,7 +20,6 @@ import com.refactoringlife.core.common.utils.navigateToDeeplink
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import androidx.core.view.WindowCompat
 
 @AndroidEntryPoint
 class AuthActivity : BaseActivity(R.id.fragment_container) {
