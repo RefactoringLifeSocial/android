@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -14,6 +15,7 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.TextUnit
@@ -31,16 +33,25 @@ fun TextFieldCustom(
     placeHolderColor: Color,
     isPassword: Boolean = false,
     showPassword: Boolean = false,
-
-    ) {
+    keyboardType: KeyboardType = KeyboardType.Text,
+    onlyNumbers: Boolean = false
+) {
     OutlinedTextField(
         value = value,
-        onValueChange = {
-            if (it.isAllowedInput()){
-                onValueChange(it)
+        onValueChange = { newValue ->
+            val isValid = when {
+                onlyNumbers -> newValue.all { it.isDigit() }
+                else -> newValue.isAllowedInput()
+            }
+
+            if (isValid) {
+                onValueChange(newValue)
             }
         },
         singleLine = true,
+        keyboardOptions = KeyboardOptions(
+            keyboardType = keyboardType
+        ),
         visualTransformation = if (isPassword && !showPassword) {
             PasswordVisualTransformation()
         } else {
