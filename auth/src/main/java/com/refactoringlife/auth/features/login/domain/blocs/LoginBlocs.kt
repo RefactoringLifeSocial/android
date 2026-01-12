@@ -1,6 +1,8 @@
 package com.refactoringlife.auth.features.login.domain.blocs
 
+import com.refactoringlife.auth.features.login.domain.usecases.GetTermsAcceptedUseCase
 import com.refactoringlife.auth.features.login.domain.usecases.SaveAccessTokenUseCase
+import com.refactoringlife.auth.features.login.domain.usecases.SaveTermsAcceptedUseCase
 import com.refactoringlife.core.data.datastore.AppPreferencesRepository
 
 class LoginBlocs {
@@ -14,7 +16,17 @@ class LoginBlocs {
                 )
             ),
             HandleLoginGoogleBloc(),
-            HandleClearStateBloc()
+            HandleClearStateBloc(),
+            HandleAcceptTermsBloc(
+                saveTermsAcceptedUseCase = SaveTermsAcceptedUseCase(
+                    appPreferencesRepository = appPreferencesRepository
+                )
+            ),
+            HandleLoadTermsAcceptedBloc(
+                getTermsAcceptedUseCase = GetTermsAcceptedUseCase(
+                    appPreferencesRepository = appPreferencesRepository
+                )
+            )
         )
     }
 }

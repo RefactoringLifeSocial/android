@@ -44,7 +44,6 @@
     <string name="mesage_welcome_register_description">Elige una opcion para tu registro \nen Huella.</string>
     <string name="description_button_user">*Sé un "Usuario" si deseas reportar, adoptar, dar hogar \ntemporal o ayudar económicamente a una mascota que \nlo necesita.</string>
     <string name="description_button_foundation">*Sé un "Fundador" si deseas tener mayor visibilidad para \ntu fundación y llegar a más usuarios dentro de Huella.</string>
-
     <!-- Strings de Pre login -->
     <string name="refactoring_life">Refactoring\nLife</string>
     <string name="sign_in_text">Iniciar sesión</string>
@@ -92,4 +91,10 @@
     <string name="t_rminos_y_condiciones_y_pol_ticas_de_privacidad_de_huellas">Términos y condiciones y políticas de privacidad de Huellas</string>
     <string name="olvidaste_tu_contrase_a">¿Olvidaste tu contraseña?</string>
     <string name="usuario_xyz">Usuario XYZ</string>
+
+    <!--Terminos y condiciones-->
+    <string name="acepto_los_terminos">Acepto los términos y condiciones</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="terms_content">TÉRMINOS Y CONDICIONES DE USO\n\n1. ACEPTACIÓN DE LOS TÉRMINOS\nAl acceder y utilizar la aplicación Huellas, usted acepta estar sujeto a estos términos y condiciones de uso.\n\n2. USO DE LA APLICACIÓN\nLa aplicación está diseñada para ayudar a reencontrar, rescatar y dar hogar a mascotas. Usted se compromete a usar la aplicación de manera responsable y legal.\n\n3. REGISTRO Y CUENTA\nUsted es responsable de mantener la confidencialidad de su cuenta y contraseña. Debe notificar inmediatamente cualquier uso no autorizado.\n\n4. CONTENIDO DEL USUARIO\nUsted es responsable del contenido que publique en la aplicación. No debe publicar información falsa o engañosa.\n\n5. PRIVACIDAD\nRespetamos su privacidad y manejamos sus datos personales de acuerdo con nuestra Política de Privacidad.\n\n6. PROHIBICIONES\nEstá prohibido usar la aplicación para actividades ilegales, acosar a otros usuarios, o violar derechos de terceros.\n\n7. MODIFICACIONES\nNos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entrarán en vigor al publicarse.\n\n8. LIMITACIÓN DE RESPONSABILIDAD\nLa aplicación se proporciona \"tal cual\" sin garantías. No seremos responsables por daños indirectos o consecuentes.\n\nAl aceptar estos términos, usted confirma que ha leído, entendido y acepta estar sujeto a estos términos y condiciones.</string>
 </resources>

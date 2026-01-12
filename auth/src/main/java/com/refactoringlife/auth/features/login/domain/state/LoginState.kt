@@ -10,5 +10,6 @@ data class LoginState(
     val data: UserLoginModel? = null,
     val hasEmailError: Boolean = false,
     val hasPasswordError: Boolean = false,
-    val isFormValid: Boolean = false
+    val isFormValid: Boolean = false,
+    val termsAccepted: Boolean = false
 )

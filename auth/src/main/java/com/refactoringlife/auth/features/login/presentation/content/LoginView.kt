@@ -29,6 +29,7 @@ import com.refactoringlife.auth.features.login.presentation.composables.ImageLog
 import com.refactoringlife.auth.features.login.presentation.composables.LegalText
 import com.refactoringlife.auth.features.login.presentation.composables.LoginButton
 import com.refactoringlife.auth.features.login.presentation.composables.LoginGoogleButton
+import com.refactoringlife.auth.features.login.presentation.composables.ModalTYC
 import com.refactoringlife.auth.features.login.presentation.composables.TextForgotPassword
 import com.refactoringlife.auth.features.login.presentation.composables.TitleLogin
 import com.refactoringlife.auth.features.login.presentation.composables.UnderlineTextField
@@ -42,12 +43,13 @@ fun LoginView(
     onLoginClick: (email: String, password: String) -> Unit,
     onForgotPassword: () -> Unit,
     onLoginForGoogle: () -> Unit,
-    onTermsClick: () -> Unit,
+    onAcceptTerms: (Boolean) -> Unit = {},
     state: LoginState,
     onClearState: () -> Unit = {}
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var showTermsModal by remember { mutableStateOf(false) }
 
     val errorMessage = when {
         state.hasEmailError -> stringResource(R.string.error_login_generic)
@@ -125,7 +127,7 @@ fun LoginView(
             )
 
             LegalText(
-                onTermsClick = onTermsClick,
+                onTermsClick = { showTermsModal = true },
                 modifier = Modifier.padding(bottom = 20.dp)
             )
 
@@ -142,6 +144,16 @@ fun LoginView(
         }
         if (state.loading) {
             Loading()
+        }
+
+        if (showTermsModal) {
+            ModalTYC(
+                onDismiss = { showTermsModal = false },
+                initialAcceptedState = state.termsAccepted,
+                onAccept = { accepted ->
+                    onAcceptTerms(accepted)
+                }
+            )
         }
     }
 }
