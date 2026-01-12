@@ -21,12 +21,16 @@ class HandleForgotPasswordBloc(
 
         if (event.email.isValidEmail()) {
             update {
-                it.copy(showModal = true)
+                it.copy(showModal = true, hasEmailError = false)
             }
 
             val request = UserSendEmailRequest(event.email)
 
             sendEmailResponseUseCase(request)
+        }else {
+            update{
+                it.copy(showModal = false, hasEmailError = true)
+            }
         }
     }
 }
