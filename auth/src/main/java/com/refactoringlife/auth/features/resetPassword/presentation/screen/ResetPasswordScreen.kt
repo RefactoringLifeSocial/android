@@ -4,7 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import com.refactoringlife.auth.R
 import com.refactoringlife.auth.features.resetPassword.domain.bloc.ResetPasswordEvent
+import com.refactoringlife.auth.features.resetPassword.domain.state.ResetPasswordState
 import com.refactoringlife.auth.features.resetPassword.presentation.composables.ResetModal
 import com.refactoringlife.auth.features.resetPassword.presentation.content.ResetPasswordContent
 import com.refactoringlife.auth.features.resetPassword.presentation.viewmodel.ResetPasswordViewModel
@@ -13,10 +17,11 @@ import kotlinx.coroutines.launch
 @Composable
 fun ResetPasswordScreen(
     viewModel: ResetPasswordViewModel,
-    token: String
+    token: String,
 ) {
     val scope = rememberCoroutineScope()
     val state by viewModel.uiState.collectAsState()
+
     ResetPasswordContent(
         state = state,
         sendPassword = {
