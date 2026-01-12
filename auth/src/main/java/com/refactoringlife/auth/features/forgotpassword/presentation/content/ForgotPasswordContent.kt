@@ -5,7 +5,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
@@ -14,19 +16,21 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.refactoringlife.auth.R
-import com.refactoringlife.auth.features.forgotpassword.domain.bloc.ForgotPasswordEvent
 import com.refactoringlife.auth.features.forgotpassword.domain.state.ForgotPasswordState
 import com.refactoringlife.auth.features.forgotpassword.presentation.viewmodel.ForgotPasswordViewModel
 import com.refactoringlife.auth.features.register.presentation.content.ButtonCustom
 import com.refactoringlife.auth.features.register.presentation.content.TextFieldCustom
 import com.refactoringlife.auth.features.register.presentation.theme.backgroundRegister
 import com.refactoringlife.auth.features.register.presentation.theme.grayLight
+import com.refactoringlife.core.common.utils.Constants.EMPTY
 import kotlinx.coroutines.launch
 
 @Composable
@@ -36,6 +40,10 @@ fun ForgotPasswordContent(
     viewModel: ForgotPasswordViewModel
 ) {
     val scope = rememberCoroutineScope()
+
+    val errorMessage = if (state.hasEmailError) stringResource(R.string.error_email_invalid)
+    else EMPTY
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -66,9 +74,11 @@ fun ForgotPasswordContent(
             placeholderText = stringResource(R.string.input_email),
             placeholderFontSize = 16.sp,
             placeHolderColor = grayLight,
-            modifier = Modifier
+            modifier = Modifier,
+            isError = state.hasEmailError
         )
         Spacer(modifier = Modifier.height(30.dp))
+
         ButtonCustom(
             text = stringResource(R.string.send_email),
             onClick = {
@@ -80,6 +90,21 @@ fun ForgotPasswordContent(
             modifier = Modifier
                 .height(50.dp)
         )
+
+        Spacer(modifier = Modifier.height(15.dp))
+
+        if (errorMessage.isNotEmpty()) {
+            Text(
+                text = errorMessage,
+                color = Red,
+                fontSize = 13.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 40.dp),
+            )
+        }
+
         Spacer(modifier = Modifier.height(15.dp))
         Text(
             text = stringResource(R.string.description_reset_password),

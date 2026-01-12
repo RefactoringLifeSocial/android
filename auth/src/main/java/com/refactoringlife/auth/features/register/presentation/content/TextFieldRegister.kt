@@ -34,7 +34,8 @@ fun TextFieldCustom(
     isPassword: Boolean = false,
     showPassword: Boolean = false,
     keyboardType: KeyboardType = KeyboardType.Text,
-    onlyNumbers: Boolean = false
+    onlyNumbers: Boolean = false,
+    isError: Boolean = false
 ) {
     OutlinedTextField(
         value = value,
@@ -69,7 +70,7 @@ fun TextFieldCustom(
                 val strokeWidth = 1.dp.toPx()
                 val y = size.height - strokeWidth / 2
                 drawLine(
-                    color = Color(0xFF8C61A5),
+                    color = if (isError) Color.Red else Color(0xFF8C61A5),
                     start = Offset(0f, y),
                     end = Offset(size.width, y),
                     strokeWidth = strokeWidth
