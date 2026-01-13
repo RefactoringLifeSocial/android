@@ -63,6 +63,7 @@
     <string name="send_email">Enviar enlace</string>
     <string name="title_reset_modal">Tu contraseña ha sido actualizada exitosamente.</string>
     <string name="description_reset_password">Ingresa el correo electrónico asociado a tu cuenta y te enviaremos un enlace para restablecer tu contraseña</string>
+    <string name="password_must_match">Las contraseñas deben coincidir</string>
     <!-- Strings de Verify Code -->
     <string name="thanks">Gracias!</string>
     <string name="message_send_code">Te enviamos un codigo de verificacion</string>
