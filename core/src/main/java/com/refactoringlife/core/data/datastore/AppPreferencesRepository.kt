@@ -17,4 +17,11 @@ class AppPreferencesRepository(
     suspend fun setAccessToken(token: String?) {
         serializer.setAccessToken(token)
     }
+    suspend fun getTermsAccepted(): Boolean {
+        return serializer.getTermsAccepted()
+    }
+
+    suspend fun setTermsAccepted(accepted: Boolean) {
+        serializer.setTermsAccepted(accepted)
+    }
 }

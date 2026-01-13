@@ -40,26 +40,29 @@ fun LoginScreen(
 
     val state by loginViewModel.state.collectAsState()
 
+    LaunchedEffect(Unit) {
+        loginViewModel.sendEvent(LoginEvent.LoadTermsAccepted)
+    }
+
     LoginView(
         onLoginClick = { email, password ->
             loginViewModel.sendEvent(LoginEvent.Login(email, password))
         },
         onForgotPassword = {
             onForgotPassword()
-
         },
         onLoginForGoogle = {
             launcher.launch(googleAuthUiClient.signInIntent())
-
         },
-        onTermsClick = {
-
+        onAcceptTerms = { accepted ->
+            loginViewModel.sendEvent(LoginEvent.AcceptTerms(accepted))
         },
         state = state,
         onClearState = {
             loginViewModel.sendEvent(LoginEvent.ClearState)
         }
     )
+    
     LaunchedEffect(state.success) {
         if (state.success) {
             success()

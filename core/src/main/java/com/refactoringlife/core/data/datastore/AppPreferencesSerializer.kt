@@ -19,12 +19,14 @@ class AppPreferencesSerializer(context: Context) {
     companion object {
         private val ONBOARDING_COMPLETED_KEY = booleanPreferencesKey("onboarding_completed")
         private val ACCESS_TOKEN_KEY = stringPreferencesKey("access_token")
+        private val TERMS_ACCEPTED_KEY = booleanPreferencesKey("terms_accepted")
     }
 
     val appPreferencesFlow: Flow<AppPreferences> = dataStore.data.map { preferences ->
         AppPreferences(
             onboardingCompleted = preferences[ONBOARDING_COMPLETED_KEY] ?: false,
-            accessToken = preferences[ACCESS_TOKEN_KEY]
+            accessToken = preferences[ACCESS_TOKEN_KEY],
+            termsAccepted = preferences[TERMS_ACCEPTED_KEY] ?: false
         )
     }
 
@@ -49,6 +51,15 @@ class AppPreferencesSerializer(context: Context) {
             } else {
                 preferences.remove(ACCESS_TOKEN_KEY)
             }
+        }
+    }
+    suspend fun getTermsAccepted(): Boolean {
+        return appPreferencesFlow.first().termsAccepted
+    }
+
+    suspend fun setTermsAccepted(accepted: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[TERMS_ACCEPTED_KEY] = accepted
         }
     }
 }
